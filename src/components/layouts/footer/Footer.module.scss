@@ -1,0 +1,43 @@
+@import 'src/assets/styles/colors';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	row-gap: 25px;
+	padding: 0 200px;
+	.info {
+		padding: 20px 0;
+		border-top: 1px solid #CECECE;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 15px;
+			span {
+				color: $baseBlue;
+				font-size: 20px;
+				font-weight: 800;
+			}
+		}
+		.social {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 60px;
+			color: #8C8C8C;
+			& > * {
+				width: 25px;
+				height: 25px;
+				cursor: pointer;
+			}
+		}
+	}
+	.text {
+		color: #909090;
+		font-size: 16px;
+		font-weight: 400;
+		text-align: center;
+	}
+}

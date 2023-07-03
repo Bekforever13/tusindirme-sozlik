@@ -1,9 +1,6 @@
 import React from 'react';
+import Routing from './components/routes/Routing';
 
-const App: React.FC = () => {
-  console.log('Render App');
-
-  return <div>App</div>;
-};
+const App: React.FC = () => <Routing />;
 
 export default App;

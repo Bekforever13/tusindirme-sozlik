@@ -1,0 +1,11 @@
+.root {
+	padding: 120px 200px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 120px;
+	.cards {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+	}
+}

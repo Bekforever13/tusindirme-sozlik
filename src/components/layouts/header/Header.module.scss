@@ -1,0 +1,42 @@
+@import 'src/assets/styles/colors';
+.root {
+	background-color: $baseBlue;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2.625rem 200px;
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 11px;
+		span {
+			color: #fff;
+			font-size: 16px;
+			font-weight: 700;
+			line-height: normal;
+		}
+	}
+	.links {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 60px;
+		a {
+			color: #fff;
+			font-size: 18px;
+			font-weight: 500;
+			line-height: normal;
+		}
+	}
+	.lang {
+		color: #fff;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: normal;
+		border: 1px solid #fff;
+		padding: 3px 7px;
+		border-radius: 12px;
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,51 @@
+@import 'src/assets/styles/colors';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+
+	.title {
+		font-size: 32px;
+		color: #282828;
+		font-weight: 600;
+	}
+	.frameWrapper {
+		display: flex;
+		align-items: flex-start;
+		gap: 30px;
+		.card {
+			display: flex;
+			flex-direction: column;
+			padding: 30px 10px 30px 30px;
+			row-gap: 20px;
+			border-radius: 10px;
+			border: 1px solid #d7d7d7;
+			h3 {
+				color: #282828;
+				font-size: 20px;
+				font-weight: 500;
+			}
+			p {
+				color: #282828;
+				font-size: 18px;
+				font-weight: 400;
+				line-height: 150%;
+				span {
+					color: $baseBlue;
+					cursor: pointer;
+				}
+			}
+			.link {
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				color: $baseBlue;
+				gap: 10px;
+				font-size: 20px;
+				font-weight: 500;
+				margin-right: 20px;
+			}
+		}
+	}
+}

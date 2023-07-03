@@ -1,0 +1,46 @@
+@import 'src/assets/styles/colors';
+
+.root {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	row-gap: 10px;
+	width: 380px;
+	height: 330px;
+	border: 1px solid #d7d7d7;
+	border-radius: 10px;
+	padding: 30px;
+	h3 {
+		color: $baseBlue;
+		font-size: 20px;
+		font-weight: 700;
+	}
+	.words {
+		display: flex;
+		flex-direction: column;
+		row-gap: 5px;
+		margin-bottom: 10px;
+		h4 {
+			color: #282828;
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 150%;
+		}
+	}
+	.linkToAll {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		color: $baseBlue;
+		span {
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 150%;
+		}
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
