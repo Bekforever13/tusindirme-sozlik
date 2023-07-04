@@ -18,11 +18,12 @@ const Frame: React.FC = () => {
 				<div className={styles.card}>
 					<h3>Eń nátıyjelı usılı</h3>
 					<p>
-						Sózlerdi úyreniwdiń eń nátiyjeli usılı - tek ǵana biz benen!<br />
-						<span>Tusindirmesozlik.uz</span> - Qaraqalpaq tilindegi sózlerdi durıs jazıw hám
-						onıń mánisin mısallar járdeminde sizge shaǵıp beriwge járdem beredi!
-						Video arqalı veb sayttıń islew funkciyası hám kreativligin tolıǵıraq
-						túsinip alasız.
+						Sózlerdi úyreniwdiń eń nátiyjeli usılı - tek ǵana biz benen!
+						<br />
+						<span>Tusindirmesozlik.uz</span> - Qaraqalpaq tilindegi sózlerdi
+						durıs jazıw hám onıń mánisin mısallar járdeminde sizge shaǵıp
+						beriwge járdem beredi! Video arqalı veb sayttıń islew funkciyası hám
+						kreativligin tolıǵıraq túsinip alasız.
 					</p>
 					<div className={styles.link}>
 						Tolıq <BsArrowRight />
@@ -32,4 +33,4 @@ const Frame: React.FC = () => {
 		</div>
 	)
 }
-export default Frame
+export { Frame }

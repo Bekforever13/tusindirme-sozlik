@@ -5,7 +5,9 @@
 	row-gap: 120px;
 	.cards {
 		display: flex;
+		width: 100%;
 		align-items: center;
-		gap: 30px;
+		justify-content: center;
+		gap: 90px;
 	}
 }

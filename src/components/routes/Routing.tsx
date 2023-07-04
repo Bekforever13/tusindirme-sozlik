@@ -1,24 +1,13 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-
-import { HOME } from './Routes'
-import { Hero } from '../shared/hero/Hero'
-import { NotFound } from '../screens/NotFound/NotFound'
-import Layout from '../layouts/Layout'
-import { IRoutes } from './Routes.type'
-
-
-const routes: IRoutes[] = [
-	{
-		path: HOME,
-		element: <Hero />,
-	},
-]
+import { NotFound } from 'src/components/screens/NotFound/NotFound'
+import Layout from 'src/components/layouts/Layout'
+import { routes } from './Routes'
 
 const Routing: React.FC = () => {
 	return (
 		<Routes>
-			<Route path={'/'} element={<Layout />}>
+			<Route path='/' element={<Layout />}>
 				{routes.map((route, i) => (
 					<Route key={i} path={route.path} element={route.element} />
 				))}
@@ -28,4 +17,4 @@ const Routing: React.FC = () => {
 	)
 }
 
-export default Routing
+export { Routing }

@@ -1,12 +1,12 @@
 import React from 'react'
-import logo from '../../../assets/images/header_logo.svg'
+import logo from 'src/assets/images/header_logo.svg'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.scss'
 
 const Header: React.FC = () => {
 	return (
 		<div className={styles.root}>
-			<Link to={'/'} className={styles.logo}>
+			<Link to='/' className={styles.logo}>
 				<img src={logo} alt='' />
 				<span>Túsindirme sózlik</span>
 			</Link>
@@ -20,4 +20,4 @@ const Header: React.FC = () => {
 	)
 }
 
-export default Header
+export { Header }

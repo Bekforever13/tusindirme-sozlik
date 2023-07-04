@@ -1,1 +1,1 @@
-export const baseUrl = 'hhtps://'
+export const baseUrl = 'hhtps:/'

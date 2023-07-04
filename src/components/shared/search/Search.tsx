@@ -18,7 +18,7 @@ const Search: React.FC = () => {
 					<BiSearch />
 				</span>
 				<input
-				id='input'
+					id='input'
 					type='text'
 					placeholder={'Sózdi izlew ushın jazıń ...'}
 				/>
@@ -27,4 +27,4 @@ const Search: React.FC = () => {
 	)
 }
 
-export default Search
+export { Search }

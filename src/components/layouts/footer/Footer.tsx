@@ -3,8 +3,8 @@ import { LiaFacebook } from 'react-icons/lia'
 import { AiOutlineInstagram, AiOutlineYoutube } from 'react-icons/ai'
 import React from 'react'
 import styles from './Footer.module.scss'
-import logo from '../../../assets/images/footer_logo.svg'
-import android from '../../../assets/images/android.svg'
+import logo from 'src/assets/images/footer_logo.svg'
+import android from 'src/assets/images/android.svg'
 
 const Footer: React.FC = () => {
 	return (
@@ -32,4 +32,4 @@ const Footer: React.FC = () => {
 	)
 }
 
-export default Footer
+export { Footer }

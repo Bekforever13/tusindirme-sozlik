@@ -1,17 +1,15 @@
-@import 'src/assets/styles/colors';
-
 .root {
 	display: flex;
 	flex-direction: column;
 	row-gap: 30px;
 	.title {
-		color: #282828;
+		color: --textColor;
 		font-size: 32px;
-		font-weight: 600; 
+		font-weight: 600;
 	}
 	.about {
 		border-radius: 10px;
-		border: 1px solid #d7d7d7;
+		border: 1px solid var(--border);
 		display: flex;
 		align-items: flex-start;
 		gap: 10px;
@@ -25,7 +23,7 @@
 				align-items: center;
 				gap: 110px;
 				div {
-					color: #282828;
+					color: --textColor;
 					font-size: 32px;
 					font-weight: 600;
 				}
@@ -49,12 +47,12 @@
 				margin-bottom: 4px;
 			}
 			.about_desc {
-				color: #282828;
+				color: --textColor;
 				font-size: 18px;
 				font-weight: 400;
 				line-height: 150%;
 				span {
-					color: $baseBlue;
+					color: var(--baseBlue);
 					text-decoration: underline;
 					cursor: pointer;
 				}

@@ -1,6 +1,5 @@
-@import 'src/assets/styles/colors';
 .root {
-	background-color: $baseBlue;
+	background-color: var(--baseBlue);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
