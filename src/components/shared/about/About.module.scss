@@ -5,8 +5,8 @@
 	flex-direction: column;
 	row-gap: 30px;
 	.title {
-		color: --textColor;
-		font-size: 32px;
+		color: var(--textColor);
+		@include adaptiv-font(32, 22, 40);
 		font-weight: 600;
 	}
 	.about {
@@ -24,10 +24,18 @@
 				display: flex;
 				align-items: center;
 				gap: 110px;
+				@media (max-width: 700px) {
+					gap: 70px;
+				}
+				@media (max-width: 600px) {
+					gap: 45px;
+				}
+				@media (max-width: 540px) {
+					gap: 30px;
+				}
 				div {
-					color: --textColor;
-					// font-size: 32px;
-					@include adaptiv-font(32,20,36);
+					color: var(--textColor);
+					@include adaptiv-font(32, 20, 36);
 					font-weight: 600;
 				}
 				span {
@@ -39,19 +47,32 @@
 						width: 30px;
 						height: 30px;
 						cursor: pointer;
+						@media (max-width: 600px) {
+							width: 25px;
+							height: 25px;
+						}
+						@media (max-width: 540px) {
+							width: 20px;
+							height: 20px;
+						}
+						@media (max-width: 480px) {
+							display: none;
+						}
 					}
 				}
 			}
 			.about_type {
 				color: #cecece;
-				font-size: 18px;
+				@include adaptiv-font(18, 14, 20);
+
 				font-weight: 400;
 				line-height: 150%;
 				margin-bottom: 4px;
 			}
 			.about_desc {
-				color: --textColor;
-				font-size: 18px;
+				color: var(--textColor);
+				@include adaptiv-font(18, 12, 20);
+
 				font-weight: 400;
 				line-height: 150%;
 				span {
@@ -63,6 +84,25 @@
 		}
 		.about_logo {
 			margin-right: 30px;
+			position: relative;
+			@media (max-width: 768px) {
+				margin-right: 0;
+			}
+
+			img {
+				@media (max-width: 1000px) {
+					width: 100px;
+				}
+				@media (max-width: 768px) {
+					width: 50px;
+					position: absolute;
+					top: -10px;
+					right: 0;
+				}
+				@media (max-width: 375px) {
+					width: 35px;
+				}
+			}
 		}
 	}
 }
