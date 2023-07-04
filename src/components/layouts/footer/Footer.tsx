@@ -5,23 +5,32 @@ import React from 'react'
 import styles from './Footer.module.scss'
 import logo from 'src/assets/images/footer_logo.svg'
 import android from 'src/assets/images/android.svg'
+import { Link } from 'react-router-dom'
 
 const Footer: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.info}>
-				<div className={styles.logo}>
+				<Link to='/' className={styles.logo}>
 					<img src={logo} alt='Túsindirme sózlik logotip' />
 					<span>Túsindirme sózlik</span>
-				</div>
-				<div>
+				</Link>
+				<Link to='https://play.google.com/' target='_blank'>
 					<img src={android} alt='play market' />
-				</div>
+				</Link>
 				<div className={styles.social}>
-					<LiaFacebook />
-					<AiOutlineInstagram />
-					<AiOutlineYoutube />
-					<RiTelegramLine />
+					<Link to='/'>
+						<LiaFacebook />
+					</Link>
+					<Link to='/'>
+						<AiOutlineInstagram />
+					</Link>
+					<Link to='/'>
+						<AiOutlineYoutube />
+					</Link>
+					<Link to='/'>
+						<RiTelegramLine />
+					</Link>
 				</div>
 			</div>
 			<div className={styles.text}>

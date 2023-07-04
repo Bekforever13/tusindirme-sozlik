@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { NotFound } from 'src/components/screens/NotFound/NotFound'
-import Layout from 'src/components/layouts/Layout'
+import { Layout } from 'src/components/layouts/Layout'
 import { routes } from './Routes'
 
 const Routing: React.FC = () => {

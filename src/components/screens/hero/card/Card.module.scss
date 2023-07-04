@@ -20,11 +20,6 @@
 		flex-direction: column;
 		row-gap: 5px;
 		margin-bottom: 10px;
-		// @media (max-width: 920px) {
-		// 	flex-direction: row;
-		// 	gap: 10px;
-		// 	flex-wrap: wrap;
-		// }
 		h4 {
 			color: #282828;
 			@include adaptiv-font(18, 14, 20);

@@ -1,10 +1,11 @@
+import React from 'react'
 import { BsShareFill } from 'react-icons/bs'
 import styles from './About.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 
 const About: React.FC = () => {
 	return (
-		<div className={styles.root}>
+		<div className={styles.root} id='about'>
 			<div className={styles.title}>Baǵdarlama haqqında</div>
 			<div className={styles.about}>
 				<div className={styles.text}>

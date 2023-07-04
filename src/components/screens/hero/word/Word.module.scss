@@ -1,0 +1,59 @@
+@import 'src/assets/styles/base/mixin';
+
+.root {
+	border-radius: 10px;
+	border: 1px solid var(--border);
+	padding: 20px;
+	.word {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		h2 {
+			color: var(--textColor);
+			font-weight: 600;
+			@include adaptiv-font(32, 22, 32);
+			line-height: 140%;
+		}
+		span {
+			color: #8c8c8c;
+			font-size: 22px;
+		}
+	}
+	.type {
+		color: #cecece;
+		@include adaptiv-font(18, 14, 18);
+		line-height: 150%;
+	}
+	.desc {
+		color: #333;
+		@include adaptiv-font(18, 14, 18);
+		line-height: 150%;
+		margin: 10px 0 20px;
+	}
+	.common {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		gap: 20px;
+		.common_type {
+			display: flex;
+			flex-direction: column;
+			row-gap: 5px;
+			span {
+				color: var(--baseBlue);
+				@include adaptiv-font(18, 14, 18);
+				font-weight: 600;
+				line-height: 130%;
+			}
+			ul {
+				display: flex;
+				flex-direction: column;
+				row-gap: 5px;
+				li {
+					color: #333;
+					@include adaptiv-font(16, 12, 16);
+					line-height: 150%;
+				}
+			}
+		}
+	}
+}
