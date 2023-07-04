@@ -8,8 +8,8 @@ const Frame: React.FC = () => {
 			<div className={styles.frameWrapper}>
 				<div className={styles.frame}>
 					<iframe
-						width='750'
-						height='444'
+						// width='750'
+						// height='444'
 						src='https://www.youtube.com/embed/uSwe-5dPrV8'
 						title='RTK Query или альтернативный Redux по работе с API'
 						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'

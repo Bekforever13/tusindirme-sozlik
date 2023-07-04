@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './Hero.module.scss'
-import { Search } from '../search/Search'
-import { Card } from '../card/Card'
-import { Frame } from '../frame/Frame'
-import { About } from '../about/About'
+import { Search } from '../../shared/search/Search'
+import { Card } from '../../shared/card/Card'
+import { Frame } from '../../shared/frame/Frame'
+import { About } from '../../shared/about/About'
 
 const Hero: React.FC = () => {
 	return (

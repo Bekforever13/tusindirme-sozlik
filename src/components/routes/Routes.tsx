@@ -1,5 +1,3 @@
-import { Hero } from "../shared/hero/Hero"
+import { Hero } from '../screens/hero/Hero'
 
-export const routes = [
-	{path: '/', element: <Hero/>},
-]
+export const routes = [{ path: '/', element: <Hero /> }]

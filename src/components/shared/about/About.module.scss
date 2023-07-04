@@ -1,3 +1,5 @@
+@import 'src/assets/styles/base/mixin';
+
 .root {
 	display: flex;
 	flex-direction: column;
@@ -24,7 +26,8 @@
 				gap: 110px;
 				div {
 					color: --textColor;
-					font-size: 32px;
+					// font-size: 32px;
+					@include adaptiv-font(32,20,36);
 					font-weight: 600;
 				}
 				span {
