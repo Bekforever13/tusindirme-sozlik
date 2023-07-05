@@ -20,7 +20,7 @@
 		flex-direction: column;
 		row-gap: 5px;
 		margin-bottom: 10px;
-		h4 {
+		a {
 			color: #282828;
 			@include adaptiv-font(18, 14, 20);
 			font-weight: 400;

@@ -44,13 +44,12 @@
 			align-items: center;
 			justify-content: center;
 			gap: 60px;
-			color: #8c8c8c;
 			@media (max-width: 300px) {
 				gap: 20px;
 			}
 			& > * {
-				width: 25px;
-				height: 25px;
+				color: #8c8c8c;
+				font-size: 26px;
 				cursor: pointer;
 			}
 		}

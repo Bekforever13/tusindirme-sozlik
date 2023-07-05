@@ -36,7 +36,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 60px;
-		a {
+		a,
+		button {
 			color: #fff;
 			@include adaptiv-font(18, 14, 20);
 
@@ -72,7 +73,7 @@
 }
 
 .hide {
-	transition: all .3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	transform: translateX(100%);
 	display: flex;
 	background-color: var(--baseBlue);
@@ -103,7 +104,7 @@
 }
 
 .hLinks {
-	transition: all .3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	transform: translatex(0);
 	display: flex;
 	background-color: var(--baseBlue);

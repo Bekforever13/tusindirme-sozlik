@@ -2,6 +2,7 @@ import React from 'react'
 import { BsShareFill } from 'react-icons/bs'
 import styles from './About.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
+import { Link } from 'react-router-dom'
 
 const About: React.FC = () => {
 	return (
@@ -30,7 +31,7 @@ const About: React.FC = () => {
 						bolıwı múmkin. aldaǵı waqıtlarda dúzetip baramız.
 						<br />
 						<br />
-						<span>Tusindirmesozlik.uz</span> – sanlı baǵdarlama bolıp, bunda
+						<Link to={'/'}>Tusindirmesozlik.uz</Link> – sanlı baǵdarlama bolıp, bunda
 						qaraqalpaq tiliniń altın ǵáziynesinen orın alǵan kóp mıńlaǵan
 						sózlerdiń sinonimleri, mánisi, etimologiyası mısallar járdeminde
 						beriledi. Siz bul platformada qálegen waqıtta hám qálegen orında

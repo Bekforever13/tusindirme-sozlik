@@ -4,6 +4,7 @@ import styles from './Search.module.scss'
 import { Select } from 'antd'
 import { useDebounce } from 'src/hooks/useDebounce'
 import { AiOutlineClose } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 const Search: React.FC = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null)
@@ -60,11 +61,11 @@ const Search: React.FC = () => {
 				)}
 			</div>
 			{debouncedSearch && (
-				<ul className={styles.searchResults}>
+				<div className={styles.searchResults}>
 					{fakeSearchValues.map(word => {
-						return <li>{word}</li>
+						return <Link to={`/`}>{word}</Link>
 					})}
-				</ul>
+				</div>
 			)}
 		</div>
 	)

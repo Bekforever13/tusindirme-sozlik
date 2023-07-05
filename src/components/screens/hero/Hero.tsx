@@ -9,7 +9,7 @@ import { Word } from './word/Word'
 const Hero: React.FC = () => {
 	return (
 		<div className={styles.root}>
-			<Word />
+			{/* <Word /> */}
 			<Search />
 			<div className={styles.cards}>
 				<Card />

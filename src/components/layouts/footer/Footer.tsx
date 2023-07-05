@@ -19,16 +19,19 @@ const Footer: React.FC = () => {
 					<img src={android} alt='play market' />
 				</Link>
 				<div className={styles.social}>
-					<Link to='/'>
+					<Link to='https://facebook.com' target='_blank'>
 						<LiaFacebook />
 					</Link>
-					<Link to='/'>
+					<Link to='https://instagram.com/karsoftuz' target='_blank'>
 						<AiOutlineInstagram />
 					</Link>
-					<Link to='/'>
+					<Link
+						to='https://www.youtube.com/@bookieqaraqalpaq/featured'
+						target='_blank'
+					>
 						<AiOutlineYoutube />
 					</Link>
-					<Link to='/'>
+					<Link to='https://t.me/karsoft_bot' target='_blank'>
 						<RiTelegramLine />
 					</Link>
 				</div>
