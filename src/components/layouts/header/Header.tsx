@@ -44,7 +44,7 @@ const Header: React.FC = () => {
 				</a>
 			</div>
 			<div className={styles.lang}>
-				<Dropdown menu={{ items }} trigger={['click']}>
+				<Dropdown menu={{ items }} trigger={['click']} placement='top'>
 					<a onClick={e => handleClickLang(e)}>
 						<Space>QQ</Space>
 					</a>

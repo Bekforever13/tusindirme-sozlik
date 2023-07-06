@@ -50,12 +50,15 @@
 		width: 100%;
 		background-color: #fff;
 		flex-direction: column;
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 		border: 1px solid var(--border);
 		border-radius: 10px;
 		row-gap: 2px;
 		a {
-			border: 1px solid var(--border);
+			&:last-child {
+				border-radius: 10px;
+			}
+			border-bottom: 1px solid var(--border);
 			padding: 22px 20px;
 			@include adaptiv-font(18, 14, 18);
 			font-weight: 500;
