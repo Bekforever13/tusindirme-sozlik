@@ -1,0 +1,26 @@
+@import '/src/assets/styles/base/mixin';
+
+.root {
+	color: #fff;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	row-gap: 20px;
+	background-image: url('src/assets/images/not_found_bg.jpg');
+	h1 {
+		@include adaptiv-font(100, 70, 100);
+		font-weight: 400;
+	}
+	span {
+		@include adaptiv-font(40, 30, 40);
+	}
+	button {
+		background-color: var(--baseBlue);
+		padding: 10px 20px;
+		color: #fff;
+		border-radius: 10px;
+		@include adaptiv-font(24, 18, 24);
+	}
+}

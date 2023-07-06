@@ -4,7 +4,8 @@ import { Search } from 'src/components/screens/hero/search/Search'
 import { Card } from 'src/components/screens/hero/card/Card'
 import { Frame } from 'src/components/screens/hero//frame/Frame'
 import { About } from './about/About'
-import { Word } from './word/Word'
+// import { Word } from './word/Word'
+import { FloatButton } from 'antd'
 
 const Hero: React.FC = () => {
 	return (
@@ -18,6 +19,7 @@ const Hero: React.FC = () => {
 			</div>
 			<Frame />
 			<About />
+			<FloatButton.BackTop visibilityHeight={0} />
 		</div>
 	)
 }

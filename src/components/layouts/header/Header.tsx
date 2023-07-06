@@ -33,6 +33,7 @@ const Header: React.FC = () => {
 				<span>Túsindirme sózlik</span>
 			</Link>
 			<div className={styles.links}>
+				<Link to={'/'}>Bas bet</Link>
 				<Link to={'/wordslist'}>Sózler dizimi</Link>
 				<a
 					href='#about'
@@ -58,8 +59,13 @@ const Header: React.FC = () => {
 					direction='left'
 				/>
 			</div>
-			{/* hamburger menu */}
+
+			{/* ----------- hamburger menu ------------- */}
+
 			<div className={isOpen ? styles.hLinks : styles.hide}>
+				<Link onClick={() => setOpen(false)} to={'/'}>
+					Bas bet
+				</Link>
 				<Link onClick={() => setOpen(false)} to={'/wordslist'}>
 					Sózler dizimi
 				</Link>
