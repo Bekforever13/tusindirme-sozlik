@@ -31,7 +31,7 @@ const About: React.FC = () => {
 						bolıwı múmkin. aldaǵı waqıtlarda dúzetip baramız.
 						<br />
 						<br />
-						<Link to={'/'}>Tusindirmesozlik.uz</Link> – sanlı baǵdarlama bolıp, bunda
+						<Link to='/'>Tusindirmesozlik.uz</Link> – sanlı baǵdarlama bolıp, bunda
 						qaraqalpaq tiliniń altın ǵáziynesinen orın alǵan kóp mıńlaǵan
 						sózlerdiń sinonimleri, mánisi, etimologiyası mısallar járdeminde
 						beriledi. Siz bul platformada qálegen waqıtta hám qálegen orında

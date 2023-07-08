@@ -31,7 +31,7 @@ const Search: React.FC = () => {
 		'Abaysızda',
 	]
 
-	const handleClick = () => setSearch('')
+	const clearSearchValue = () => setSearch('')
 
 	return (
 		<div className={styles.root}>
@@ -55,7 +55,7 @@ const Search: React.FC = () => {
 					placeholder={'Sózdi izlew ushın jazıń ...'}
 				/>
 				{search && (
-					<button className={styles.clearButton} onClick={handleClick}>
+					<button className={styles.clearButton} onClick={clearSearchValue}>
 						<AiOutlineClose />
 					</button>
 				)}
@@ -63,7 +63,7 @@ const Search: React.FC = () => {
 			{debouncedSearch && (
 				<div className={styles.searchResults}>
 					{fakeSearchValues.map(word => {
-						return <Link to={`/`}>{word}</Link>
+						return <Link to='/'>{word}</Link>
 					})}
 				</div>
 			)}

@@ -7,14 +7,14 @@ const Card: React.FC = () => {
 		<div className={styles.root}>
 			<h3>Kóp izlenetuģın sózler</h3>
 			<div className={styles.words}>
-				<Link to={`/`}>Xızmetker</Link>
-				<Link to={`/`}>Rezerv</Link>
-				<Link to={`/`}>Jaǵday </Link>
-				<Link to={`/`}>Qıyal </Link>
-				<Link to={`/`}>Dizim</Link>
-				<Link to={`/`}>Hújjet</Link>
+				<Link to='/'>Xızmetker</Link>
+				<Link to='/'>Rezerv</Link>
+				<Link to='/'>Jaǵday </Link>
+				<Link to='/'>Qıyal </Link>
+				<Link to='/'>Dizim</Link>
+				<Link to='/'>Hújjet</Link>
 			</div>
-			<Link to={`/`} className={styles.linkToAll}>
+			<Link to='/' className={styles.linkToAll}>
 				<span>Hámmesin kóriw</span>
 				<BsArrowRight />
 			</Link>

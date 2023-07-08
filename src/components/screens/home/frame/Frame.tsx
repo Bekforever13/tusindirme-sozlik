@@ -19,7 +19,7 @@ const Frame: React.FC = () => {
 					<p>
 						Sózlerdi úyreniwdiń eń nátiyjeli usılı - tek ǵana biz benen!
 						<br />
-						<Link to={`https://tusindirmesozlik.uz`}>
+						<Link to='https://tusindirmesozlik.uz'>
 							Tusindirmesozlik.uz
 						</Link>{' '}
 						- Qaraqalpaq tilindegi sózlerdi durıs jazıw hám onıń mánisin
@@ -27,7 +27,7 @@ const Frame: React.FC = () => {
 						veb sayttıń islew funkciyası hám kreativligin tolıǵıraq túsinip
 						alasız.
 					</p>
-					<Link to={`/`} className={styles.link}>
+					<Link to='/' className={styles.link}>
 						Tolıq <BsArrowRight />
 					</Link>
 				</div>

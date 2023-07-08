@@ -45,7 +45,7 @@ const WordsList: React.FC = () => {
 				<h2>Aa</h2>
 				<div>
 					{fakeWords.map(word => {
-						return <Link to={'/'}>{word}</Link>
+						return <Link to='/'>{word}</Link>
 					})}
 				</div>
 			</div>
