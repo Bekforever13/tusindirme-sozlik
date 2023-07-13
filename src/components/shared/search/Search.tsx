@@ -5,9 +5,11 @@ import { Select } from 'antd'
 import { useDebounce } from 'src/hooks/useDebounce'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
 
 const Search: React.FC = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null)
+	const { data } = useGetAllWordsQuery()
 	const [search, setSearch] = React.useState<string>()
 	const debouncedSearch = useDebounce(search, 500)
 	const options = [
@@ -35,7 +37,6 @@ const Search: React.FC = () => {
 
 	return (
 		<div className={styles.root}>
-			<h1>Bir sózdi izleń, onı úyreniń</h1>
 			<div className={styles.wrapper} onClick={() => inputRef.current?.focus()}>
 				<Select
 					defaultValue={options[0].value}
@@ -62,8 +63,8 @@ const Search: React.FC = () => {
 			</div>
 			{debouncedSearch && (
 				<div className={styles.searchResults}>
-					{fakeSearchValues.map(word => {
-						return <Link to='/'>{word}</Link>
+					{data?.data.map(word => {
+						return <Link to='/'>{word.title[0].latin}</Link>
 					})}
 				</div>
 			)}

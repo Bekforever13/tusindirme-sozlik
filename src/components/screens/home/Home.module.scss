@@ -1,3 +1,5 @@
+@import 'src/assets/styles/base/mixin';
+
 .root {
 	padding: 120px 200px;
 	display: flex;
@@ -18,6 +20,27 @@
 	}
 	@media (max-width: 350px) {
 		padding: 20px 10px;
+	}
+	.search {
+		display: flex;
+		flex-direction: column;
+		row-gap: 25px;
+		position: relative;
+
+		h1 {
+			color: var(--textColor);
+			@include adaptiv-font(32, 22, 40);
+			font-weight: 600;
+		}
+		div input {
+			width: 100%;
+		}
+		div {
+			width: 100%;
+			a {
+				padding: 22px 20px;
+			}
+		}
 	}
 	.cards {
 		display: grid;

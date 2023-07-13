@@ -1,10 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { api } from './index.api'
+import { setupListeners } from '@reduxjs/toolkit/dist/query'
+import { reducer as allWords } from './allWords/allWords.slice'
 
-const store = configureStore({
-	reducer: {},
+const reducers = combineReducers({ allWords, [api.reducerPath]: api.reducer })
+
+export const store = configureStore({
+	reducer: reducers,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(api.middleware),
 })
 
-export { store }
-
 export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+setupListeners(store.dispatch)

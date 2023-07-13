@@ -1,0 +1,38 @@
+@import 'src/assets/styles/base/mixin';
+.root {
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+	.info {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+		.allWordsCount {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			@include adaptiv-font(32, 24, 32);
+		}
+		.allCategoriesCount {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			@include adaptiv-font(32, 24, 32);
+		}
+	}
+	.tables {
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+		gap: 30px;
+		@media (max-width: 1200px) {
+			flex-direction: column;
+			div {
+				width: 100%;
+			}
+		}
+		div {
+			flex: 1;
+		}
+	}
+}

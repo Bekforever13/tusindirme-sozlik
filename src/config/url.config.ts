@@ -1,1 +1,1 @@
-export const baseUrl = 'hhtps:/'
+export const baseUrl = 'https://test.tusindirmesozlik.uz/api'
