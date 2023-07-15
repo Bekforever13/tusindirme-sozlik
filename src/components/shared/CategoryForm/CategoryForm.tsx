@@ -32,7 +32,7 @@ const CategoryForm: React.FC = () => {
 		if (categoryToEdit) {
 			await editCategory({ ...values, id: categoryToEdit.id })
 		} else {
-			await createNewCategory({ ...values, type_id: '1' })
+			await createNewCategory({ ...values, type_id: 1 })
 		}
 	}
 
