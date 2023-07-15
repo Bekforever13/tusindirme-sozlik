@@ -1,38 +1,13 @@
 export type TWord = {
 	key?: string
 	id: string
-	title: [
-		{
-			kiril: string
-			latin: string
-		}
-	]
-	description: [
-		{
-			kiril: string
-			latin: string
-		}
-	]
-	status_id?: string
-	correct?: string
-	category_id?: number[]
-}
-
-export type TNewWord = {
-	title: [
-		{
-			latin: string
-			kiril: string
-		}
-	]
-	description: [
-		{
-			latin: string
-			kiril: string
-		}
-	]
-	correct: string
-	category_id: number[]
+	title_latin: string
+	title_kiril: string
+	description_latin: string
+	description_kiril: string
+	status_id?: string | number
+	categories_id?: number[]
+	correct?: boolean
 }
 
 export interface IAllWordsDataResult {

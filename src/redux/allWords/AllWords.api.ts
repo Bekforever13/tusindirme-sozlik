@@ -1,5 +1,5 @@
 import { api } from '../index.api'
-import { IAllWordsDataResult, TNewWord, TWord } from './Allwords.types'
+import { IAllWordsDataResult, TWord } from './Allwords.types'
 
 export const AllWordsApi = api.injectEndpoints({
 	endpoints: builder => ({
@@ -9,7 +9,7 @@ export const AllWordsApi = api.injectEndpoints({
 			}),
 			providesTags: ['words'],
 		}),
-		createNewWord: builder.mutation<TNewWord, TNewWord>({
+		createNewWord: builder.mutation<TWord, TWord>({
 			query: body => ({
 				url: '/words',
 				method: 'POST',
@@ -19,7 +19,7 @@ export const AllWordsApi = api.injectEndpoints({
 		}),
 		editWord: builder.mutation<any, TWord>({
 			query: body => ({
-				url: `/words/update/${body.id}`,
+				url: `/words/${body.id}`,
 				method: 'PATCH',
 				body,
 			}),
@@ -27,7 +27,7 @@ export const AllWordsApi = api.injectEndpoints({
 		}),
 		deleteWord: builder.mutation<any, string>({
 			query: id => ({
-				url: `/words/delete/${id}`,
+				url: `/words/${id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['words'],

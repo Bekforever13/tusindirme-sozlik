@@ -50,6 +50,11 @@
 		border: 1px solid var(--border);
 		border-radius: 10px;
 		row-gap: 2px;
+		h2 {
+			text-align: center;
+			color: #8c8c8c;
+			font-weight: 500;
+		}
 		a {
 			&:last-child {
 				border-radius: 10px;

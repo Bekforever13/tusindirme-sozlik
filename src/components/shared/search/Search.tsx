@@ -20,20 +20,12 @@ const Search: React.FC = () => {
 		{ value: 'Ee', label: 'Ee' },
 	]
 
-	const fakeSearchValues = [
-		'Abadan',
-		'Abadanlasıw',
-		'Abadanlıq',
-		'Abajur',
-		'Abay',
-		'Abay-sıyasat',
-		'Abaylaw',
-		'Abaylı',
-		'Abaysız',
-		'Abaysızda',
-	]
-
 	const clearSearchValue = () => setSearch('')
+
+	// ============== search ===============
+	// const handleSearch = (e: string) => {
+	// 	data?.data.filter
+	// }
 
 	return (
 		<div className={styles.root}>
@@ -63,9 +55,13 @@ const Search: React.FC = () => {
 			</div>
 			{debouncedSearch && (
 				<div className={styles.searchResults}>
-					{data?.data.map(word => {
-						return <Link to='/'>{word.title[0].latin}</Link>
-					})}
+					{!data ? (
+						<h2>Word is not found</h2>
+					) : (
+						data?.data.map(word => {
+							return <Link to='/'>{word.title_latin}</Link>
+						})
+					)}
 				</div>
 			)}
 		</div>

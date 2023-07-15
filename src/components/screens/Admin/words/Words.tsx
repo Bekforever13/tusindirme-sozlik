@@ -1,66 +1,93 @@
 import React from 'react'
-import { Space, Spin, Table, Popconfirm, message } from 'antd'
+import { Space, Table, Popconfirm, message, Tag } from 'antd'
 import styles from './Words.module.scss'
 import { UiButton } from 'src/components/ui/button/UiButton'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
-import { AddWordForm } from 'src/components/shared/AddWordForm/AddWordForm'
 import {
 	useDeleteWordMutation,
 	useGetAllWordsQuery,
 } from 'src/redux/index.endpoints'
 import { TWord } from 'src/redux/allWords/Allwords.types'
+import { useActions } from 'src/hooks/useActions'
+import { WordForm } from 'src/components/shared/WordForm/WordForm'
 
 const Words: React.FC = () => {
 	const { data, isLoading } = useGetAllWordsQuery()
 	const [deleteWord] = useDeleteWordMutation()
+	const { setWordToEdit, toggleModalWord } = useActions()
 
 	const onClickRemoveWord = (id: string) => {
 		deleteWord(id)
 		message.success('Deleted successfully!')
 	}
 
+	const dataSource = data?.data.map((item: TWord) => ({
+		...item,
+		key: item.id,
+	}))
+
+	const handleEditButtonClick = (record: TWord) => {
+		setWordToEdit(record)
+		toggleModalWord(true)
+	}
+
 	const columns = [
 		{
 			title: 'Sóz',
-			dataIndex: 'sóz',
-			key: 'sóz',
-			render: (_: void, r: TWord) => <>{r.title[0].latin}</>,
+			dataIndex: 'title_latin',
+			key: 'title_latin',
 		},
 		{
 			title: 'Сөз',
-			dataIndex: 'сөз',
-			key: 'сөз',
-			render: (_: void, r: TWord) => <>{r.title[0].kiril}</>,
+			dataIndex: 'title_kiril',
+			key: 'title_kiril',
 		},
 		{
 			title: 'Description latin',
-			dataIndex: 'latin',
-			key: 'latin',
-			render: (_: void, r: TWord) => <>{r.description[0].latin}</>,
+			dataIndex: 'description_latin',
+			key: 'description_latin',
 		},
 		{
 			title: 'Description kiril',
-			dataIndex: 'kiril',
-			key: 'kiril',
-			render: (_: void, r: TWord) => <>{r.description[0].kiril}</>,
+			dataIndex: 'description_kiril',
+			key: 'description_kiril',
 		},
 		{
 			title: 'Status',
-			dataIndex: 'status',
-			key: 'status',
-			render: (_: void, r: TWord) => <>{r.status_id}</>,
+			key: 'status_id',
+			dataIndex: 'status_id',
+			render: (_: any, record: TWord) => {
+				let color = null
+				let title = null
+				if (record.status_id === 1) {
+					color = 'yellow'
+					title = 'PENDING'
+				} else if (record.status_id === 2) {
+					color = 'red'
+					title = 'REJECTED'
+				} else {
+					color = 'green'
+					title = 'CONFIRMED'
+				}
+				return (
+					<>
+						<Tag color={color} key={record.status_id}>
+							{title}
+						</Tag>
+					</>
+				)
+			},
 		},
 		{
 			title: 'Actions',
-			dataIndex: 'actions',
 			render: (_: any, record: TWord) => (
 				<Space size='middle'>
-					<UiButton>
+					<UiButton onClick={() => handleEditButtonClick(record)}>
 						<AiOutlineEdit />
 					</UiButton>
 					<Popconfirm
-						title='Delete the task'
+						title='Delete the word'
 						description='Are you sure to delete this word?'
 						onConfirm={() => onClickRemoveWord(record?.id)}
 						okText='Yes'
@@ -76,19 +103,19 @@ const Words: React.FC = () => {
 	]
 
 	return (
-		<Spin spinning={isLoading}>
-			<div className={styles.root}>
-				<div className={styles.head}>
-					<h2>Sózler</h2>
-					<AddWordForm />
-				</div>
-				<Table
-					pagination={{ position: ['bottomCenter'] }}
-					dataSource={data?.data}
-					columns={columns}
-				></Table>
+		<div className={styles.root}>
+			<div className={styles.head}>
+				<h2>Sózler</h2>
+				<UiButton onClick={() => toggleModalWord(true)}>Add word</UiButton>
+				<WordForm />
 			</div>
-		</Spin>
+			<Table
+				pagination={{ position: ['bottomCenter'] }}
+				loading={isLoading}
+				dataSource={dataSource}
+				columns={columns}
+			/>
+		</div>
 	)
 }
 export { Words }

@@ -33,15 +33,14 @@ const Admin: React.FC = () => {
 		}
 		navigate(e.key)
 	}
-	const token = localStorage.getItem('token')
+	const token =
+		localStorage.getItem('token') &&
+		localStorage.getItem('token') !== 'Bearer undefined'
 
 	React.useEffect(() => {
-		if (token) {
-			console.log('authorized')
-		} else {
+		if (!token) {
 			navigate('/auth')
 		}
-
 	}, [token])
 
 	const {

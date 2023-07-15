@@ -1,64 +1,80 @@
 import React from 'react'
-import { Spin, Table } from 'antd'
+import { Spin, Table, Tag } from 'antd'
 import styles from './SortDateTable.module.scss'
 import { TWord } from 'src/redux/allWords/Allwords.types'
 import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
 import { useActions } from 'src/hooks/useActions'
-import { AddWordForm } from 'src/components/shared/AddWordForm/AddWordForm'
+import { WordForm } from 'src/components/shared/WordForm/WordForm'
+import { UiButton } from 'src/components/ui/button/UiButton'
 
 const SortDateTable: React.FC = () => {
-	const { data, isSuccess, isLoading } = useGetAllWordsQuery()
-	const { getAllWords } = useActions()
+	const { data, isLoading } = useGetAllWordsQuery()
+	const { toggleModalWord } = useActions()
+	const dataSource = data?.data.map((item: TWord) => ({
+		...item,
+		key: item.id,
+	}))
 
 	const columns = [
 		{
 			title: 'Latin',
-			dataIndex: 'latin',
-			key: 'latin',
-			render: (_: void, r: TWord) => <>{r.title[0].latin}</>,
+			dataIndex: 'title_latin',
+			key: 'title_latin',
 		},
 		{
 			title: 'Kiril',
-			dataIndex: 'kiril',
-			key: 'kiril',
-			render: (_: void, r: TWord) => <>{r.title[0].kiril}</>,
+			dataIndex: 'title_kiril',
+			key: 'title_kiril',
 		},
 		{
 			title: 'Description latin',
-			dataIndex: 'latin',
-			key: 'latin',
-			render: (_: void, r: TWord) => <>{r.description[0].latin}</>,
+			dataIndex: 'description_latin',
+			key: 'description_latin',
 		},
 		{
 			title: 'Description kiril',
-			dataIndex: 'kiril',
-			key: 'kiril',
-			render: (_: void, r: TWord) => <>{r.description[0].kiril}</>,
+			dataIndex: 'description_kiril',
+			key: 'description_kiril',
 		},
 		{
 			title: 'Status',
-			dataIndex: 'status_id',
 			key: 'status_id',
-			render: (_: void, r: TWord) => <>{r.status_id}</>,
+			dataIndex: 'status_id',
+			render: (_: any, record: TWord) => {
+				let color = null
+				let title = null
+				if (record.status_id === 1) {
+					color = 'yellow'
+					title = 'PENDING'
+				} else if (record.status_id === 2) {
+					color = 'red'
+					title = 'REJECTED'
+				} else {
+					color = 'green'
+					title = 'CONFIRMED'
+				}
+				return (
+					<>
+						<Tag color={color} key={record.status_id}>
+							{title}
+						</Tag>
+					</>
+				)
+			},
 		},
 	]
-
-	React.useEffect(() => {
-		if (isSuccess) {
-			getAllWords(data.data)
-		}
-	}, [isSuccess])
 
 	return (
 		<Spin spinning={isLoading}>
 			<div className={styles.root}>
 				<div className={styles.head}>
 					<h2>Sózler</h2>
-					<AddWordForm />
+					<UiButton onClick={() => toggleModalWord(true)}>Add word</UiButton>
+					<WordForm />
 				</div>
 				<Table
 					pagination={{ position: ['bottomCenter'] }}
-					dataSource={data?.data}
+					dataSource={dataSource}
 					columns={columns}
 				></Table>
 			</div>
