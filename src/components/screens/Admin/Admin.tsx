@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdOutlineTranslate } from 'react-icons/md'
-import { FiUsers, FiLogOut } from 'react-icons/fi'
+import { FiUsers, FiLogOut, FiType } from 'react-icons/fi'
 import { Layout, Menu, theme } from 'antd'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiCategory } from 'react-icons/bi'
@@ -14,6 +14,7 @@ const items = [
 	{ pathname: '/admin', icon: <AiOutlineHome />, label: 'Home' },
 	{ pathname: '/admin/words', icon: <MdOutlineTranslate />, label: 'Words' },
 	{ pathname: '/admin/category', icon: <BiCategory />, label: 'Category' },
+	{ pathname: '/admin/types', icon: <FiType />, label: 'Types' },
 	{ pathname: '/admin/admins', icon: <FiUsers />, label: 'Admins' },
 	{ pathname: '/auth', icon: <FiLogOut />, label: 'Logout' },
 ].map(obj => ({
@@ -23,29 +24,25 @@ const items = [
 }))
 
 const Admin: React.FC = () => {
-	const [collapsed, setCollapsed] = React.useState(false)
+	const [collapsed, setCollapsed] = React.useState<boolean>(false)
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
 
 	const onCLickMenuItem = (e: any) => {
-		if (e.key === '/auth') {
-			localStorage.removeItem('token')
-		}
+		if (e.key === '/auth') localStorage.removeItem('token')
 		navigate(e.key)
 	}
 	const token =
 		localStorage.getItem('token') &&
 		localStorage.getItem('token') !== 'Bearer undefined'
-
-	React.useEffect(() => {
-		if (!token) {
-			navigate('/auth')
-		}
-	}, [token])
-
-	const {
-		token: { colorBgContainer },
-	} = theme.useToken()
+		
+		const {
+			token: { colorBgContainer },
+		} = theme.useToken()
+		
+		React.useEffect(() => {
+			if (!token) navigate('/auth')
+		}, [token])
 
 	return (
 		<Layout hasSider>

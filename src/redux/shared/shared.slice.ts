@@ -2,14 +2,17 @@ import { TWord } from 'src/redux/allWords/Allwords.types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ISharedType } from './shared.types'
-import { TCategory } from '../allCategories/allCategories.types';
+import { TCategory } from 'src/redux/allCategories/allCategories.types';
+import { TType } from '../types/_Types.types';
 
 const initialState: ISharedType = {
 	searchValue: '',
 	wordModalShow: false,
 	wordToEdit: null,
 	categoryModalShow: false,
-	categoryToEdit: null
+	categoryToEdit: null,
+	typesModalShow: false,
+	typeToEdit: null
 }
 
 const sharedSlice = createSlice({
@@ -30,6 +33,12 @@ const sharedSlice = createSlice({
 		},
 		setSearchValue(state, { payload }: PayloadAction<string>) {
 			state.searchValue = payload
+		},
+		toggleModalType(state, { payload }: PayloadAction<boolean>) {
+			state.typesModalShow = payload
+		},
+		setTypeToEdit(state, { payload }: PayloadAction<TType | null>) {
+			state.typeToEdit = payload
 		},
 	},
 })

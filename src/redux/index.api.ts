@@ -11,7 +11,7 @@ export const api = createApi({
 			return headers
 		},
 	}),
-	tagTypes: ['words', 'categories'],
+	tagTypes: ['words', 'categories', 'admins', 'types'],
 	endpoints: build => ({
 		default: build.query({
 			query: () => 'default',

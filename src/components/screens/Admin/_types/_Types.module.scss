@@ -1,0 +1,15 @@
+@import 'src/assets/styles/base/mixin';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	.head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		h2 {
+			@include adaptiv-font(24, 20, 24);
+		}
+	}
+}

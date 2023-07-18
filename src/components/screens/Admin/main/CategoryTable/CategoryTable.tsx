@@ -1,6 +1,6 @@
 import React from 'react'
-import { Spin, Table, Tag } from 'antd'
 import styles from './CategoryTable.module.scss'
+import { Table, Tag } from 'antd'
 import { useGetAllCategoriesQuery } from 'src/redux/index.endpoints'
 import { TCategory } from 'src/redux/allCategories/allCategories.types'
 import { CategoryForm } from 'src/components/shared/CategoryForm/CategoryForm'
@@ -22,7 +22,7 @@ const columns = [
 		title: 'Type',
 		key: 'type_id',
 		dataIndex: 'type_id',
-		render: (_: any, record: TCategory) => {
+		render: (_: void, record: TCategory) => {
 			let color = null
 			let title = null
 			if (record.type_id === 1) {
@@ -30,17 +30,15 @@ const columns = [
 				title = 'SO’Z SHAQAPLARI’'
 			} else if (record.type_id === 2) {
 				color = 'red'
-				title = 'REJECTED'
+				title = ''
 			} else {
 				color = 'green'
-				title = 'CONFIRMED'
+				title = ''
 			}
 			return (
-				<>
-					<Tag color={color} key={record.type_id}>
-						{title}
-					</Tag>
-				</>
+				<Tag color={color} key={record.type_id}>
+					{title}
+				</Tag>
 			)
 		},
 	},
@@ -52,22 +50,21 @@ const CategoryTable: React.FC = () => {
 	const dataSource = data?.data.map(item => ({ ...item, key: item.id }))
 
 	return (
-		<Spin spinning={isLoading}>
-			<div className={styles.root}>
-				<div className={styles.head}>
-					<h2>Kategoriya</h2>
-					<UiButton onClick={() => toggleModalCategory(true)}>
-						Add Category
-					</UiButton>
-					<CategoryForm />
-				</div>
-				<Table
-					pagination={{ position: ['bottomCenter'] }}
-					dataSource={dataSource}
-					columns={columns}
-				></Table>
+		<div className={styles.root}>
+			<div className={styles.head}>
+				<h2>Kategoriya</h2>
+				<UiButton onClick={() => toggleModalCategory(true)}>
+					Add Category
+				</UiButton>
+				<CategoryForm />
 			</div>
-		</Spin>
+			<Table
+				loading={isLoading}
+				pagination={{ position: ['bottomCenter'] }}
+				dataSource={dataSource}
+				columns={columns}
+			/>
+		</div>
 	)
 }
 export { CategoryTable }

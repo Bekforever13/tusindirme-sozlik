@@ -13,15 +13,3 @@ export type TWord = {
 export interface IAllWordsDataResult {
 	data: TWord[]
 }
-
-export interface IInitialState {
-	words: TWord[]
-}
-
-export interface ITableData {
-	key: string
-	titleLatin: string
-	titleKiril: string
-	descLatin: string
-	descKiril: string
-}

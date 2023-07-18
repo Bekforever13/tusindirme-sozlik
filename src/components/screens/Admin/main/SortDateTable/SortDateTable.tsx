@@ -1,6 +1,6 @@
 import React from 'react'
-import { Spin, Table, Tag } from 'antd'
 import styles from './SortDateTable.module.scss'
+import { Table, Tag } from 'antd'
 import { TWord } from 'src/redux/allWords/Allwords.types'
 import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
 import { useActions } from 'src/hooks/useActions'
@@ -40,7 +40,7 @@ const SortDateTable: React.FC = () => {
 			title: 'Status',
 			key: 'status_id',
 			dataIndex: 'status_id',
-			render: (_: any, record: TWord) => {
+			render: (_: void, record: TWord) => {
 				let color = null
 				let title = null
 				if (record.status_id === 1) {
@@ -54,31 +54,28 @@ const SortDateTable: React.FC = () => {
 					title = 'CONFIRMED'
 				}
 				return (
-					<>
-						<Tag color={color} key={record.status_id}>
-							{title}
-						</Tag>
-					</>
+					<Tag color={color} key={record.status_id}>
+						{title}
+					</Tag>
 				)
 			},
 		},
 	]
 
 	return (
-		<Spin spinning={isLoading}>
-			<div className={styles.root}>
-				<div className={styles.head}>
-					<h2>Sózler</h2>
-					<UiButton onClick={() => toggleModalWord(true)}>Add word</UiButton>
-					<WordForm />
-				</div>
-				<Table
-					pagination={{ position: ['bottomCenter'] }}
-					dataSource={dataSource}
-					columns={columns}
-				></Table>
+		<div className={styles.root}>
+			<div className={styles.head}>
+				<h2>Sózler</h2>
+				<UiButton onClick={() => toggleModalWord(true)}>Add word</UiButton>
+				<WordForm />
 			</div>
-		</Spin>
+			<Table
+				loading={isLoading}
+				pagination={{ position: ['bottomCenter'] }}
+				dataSource={dataSource}
+				columns={columns}
+			/>
+		</div>
 	)
 }
 export { SortDateTable }

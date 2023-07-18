@@ -22,6 +22,13 @@ const Words: React.FC = () => {
 		message.success('Deleted successfully!')
 	}
 
+	React.useEffect(() => {
+		if (data?.data) {
+			console.log(data)
+			console.log(data?.data.length)
+		}
+	}, [])
+
 	const dataSource = data?.data.map((item: TWord) => ({
 		...item,
 		key: item.id,
@@ -57,7 +64,7 @@ const Words: React.FC = () => {
 			title: 'Status',
 			key: 'status_id',
 			dataIndex: 'status_id',
-			render: (_: any, record: TWord) => {
+			render: (_: void, record: TWord) => {
 				let color = null
 				let title = null
 				if (record.status_id === 1) {
@@ -81,7 +88,7 @@ const Words: React.FC = () => {
 		},
 		{
 			title: 'Actions',
-			render: (_: any, record: TWord) => (
+			render: (_: void, record: TWord) => (
 				<Space size='middle'>
 					<UiButton onClick={() => handleEditButtonClick(record)}>
 						<AiOutlineEdit />

@@ -45,7 +45,7 @@ const Category: React.FC = () => {
 			title: 'Type',
 			key: 'type_id',
 			dataIndex: 'type_id',
-			render: (_: any, record: TCategory) => {
+			render: (_: void, record: TCategory) => {
 				let color = null
 				let title = null
 				if (record.type_id === 1) {
@@ -70,7 +70,7 @@ const Category: React.FC = () => {
 		{
 			title: 'Actions',
 			key: 'action',
-			render: (_: any, record: TCategory) => (
+			render: (_: void, record: TCategory) => (
 				<Space size='middle'>
 					<UiButton onClick={() => handleEditButtonClick(record)}>
 						<AiOutlineEdit />

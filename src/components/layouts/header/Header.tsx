@@ -43,6 +43,7 @@ const Header: React.FC = () => {
 				>
 					Baģdarlama haqqında
 				</a>
+				<Link to='/auth'>Admin</Link>
 			</div>
 			<div className={styles.lang}>
 				<Dropdown menu={{ items }} trigger={['click']} placement='top'>
@@ -78,6 +79,7 @@ const Header: React.FC = () => {
 				>
 					Baģdarlama haqqında
 				</a>
+				<Link to='/auth'>Admin</Link>
 				<div className={styles.hLang}>QQ</div>
 			</div>
 		</div>

@@ -24,7 +24,7 @@ export const allCategoriesApi = api.injectEndpoints({
 			query: body => ({
 				url: `/categories/${body.id}`,
 				method: 'PATCH',
-				body: body,
+				body,
 			}),
 			invalidatesTags: ['categories'],
 		}),
