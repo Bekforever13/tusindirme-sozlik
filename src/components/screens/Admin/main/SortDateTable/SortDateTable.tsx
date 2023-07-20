@@ -6,6 +6,7 @@ import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
 import { useActions } from 'src/hooks/useActions'
 import { WordForm } from 'src/components/shared/WordForm/WordForm'
 import { UiButton } from 'src/components/ui/button/UiButton'
+import { StatusTag } from 'src/components/shared/tag/StatusTag'
 
 const SortDateTable: React.FC = () => {
 	const { data, isLoading } = useGetAllWordsQuery()
@@ -40,25 +41,7 @@ const SortDateTable: React.FC = () => {
 			title: 'Status',
 			key: 'status_id',
 			dataIndex: 'status_id',
-			render: (_: void, record: TWord) => {
-				let color = null
-				let title = null
-				if (record.status_id === 1) {
-					color = 'yellow'
-					title = 'PENDING'
-				} else if (record.status_id === 2) {
-					color = 'red'
-					title = 'REJECTED'
-				} else {
-					color = 'green'
-					title = 'CONFIRMED'
-				}
-				return (
-					<Tag color={color} key={record.status_id}>
-						{title}
-					</Tag>
-				)
-			},
+			render: (_: void, record: TWord) => <StatusTag type={record.status} />,
 		},
 	]
 

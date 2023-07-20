@@ -5,9 +5,9 @@ export type TWord = {
 	title_kiril: string
 	description_latin: string
 	description_kiril: string
-	status_id?: string | number
-	categories_id?: number[]
+	status: 'rejected' | 'confirmed' | 'testing'
 	correct?: boolean
+	category_id?: string[]
 }
 
 export interface IAllWordsDataResult {

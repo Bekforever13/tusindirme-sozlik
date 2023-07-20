@@ -13,6 +13,11 @@ import { useSelectors } from 'src/hooks/useSelectors'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import { useActions } from 'src/hooks/useActions'
 
+type selectStateType = {
+	label: string
+	value: string
+}
+
 const WordForm: React.FC = () => {
 	const [wordForm] = Form.useForm()
 	const { wordToEdit, wordModalShow } = useSelectors()
@@ -38,22 +43,19 @@ const WordForm: React.FC = () => {
 	]
 
 	React.useEffect(() => {
-		data?.data.map(item =>
-			setSelectOptions((prev: any) => [
+		data?.data.map((item: TCategory) =>
+			setSelectOptions((prev: selectStateType[]) => [
 				...prev,
 				{ label: item.title_latin, value: item.id },
 			])
 		)
-		console.log(selectOptions)
 	}, [data])
 
 	// on submit button inside form
 	const onSubmit = async (values: TWord) => {
-		// console.log(values)
 		if (wordToEdit)
 			await editWord({
 				...values,
-				categories_id: [1],
 				id: wordToEdit.id,
 			})
 		else {
@@ -135,7 +137,11 @@ const WordForm: React.FC = () => {
 				>
 					<UiInput />
 				</Form.Item>
-				<Form.Item label='Category' name='categories_id'>
+				<Form.Item
+					label='Category'
+					name='category_id'
+					rules={[{ required: true, message: 'Please select categories' }]}
+				>
 					{/*  need to fix here below */}
 					<UiSelect
 						mode='multiple'
@@ -144,9 +150,13 @@ const WordForm: React.FC = () => {
 						options={selectOptions}
 					/>
 				</Form.Item>
-				<Form.Item label='Status' name='status_id'>
-					<UiSelect placeholder={'Status'} options={selectStatus} />
-				</Form.Item>
+				{wordToEdit ? (
+					<Form.Item label='Status' name='status_id'>
+						<UiSelect placeholder='Status' options={selectStatus} />
+					</Form.Item>
+				) : (
+					''
+				)}
 				<Form.Item>
 					<Button htmlType='reset'>Reset fields</Button>
 					<Button htmlType='button' onClick={handleCancel}>

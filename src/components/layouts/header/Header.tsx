@@ -23,7 +23,6 @@ const Header: React.FC = () => {
 
 	const handleClickLang = (e: any) => {
 		e.preventDefault()
-		console.log(e)
 	}
 
 	return (

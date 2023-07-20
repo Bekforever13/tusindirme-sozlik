@@ -11,6 +11,7 @@ import {
 	useDeleteTypeMutation,
 	useGetAllTypesQuery,
 } from 'src/redux/index.endpoints'
+import { UiRedButton } from 'src/components/ui/button/UiRedButton'
 
 const _Types: React.FC = () => {
 	const { data, isLoading } = useGetAllTypesQuery()
@@ -46,9 +47,10 @@ const _Types: React.FC = () => {
 			key: 'action',
 			render: (_: void, record: TType) => (
 				<Space size='middle'>
-					<UiButton onClick={() => handleEditButtonClick(record)}>
-						<AiOutlineEdit />
-					</UiButton>
+					<UiButton
+						icon={<AiOutlineEdit />}
+						onClick={() => handleEditButtonClick(record)}
+					/>
 					<Popconfirm
 						title='Delete the word'
 						description='Are you sure to delete this type?'
@@ -56,9 +58,7 @@ const _Types: React.FC = () => {
 						okText='Yes'
 						cancelText='No'
 					>
-						<UiButton>
-							<BsTrash />
-						</UiButton>
+						<UiRedButton icon={<BsTrash />} />
 					</Popconfirm>
 				</Space>
 			),

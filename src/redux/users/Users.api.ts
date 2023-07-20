@@ -1,15 +1,21 @@
 import { api } from '../index.api'
-import { IAdminsDataResult, TAdmin } from './Admins.types'
+import {  IUsersDataResult, TRole, TUser } from './Users.types'
 
-export const allAdmins = api.injectEndpoints({
+export const allUsers = api.injectEndpoints({
 	endpoints: builder => ({
-		getAllAdmins: builder.query<IAdminsDataResult, void>({
+		getAllUsers: builder.query<IUsersDataResult, void>({
 			query: () => ({
-				url: '/users',
+				url: '/users/all-users',
 			}),
 			providesTags: ['admins'],
 		}),
-		createNewAdmin: builder.mutation<TAdmin, TAdmin>({
+		getAllRoles: builder.query<TRole[], void>({
+			query: () => ({
+				url: '/roles',
+			}),
+			providesTags: ['admins'],
+		}),
+		createNewUser: builder.mutation<TUser, TUser>({
 			query: body => ({
 				url: '/users/create-user',
 				method: 'POST',
@@ -17,7 +23,7 @@ export const allAdmins = api.injectEndpoints({
 			}),
 			invalidatesTags: ['admins'],
 		}),
-		editAdmin: builder.mutation<any, TAdmin>({
+		editUser: builder.mutation<any, TUser>({
 			query: body => ({
 				url: `/users/update/${body.id}`,
 				method: 'PATCH',
@@ -25,7 +31,7 @@ export const allAdmins = api.injectEndpoints({
 			}),
 			invalidatesTags: ['admins'],
 		}),
-		deleteAdmin: builder.mutation<any, string>({
+		deleteUser: builder.mutation<any, string>({
 			query: id => ({
 				url: `/users/delete/${id}`,
 				method: 'DELETE',

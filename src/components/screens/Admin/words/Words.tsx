@@ -6,14 +6,19 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
 import {
 	useDeleteWordMutation,
+	useGetAllCategoriesQuery,
 	useGetAllWordsQuery,
 } from 'src/redux/index.endpoints'
 import { TWord } from 'src/redux/allWords/Allwords.types'
 import { useActions } from 'src/hooks/useActions'
 import { WordForm } from 'src/components/shared/WordForm/WordForm'
+import { UiRedButton } from 'src/components/ui/button/UiRedButton'
+import { TCategory } from 'src/redux/allCategories/allCategories.types'
+import { StatusTag } from 'src/components/shared/tag/StatusTag'
 
 const Words: React.FC = () => {
-	const { data, isLoading } = useGetAllWordsQuery()
+	const { data: wordsData, isLoading } = useGetAllWordsQuery()
+	const { data: categoryData } = useGetAllCategoriesQuery()
 	const [deleteWord] = useDeleteWordMutation()
 	const { setWordToEdit, toggleModalWord } = useActions()
 
@@ -22,14 +27,7 @@ const Words: React.FC = () => {
 		message.success('Deleted successfully!')
 	}
 
-	React.useEffect(() => {
-		if (data?.data) {
-			console.log(data)
-			console.log(data?.data.length)
-		}
-	}, [])
-
-	const dataSource = data?.data.map((item: TWord) => ({
+	const dataSource = wordsData?.data.map((item: TWord) => ({
 		...item,
 		key: item.id,
 	}))
@@ -61,38 +59,40 @@ const Words: React.FC = () => {
 			key: 'description_kiril',
 		},
 		{
-			title: 'Status',
-			key: 'status_id',
-			dataIndex: 'status_id',
-			render: (_: void, record: TWord) => {
-				let color = null
-				let title = null
-				if (record.status_id === 1) {
-					color = 'yellow'
-					title = 'PENDING'
-				} else if (record.status_id === 2) {
-					color = 'red'
-					title = 'REJECTED'
-				} else {
-					color = 'green'
-					title = 'CONFIRMED'
-				}
+			title: 'Category',
+			dataIndex: 'category_id',
+			key: 'category_id',
+			render: (_: void, r: TWord) => {
+				let categoriesOfWord: string[] = []
+				r?.category_id?.map(id => {
+					categoryData?.data.find((category: TCategory) => {
+						category.id === id && categoriesOfWord.push(category.title_latin)
+					})
+				})
 				return (
-					<>
-						<Tag color={color} key={record.status_id}>
-							{title}
-						</Tag>
-					</>
+					<ul>
+						{categoriesOfWord.map((x, i) => (
+							<li key={i}>{x}</li>
+						))}
+					</ul>
 				)
 			},
 		},
 		{
+			title: 'Status',
+			key: 'status_id',
+			dataIndex: 'status_id',
+			render: (_: void, record: TWord) => <StatusTag type={record.status} />,
+		},
+		{
 			title: 'Actions',
+			key: 'action',
 			render: (_: void, record: TWord) => (
 				<Space size='middle'>
-					<UiButton onClick={() => handleEditButtonClick(record)}>
-						<AiOutlineEdit />
-					</UiButton>
+					<UiButton
+						icon={<AiOutlineEdit />}
+						onClick={() => handleEditButtonClick(record)}
+					/>
 					<Popconfirm
 						title='Delete the word'
 						description='Are you sure to delete this word?'
@@ -100,9 +100,7 @@ const Words: React.FC = () => {
 						okText='Yes'
 						cancelText='No'
 					>
-						<UiButton>
-							<BsTrash />
-						</UiButton>
+						<UiRedButton icon={<BsTrash />} />
 					</Popconfirm>
 				</Space>
 			),

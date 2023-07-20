@@ -15,7 +15,7 @@ const items = [
 	{ pathname: '/admin/words', icon: <MdOutlineTranslate />, label: 'Words' },
 	{ pathname: '/admin/category', icon: <BiCategory />, label: 'Category' },
 	{ pathname: '/admin/types', icon: <FiType />, label: 'Types' },
-	{ pathname: '/admin/admins', icon: <FiUsers />, label: 'Admins' },
+	{ pathname: '/admin/users', icon: <FiUsers />, label: 'Users' },
 	{ pathname: '/auth', icon: <FiLogOut />, label: 'Logout' },
 ].map(obj => ({
 	key: obj.pathname,

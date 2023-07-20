@@ -16,7 +16,7 @@ const Main: React.FC = () => {
 		<div className={styles.root}>
 			<div className={styles.info}>
 				<div className={styles.allWordsCount}>
-					{wordLoading ? <LoadingOutlined /> : wordData?.data.length + ' soz'}
+					{wordLoading ? <LoadingOutlined /> : wordData?.data.length + ' sóz'}
 				</div>
 				<div className={styles.allCategoriesCount}>
 					{categoryLoading ? (

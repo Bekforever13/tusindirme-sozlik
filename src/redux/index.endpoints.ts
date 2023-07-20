@@ -1,4 +1,4 @@
-import { allAdmins } from './admins/Admins.api'
+import { allUsers } from './users/Users.api'
 import { allCategoriesApi } from './allCategories/allCategories.api'
 import { AllWordsApi } from './allWords/AllWords.api'
 import { authApi } from './auth/Auth.api'
@@ -21,11 +21,12 @@ export const {
 } = allCategoriesApi
 
 export const {
-	useCreateNewAdminMutation,
-	useDeleteAdminMutation,
-	useGetAllAdminsQuery,
-	useEditAdminMutation,
-} = allAdmins
+	useCreateNewUserMutation,
+	useGetAllUsersQuery,
+	useEditUserMutation,
+	useDeleteUserMutation,
+	useGetAllRolesQuery
+} = allUsers
 
 export const {
 	useCreateNewTypeMutation,

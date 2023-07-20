@@ -1,9 +1,10 @@
-import { TWord } from 'src/redux/allWords/Allwords.types';
+import { TWord } from 'src/redux/allWords/Allwords.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ISharedType } from './shared.types'
-import { TCategory } from 'src/redux/allCategories/allCategories.types';
-import { TType } from '../types/_Types.types';
+import { TCategory } from 'src/redux/allCategories/allCategories.types'
+import { TType } from '../types/_Types.types'
+import { TUser } from '../users/Users.types'
 
 const initialState: ISharedType = {
 	searchValue: '',
@@ -12,7 +13,9 @@ const initialState: ISharedType = {
 	categoryModalShow: false,
 	categoryToEdit: null,
 	typesModalShow: false,
-	typeToEdit: null
+	typeToEdit: null,
+	usersModalShow: false,
+	userToEdit: null,
 }
 
 const sharedSlice = createSlice({
@@ -39,6 +42,12 @@ const sharedSlice = createSlice({
 		},
 		setTypeToEdit(state, { payload }: PayloadAction<TType | null>) {
 			state.typeToEdit = payload
+		},
+		toggleModalUser(state, { payload }: PayloadAction<boolean>) {
+			state.usersModalShow = payload
+		},
+		setUserToEdit(state, { payload }: PayloadAction<TUser | null>) {
+			state.userToEdit = payload
 		},
 	},
 })

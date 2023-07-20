@@ -7,26 +7,33 @@ import { BsTrash } from 'react-icons/bs'
 import {
 	useDeleteCategoryMutation,
 	useGetAllCategoriesQuery,
+	useGetAllTypesQuery,
 } from 'src/redux/index.endpoints'
 import { TCategory } from 'src/redux/allCategories/allCategories.types'
 import { CategoryForm } from 'src/components/shared/CategoryForm/CategoryForm'
 import { useActions } from 'src/hooks/useActions'
+import { UiRedButton } from 'src/components/ui/button/UiRedButton'
+import { TType } from 'src/redux/types/_Types.types'
 
 const Category: React.FC = () => {
-	const { data, isLoading } = useGetAllCategoriesQuery()
+	const { data: categoriesData, isLoading } = useGetAllCategoriesQuery()
 	const { toggleModalCategory, setCategoryToEdit } = useActions()
-	const [deleteCategory] = useDeleteCategoryMutation()
+	const [deleteCategory, { isSuccess }] = useDeleteCategoryMutation()
+	const { data: typesData } = useGetAllTypesQuery()
 
 	const onClickRemoveCategory = (id: string) => {
 		deleteCategory(id)
-		message.success('Deleted successfully!')
+		isSuccess && message.success('Deleted successfully!')
 	}
 	const handleEditButtonClick = (record: TCategory) => {
 		setCategoryToEdit(record)
 		toggleModalCategory(true)
 	}
 
-	const dataSource = data?.data.map(item => ({ ...item, key: item.id }))
+	const dataSource = categoriesData?.data.map((item: TCategory) => ({
+		...item,
+		key: item.id,
+	}))
 
 	const columns = [
 		{
@@ -46,24 +53,16 @@ const Category: React.FC = () => {
 			key: 'type_id',
 			dataIndex: 'type_id',
 			render: (_: void, record: TCategory) => {
-				let color = null
-				let title = null
-				if (record.type_id === 1) {
-					color = 'cyan'
-					title = 'SO’Z SHAQAPLARI’'
-				} else if (record.type_id === 2) {
-					color = 'pink'
-					title = 'IDK'
-				} else {
-					color = 'orange'
-					title = 'CONFIRMED'
-				}
+				let color: string = ''
+				let title: string = ''
+				typesData?.data.map((item: TType) => {
+					item.id === record.type_id && (title = item.title_latin)
+				})
+
 				return (
-					<>
-						<Tag color={color} key={record.type_id}>
-							{title}
-						</Tag>
-					</>
+					<Tag color={color} key={record.type_id}>
+						{title}
+					</Tag>
 				)
 			},
 		},
@@ -72,9 +71,10 @@ const Category: React.FC = () => {
 			key: 'action',
 			render: (_: void, record: TCategory) => (
 				<Space size='middle'>
-					<UiButton onClick={() => handleEditButtonClick(record)}>
-						<AiOutlineEdit />
-					</UiButton>
+					<UiButton
+						icon={<AiOutlineEdit />}
+						onClick={() => handleEditButtonClick(record)}
+					/>
 					<Popconfirm
 						title='Delete the word'
 						description='Are you sure to delete this category?'
@@ -82,9 +82,7 @@ const Category: React.FC = () => {
 						okText='Yes'
 						cancelText='No'
 					>
-						<UiButton>
-							<BsTrash />
-						</UiButton>
+						<UiRedButton icon={<BsTrash />} />
 					</Popconfirm>
 				</Space>
 			),
