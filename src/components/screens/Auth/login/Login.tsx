@@ -3,27 +3,41 @@ import { Button, Form, Input, Spin } from 'antd'
 import styles from './Login.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 import { ILogin } from 'src/redux/auth/Auth.types'
-import { useLoginMutation } from 'src/redux/index.endpoints'
+import { useCheckUserQuery, useLoginMutation } from 'src/redux/index.endpoints'
 import { useNavigate } from 'react-router-dom'
 
 const Login: React.FC = () => {
 	const navigate = useNavigate()
-	const [login, { isSuccess, isLoading, data }] = useLoginMutation()
+	const {
+		data: checkUserData,
+		isSuccess: checkUserIsSuccess,
+		isError: checkUserIsError,
+	} = useCheckUserQuery()
+	const [login, { isSuccess, isLoading, data: loginData }] = useLoginMutation()
 
 	const onFinish = async (values: ILogin) => {
 		await login(values)
 	}
 
 	React.useEffect(() => {
-		if (localStorage.getItem('token') === 'Bearer undefined') {
-			localStorage.removeItem('token')
-			navigate('/auth', { replace: true })
-		}
 		if (isSuccess) {
 			navigate('/admin', { replace: true })
-			localStorage.setItem('token', `Bearer ${data?.token}`)
+			localStorage.setItem('token', `Bearer ${loginData?.token}`)
 		}
 	}, [isSuccess])
+
+	React.useEffect(() => {
+		if (checkUserData?.data.role === 'admin') {
+			navigate('/admin', { replace: true })
+		} else if (checkUserData?.data.role === 'tester') {
+			navigate('/tester', { replace: true })
+		} else if (checkUserData?.data.role === 'copywriter') {
+			navigate('/copywriter', { replace: true })
+		}
+		if (!localStorage.getItem('token')) {
+			navigate('/auth', { replace: true })
+		}
+	}, [localStorage.getItem('token'), checkUserIsSuccess, checkUserIsError])
 
 	return (
 		<Spin spinning={isLoading}>

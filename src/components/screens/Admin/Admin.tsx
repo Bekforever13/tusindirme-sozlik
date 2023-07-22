@@ -1,57 +1,75 @@
 import React from 'react'
 import { MdOutlineTranslate } from 'react-icons/md'
 import { FiUsers, FiLogOut, FiType } from 'react-icons/fi'
-import { Layout, Menu, theme } from 'antd'
+import { Layout, Menu, Popconfirm, theme } from 'antd'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiCategory } from 'react-icons/bi'
 import styles from './Admin.module.scss'
 import logo from 'src/assets/images/header_logo.svg'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Search } from 'src/components/shared/search/Search'
+import { useCheckUserQuery, useLoginMutation } from 'src/redux/index.endpoints'
 const { Header, Content, Footer, Sider } = Layout
-
-const items = [
-	{ pathname: '/admin', icon: <AiOutlineHome />, label: 'Home' },
-	{ pathname: '/admin/words', icon: <MdOutlineTranslate />, label: 'Words' },
-	{ pathname: '/admin/category', icon: <BiCategory />, label: 'Category' },
-	{ pathname: '/admin/types', icon: <FiType />, label: 'Types' },
-	{ pathname: '/admin/users', icon: <FiUsers />, label: 'Users' },
-	{ pathname: '/auth', icon: <FiLogOut />, label: 'Logout' },
-].map(obj => ({
-	key: obj.pathname,
-	icon: obj.icon,
-	label: obj.label,
-}))
 
 const Admin: React.FC = () => {
 	const [collapsed, setCollapsed] = React.useState<boolean>(false)
+	const { data, isSuccess } = useCheckUserQuery()
+	const [_, { data: loginData }] = useLoginMutation()
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
 
 	const onCLickMenuItem = (e: any) => {
-		if (e.key === '/auth') localStorage.removeItem('token')
-		navigate(e.key)
+		if (e.key !== '/auth') navigate(e.key)
 	}
-	const token =
-		localStorage.getItem('token') &&
-		localStorage.getItem('token') !== 'Bearer undefined'
-		
-		const {
-			token: { colorBgContainer },
-		} = theme.useToken()
-		
-		React.useEffect(() => {
-			if (!token) navigate('/auth')
-		}, [token])
+
+	const handleClickLogout = () => {
+		localStorage.removeItem('token')
+		navigate('/auth', { replace: true })
+	}
+
+	const {
+		token: { colorBgContainer },
+	} = theme.useToken()
+
+	const items = [
+		{ pathname: '/admin', icon: <AiOutlineHome />, label: 'Home' },
+		{ pathname: '/admin/words', icon: <MdOutlineTranslate />, label: 'Words' },
+		{ pathname: '/admin/category', icon: <BiCategory />, label: 'Category' },
+		{ pathname: '/admin/types', icon: <FiType />, label: 'Types' },
+		{ pathname: '/admin/users', icon: <FiUsers />, label: 'Users' },
+		{
+			pathname: '/auth',
+			icon: <FiLogOut />,
+			label: (
+				<Popconfirm
+					title='Logout'
+					description='Are you sure to logout?'
+					onConfirm={handleClickLogout}
+					okText='Yes'
+					cancelText='No'
+				>
+					Logout
+				</Popconfirm>
+			),
+		},
+	].map(obj => ({
+		key: obj.pathname,
+		icon: obj.icon,
+		label: obj.label,
+	}))
+
+	React.useEffect(() => {
+		if (!localStorage.getItem('token')) navigate('/auth')
+	}, [localStorage.getItem('token')])
 
 	return (
-		<Layout hasSider>
+		<Layout hasSider style={{ position: 'relative' }}>
 			<Sider
 				collapsible
 				onCollapse={value => setCollapsed(value)}
 				collapsed={collapsed}
 				style={{
-					overflow: 'auto',
+					overflow: 'hidden',
 					height: '100vh',
 					position: 'fixed',
 					left: 0,
@@ -72,11 +90,10 @@ const Admin: React.FC = () => {
 				/>
 			</Sider>
 			<Layout
-				className='site-layout'
 				style={
 					collapsed
-						? { transition: 'all .3s ease-in-out', marginLeft: 60 }
-						: { transition: 'all .3s ease-in-out', marginLeft: 200 }
+						? { marginLeft: '80px', transition: '.2s all ease-in-out' }
+						: { marginLeft: '200px', transition: '.2s all ease-in-out' }
 				}
 			>
 				<Header style={{ padding: 0, background: colorBgContainer }}>

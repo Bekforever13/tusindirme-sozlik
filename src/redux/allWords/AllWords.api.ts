@@ -3,9 +3,9 @@ import { IAllWordsDataResult, TWord } from './Allwords.types'
 
 export const AllWordsApi = api.injectEndpoints({
 	endpoints: builder => ({
-		getAllWords: builder.query<IAllWordsDataResult, void>({
-			query: () => ({
-				url: '/words',
+		getAllWords: builder.query<IAllWordsDataResult, string>({
+			query: (search) => ({
+				url: `/words?search=${search}`,
 			}),
 			providesTags: ['words'],
 		}),

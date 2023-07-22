@@ -76,7 +76,7 @@ const Category: React.FC = () => {
 						onClick={() => handleEditButtonClick(record)}
 					/>
 					<Popconfirm
-						title='Delete the word'
+						title='Delete the category'
 						description='Are you sure to delete this category?'
 						onConfirm={() => onClickRemoveCategory(record.id)}
 						okText='Yes'

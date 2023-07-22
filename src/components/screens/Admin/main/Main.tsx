@@ -9,7 +9,7 @@ import {
 import { LoadingOutlined } from '@ant-design/icons'
 
 const Main: React.FC = () => {
-	const { data: wordData, isLoading: wordLoading } = useGetAllWordsQuery()
+	const { data: wordData, isLoading: wordLoading } = useGetAllWordsQuery('')
 	const { data: categoryData, isLoading: categoryLoading } =
 		useGetAllCategoriesQuery()
 	return (

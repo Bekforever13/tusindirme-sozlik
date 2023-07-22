@@ -9,7 +9,7 @@ import { UiButton } from 'src/components/ui/button/UiButton'
 import { StatusTag } from 'src/components/shared/tag/StatusTag'
 
 const SortDateTable: React.FC = () => {
-	const { data, isLoading } = useGetAllWordsQuery()
+	const { data, isLoading } = useGetAllWordsQuery('')
 	const { toggleModalWord } = useActions()
 	const dataSource = data?.data.map((item: TWord) => ({
 		...item,

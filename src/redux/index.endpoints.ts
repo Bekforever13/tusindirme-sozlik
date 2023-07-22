@@ -4,7 +4,7 @@ import { AllWordsApi } from './allWords/AllWords.api'
 import { authApi } from './auth/Auth.api'
 import { allTypesApi } from './types/_Types.api'
 
-export const { useGetUserQuery, useLoginMutation } = authApi
+export const { useCheckUserQuery, useLoginMutation } = authApi
 
 export const {
 	useGetAllWordsQuery,
@@ -25,7 +25,7 @@ export const {
 	useGetAllUsersQuery,
 	useEditUserMutation,
 	useDeleteUserMutation,
-	useGetAllRolesQuery
+	useGetAllRolesQuery,
 } = allUsers
 
 export const {

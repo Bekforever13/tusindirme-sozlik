@@ -12,12 +12,13 @@ import { TWord } from 'src/redux/allWords/Allwords.types'
 
 const Search: React.FC = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null)
-	const { data } = useGetAllWordsQuery()
 	const [search, setSearch] = React.useState<string>()
-	const [searchResult, setSearchResult] = React.useState<[]>()
+	const debouncedSearch = useDebounce(search, 500)
+	const { data: allWords } = useGetAllWordsQuery(debouncedSearch, {
+		skip: !debouncedSearch,
+	})
 	const { setSearchValue } = useActions()
 	const { searchValue } = useSelectors()
-	const debouncedSearch = useDebounce(search, 500)
 	const options = [
 		{ value: 'Aa', label: 'Aa' },
 		{ value: 'Bb', label: 'Bb' },
@@ -29,22 +30,11 @@ const Search: React.FC = () => {
 	const clearSearchValue = () => {
 		setSearchValue('')
 		setSearch('')
-		// inputRef.current?.focus()
 	}
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value)
 	}
-
-	// React.useEffect(() => {
-	// 	if (search) {
-	// 		data?.data.map(item => {
-	// 			item.title_latin.includes(search)
-	// 				? setSearchResult(prev => [...prev, { ...item }])
-	// 				: ''
-	// 		})
-	// 	}
-	// }, [search])
 
 	React.useEffect(() => {
 		setSearchValue(debouncedSearch)
@@ -78,14 +68,12 @@ const Search: React.FC = () => {
 			</div>
 			{searchValue && (
 				<div className={styles.searchResults}>
-					{!data ? (
+					{!allWords?.data ? (
 						<h2>Word is not found</h2>
-					) : searchResult ? (
-						searchResult.map((word: TWord) => {
+					) : (
+						allWords?.data.map((word: TWord) => {
 							return <Link to='/'>{word.title_latin}</Link>
 						})
-					) : (
-						''
 					)}
 				</div>
 			)}

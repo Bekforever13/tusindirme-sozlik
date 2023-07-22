@@ -37,9 +37,9 @@ const WordForm: React.FC = () => {
 	const { data } = useGetAllCategoriesQuery()
 	const [selectOptions, setSelectOptions] = React.useState<any>([])
 	const selectStatus = [
-		{ label: 'Pending', value: 1 },
-		{ label: 'Rejected', value: 2 },
-		{ label: 'Confirm', value: 3 },
+		{ label: 'Testing', value: 'testing' },
+		{ label: 'Rejected', value: 'rejected' },
+		{ label: 'Confirmed', value: 'confirmed' },
 	]
 
 	React.useEffect(() => {
@@ -142,7 +142,6 @@ const WordForm: React.FC = () => {
 					name='category_id'
 					rules={[{ required: true, message: 'Please select categories' }]}
 				>
-					{/*  need to fix here below */}
 					<UiSelect
 						mode='multiple'
 						allowClear
@@ -150,12 +149,14 @@ const WordForm: React.FC = () => {
 						options={selectOptions}
 					/>
 				</Form.Item>
-				{wordToEdit ? (
+				{wordToEdit && (
 					<Form.Item label='Status' name='status_id'>
-						<UiSelect placeholder='Status' options={selectStatus} />
+						<UiSelect
+							placeholder='Status'
+							value={wordToEdit.status}
+							options={selectStatus}
+						/>
 					</Form.Item>
-				) : (
-					''
 				)}
 				<Form.Item>
 					<Button htmlType='reset'>Reset fields</Button>

@@ -3,7 +3,7 @@ import { ILogin, IResultType, TDataUser } from './Auth.types'
 
 export const authApi = api.injectEndpoints({
 	endpoints: builder => ({
-		getUser: builder.query<TDataUser, void>({
+		checkUser: builder.query<TDataUser, void>({
 			query: () => ({
 				url: '/getme',
 			}),

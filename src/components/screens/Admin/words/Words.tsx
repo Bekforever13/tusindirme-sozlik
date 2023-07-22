@@ -1,5 +1,5 @@
 import React from 'react'
-import { Space, Table, Popconfirm, message, Tag } from 'antd'
+import { Space, Table, Popconfirm, message } from 'antd'
 import styles from './Words.module.scss'
 import { UiButton } from 'src/components/ui/button/UiButton'
 import { AiOutlineEdit } from 'react-icons/ai'
@@ -17,7 +17,7 @@ import { TCategory } from 'src/redux/allCategories/allCategories.types'
 import { StatusTag } from 'src/components/shared/tag/StatusTag'
 
 const Words: React.FC = () => {
-	const { data: wordsData, isLoading } = useGetAllWordsQuery()
+	const { data: wordsData, isLoading } = useGetAllWordsQuery('')
 	const { data: categoryData } = useGetAllCategoriesQuery()
 	const [deleteWord] = useDeleteWordMutation()
 	const { setWordToEdit, toggleModalWord } = useActions()

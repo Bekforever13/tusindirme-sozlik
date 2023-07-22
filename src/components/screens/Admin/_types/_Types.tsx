@@ -52,7 +52,7 @@ const _Types: React.FC = () => {
 						onClick={() => handleEditButtonClick(record)}
 					/>
 					<Popconfirm
-						title='Delete the word'
+						title='Delete the type'
 						description='Are you sure to delete this type?'
 						onConfirm={() => onClickRemoveCategory(record.id)}
 						okText='Yes'
@@ -68,7 +68,7 @@ const _Types: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.head}>
-				<h2>Kategoriya</h2>
+				<h2>Types</h2>
 				<UiButton onClick={() => toggleModalType(true)}>Add Category</UiButton>
 				<_TypesForm />
 			</div>

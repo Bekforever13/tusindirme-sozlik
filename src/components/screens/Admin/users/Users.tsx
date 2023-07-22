@@ -49,8 +49,8 @@ const Users: React.FC = () => {
 							icon={<AiOutlineEdit />}
 						/>
 						<Popconfirm
-							title={`Delete ${r.role}`}
-							description={`Are you sure to delete this ${r.role}?`}
+							title={'Delete user'}
+							description={'Are you sure to delete this user?'}
 							onConfirm={() => onClickRemoveAdmin(r.id)}
 							okText='Yes'
 							cancelText='No'
@@ -66,8 +66,8 @@ const Users: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.head}>
-				<h2>Admins</h2>
-				<UiButton onClick={() => toggleModalUser(true)}>Add admin</UiButton>
+				<h2>Users</h2>
+				<UiButton onClick={() => toggleModalUser(true)}>Add user</UiButton>
 				<UserForm />
 			</div>
 			<Table

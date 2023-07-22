@@ -5,7 +5,7 @@ import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
-import { TUser } from 'src/redux/users/Users.types'
+import { TRole, TUser } from 'src/redux/users/Users.types'
 import './UserForm.scss'
 import {
 	useCreateNewUserMutation,
@@ -24,6 +24,7 @@ const UserForm: React.FC = () => {
 	const { toggleModalUser, setUserToEdit } = useActions()
 	const { data: rolesData } = useGetAllRolesQuery()
 	const [currentRoleID, setCurrentRoleID] = useState<string>()
+	const [defSelectValue, setDefSelectValue] = React.useState<string>()
 	const [selectTypes, setSelectTypes] = React.useState<selectStateType[]>([])
 
 	const [
@@ -64,11 +65,10 @@ const UserForm: React.FC = () => {
 	// after click edit button this hook will fill the form fields
 	React.useEffect(() => {
 		if (userToEdit) {
-			rolesData?.map(item => {
+			rolesData?.map((item: TRole) => {
 				return item.name === userToEdit.name && setCurrentRoleID(item.id)
 			})
 			userForm.setFieldsValue({ ...userToEdit, roles_id: currentRoleID })
-			console.log(rolesData)
 		}
 	}, [userToEdit, userForm])
 
@@ -90,11 +90,10 @@ const UserForm: React.FC = () => {
 
 	return (
 		<UiModal
-			title={'Admin'}
+			title={'User'}
 			open={usersModalShow}
 			onCancel={handleCancel}
 			footer={false}
-			centered
 		>
 			<Form name='admin' form={userForm} layout='vertical' onFinish={onSubmit}>
 				<Form.Item
@@ -123,9 +122,13 @@ const UserForm: React.FC = () => {
 				<Form.Item
 					name='role_id'
 					label='Role'
-					// rules={[{ required: true, message: 'Please input title kiril' }]}
+					rules={[{ required: true, message: 'Please select role' }]}
 				>
-					<UiSelect placeholder='Type' options={selectTypes} />
+					<UiSelect
+						placeholder='Type'
+						value={userToEdit?.role}
+						options={selectTypes}
+					/>
 				</Form.Item>
 				<Form.Item>
 					<Button htmlType='reset'>Reset fields</Button>
