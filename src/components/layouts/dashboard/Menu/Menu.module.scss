@@ -1,0 +1,35 @@
+.menu {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		width: 18%;
+		background-color: #094763;
+		min-height: 100vh;
+		padding: 40px 20px;
+		row-gap: 20px;
+		div {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 10px;
+			font-size: 20px;
+			color: #fff;
+			cursor: pointer;
+			width: 100%;
+			text-align: left;
+			padding: 10px;
+			border-radius: 10px;
+
+			&.active {
+				background-color: rgba($color: #000000, $alpha: 0.2);
+
+			}
+
+			a {
+				font-size: 20px;
+				color: #fff;
+				text-decoration: none;
+			}
+		}
+	}

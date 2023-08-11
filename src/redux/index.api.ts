@@ -11,7 +11,8 @@ export const api = createApi({
 			return headers
 		},
 	}),
-	tagTypes: ['words', 'categories', 'admins', 'types'],
+	refetchOnFocus: true,
+	tagTypes: ['words', 'categories', 'admins', 'types', 'auth'],
 	endpoints: build => ({
 		default: build.query({
 			query: () => 'default',

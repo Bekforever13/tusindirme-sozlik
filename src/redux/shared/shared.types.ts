@@ -1,7 +1,7 @@
 import { TUser } from '../users/Users.types'
 import { TCategory } from '../allCategories/allCategories.types'
 import { TWord } from '../allWords/Allwords.types'
-import { TType } from '../types/_Types.types'
+import { TType } from '../types/Types.types'
 
 export interface ISharedType {
 	searchValue: string

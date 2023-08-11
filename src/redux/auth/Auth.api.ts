@@ -7,6 +7,7 @@ export const authApi = api.injectEndpoints({
 			query: () => ({
 				url: '/getme',
 			}),
+			providesTags: ['auth'],
 		}),
 		login: builder.mutation<IResultType, ILogin>({
 			query: body => ({
@@ -14,6 +15,7 @@ export const authApi = api.injectEndpoints({
 				method: 'POST',
 				body,
 			}),
+			invalidatesTags: ['auth', 'words', 'categories'],
 		}),
 	}),
 })

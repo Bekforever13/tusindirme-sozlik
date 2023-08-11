@@ -4,6 +4,10 @@
 	--textColor: #282828;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .ant-form-item-control-input-content {
 	display: flex;
 	align-items: center;

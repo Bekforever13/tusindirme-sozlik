@@ -10,13 +10,13 @@ const About: React.FC = () => {
 			<div className={styles.title}>Baǵdarlama haqqında</div>
 			<div className={styles.about}>
 				<div className={styles.text}>
-					<div className={styles.about_title}>
+					<div className={styles.aboutTitle}>
 						<div>Túsindirme sózlik </div>
 						<span>
 							<BsShareFill />
 						</span>
 					</div>
-					<div className={styles.about_type}>Web sayt</div>
+					<div className={styles.aboutType}>Web sayt</div>
 					<div className={styles.about_desc}>
 						Bul platforma – 1982-1992-jılları kitap bolıp basılıp shıqqan
 						“Qaraqalpaq tiliniń túsindirme sózligi”niń 4 tomlıǵı tiykarında
@@ -31,8 +31,8 @@ const About: React.FC = () => {
 						bolıwı múmkin. aldaǵı waqıtlarda dúzetip baramız.
 						<br />
 						<br />
-						<Link to='/'>Tusindirmesozlik.uz</Link> – sanlı baǵdarlama bolıp, bunda
-						qaraqalpaq tiliniń altın ǵáziynesinen orın alǵan kóp mıńlaǵan
+						<Link to='/'>Tusindirmesozlik.uz</Link> – sanlı baǵdarlama bolıp,
+						bunda qaraqalpaq tiliniń altın ǵáziynesinen orın alǵan kóp mıńlaǵan
 						sózlerdiń sinonimleri, mánisi, etimologiyası mısallar járdeminde
 						beriledi. Siz bul platformada qálegen waqıtta hám qálegen orında
 						paydalanıw imkaniyatına iye bolasız. Bizlerdiń tiykarǵı maqsetimiz –
@@ -48,7 +48,7 @@ const About: React.FC = () => {
 					</div>
 				</div>
 				<div className={styles.about_logo}>
-					<img src={logo} alt='tusindirmesozlik logo' />
+					<img src={logo} />
 				</div>
 			</div>
 		</div>

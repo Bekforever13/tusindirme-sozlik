@@ -12,5 +12,10 @@ export type TDataUser = {
 }
 export interface IResultType {
 	token: string
-	user: TDataUser
+	role: string
+}
+
+export interface IInitialState {
+	token: string
+	currentUserRole: string
 }

@@ -1,24 +1,26 @@
 import { BsShareFill } from 'react-icons/bs'
 import styles from './Word.module.scss'
+import { useLocation } from 'react-router-dom'
+import { useGetUserWordQuery } from 'src/redux/index.endpoints'
+import React from 'react'
 
 const Word: React.FC = () => {
+	const { pathname } = useLocation()
+	const id = pathname.slice(1)
+	const { data } = useGetUserWordQuery(id)
+
 	return (
 		<div className={styles.root}>
 			<div className={styles.word}>
-				<h2>Abadan</h2>
+				<h2>{data?.data.title_latin}</h2>
 				<span>
 					<BsShareFill />
 				</span>
 			</div>
 			<div className={styles.type}>Kelbetlik</div>
-			<div className={styles.desc}>
-				Jetkilikli, mol, kóp, qurǵın, barshılıq. Zamanımız endi boldı abadan.
-				Kámbaǵalǵa náwbet jete basladı (A. Muwsaev). Biz paxtakesh xalıqlar azat
-				shıǵısta, Jasaymız abadan shadlı turmısta (I. Yusupov). Ádira qalǵır
-				tuwǵan jer. Bolmaǵan soń abadan (Jiyen jıraw).
-			</div>
+			<div className={styles.desc}>{data?.data.description_latin}</div>
 			<div className={styles.common}>
-				<div className={styles.common_type}>
+				<div className={styles.commonType}>
 					<span>Sinonim</span>
 					<ul>
 						<li>Abadan</li>
@@ -26,7 +28,7 @@ const Word: React.FC = () => {
 						<li>Abay</li>
 					</ul>
 				</div>
-				<div className={styles.common_type}>
+				<div className={styles.commonType}>
 					<span>Antonim </span>
 					<ul>
 						<li>Abay-sıyasat</li>
@@ -34,7 +36,7 @@ const Word: React.FC = () => {
 						<li>Abaysız</li>
 					</ul>
 				</div>
-				<div className={styles.common_type}>
+				<div className={styles.commonType}>
 					<span>Uqsas sózler</span>
 					<ul>
 						<li>Abadan</li>

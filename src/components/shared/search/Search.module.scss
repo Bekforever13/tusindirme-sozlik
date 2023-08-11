@@ -7,8 +7,9 @@
 	justify-content: center;
 	height: 100%;
 	.wrapper {
-		width: 50%;
+		width: 100%;
 		display: flex;
+		background-color: #fff;
 		align-items: center;
 		justify-content: center;
 		gap: 30px;
@@ -40,9 +41,9 @@
 	.searchResults {
 		position: absolute;
 		top: 80px;
-		width: 50%;
-		// left: 0;
+		width: 100%;
 		z-index: 100;
+		padding: 10px 0;
 		display: flex;
 		background-color: #fff;
 		flex-direction: column;

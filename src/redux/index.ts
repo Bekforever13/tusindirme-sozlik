@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { api } from './index.api'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { reducer as shared } from './shared/shared.slice'
+import { reducer as auth } from './auth/Auth.slice'
 
 const reducers = combineReducers({
 	shared,
+	auth,
 	[api.reducerPath]: api.reducer,
 })
 

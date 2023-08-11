@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ISharedType } from './shared.types'
 import { TCategory } from 'src/redux/allCategories/allCategories.types'
-import { TType } from '../types/_Types.types'
+import { TType } from '../types/Types.types'
 import { TUser } from '../users/Users.types'
 
 const initialState: ISharedType = {
@@ -51,4 +51,5 @@ const sharedSlice = createSlice({
 		},
 	},
 })
+
 export const { reducer, actions } = sharedSlice
