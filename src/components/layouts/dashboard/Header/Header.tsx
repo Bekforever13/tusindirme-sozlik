@@ -12,7 +12,7 @@ const Header: React.FC = () => {
 			<h2>{role.includes('admin') && 'ADMIN'}</h2>
 			<h2>{role.includes('tester') && 'TESTER'}</h2>
 			<h2>{role.includes('copywriter') && 'COPYWRITER'}</h2>
-			<Search />
+			{role.includes('admin') && <Search />}
 		</div>
 	)
 }
