@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Form, Input, Spin } from 'antd'
+import { Button, Form, Input } from 'antd'
 import styles from './Login.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 import { ILogin } from 'src/redux/auth/Auth.types'
-import { useCheckUserQuery, useLoginMutation } from 'src/redux/index.endpoints'
+import { useLoginMutation } from 'src/redux/index.endpoints'
 import { useNavigate } from 'react-router-dom'
 import { useActions } from 'src/hooks/useActions'
 
@@ -11,49 +11,26 @@ const Login: React.FC = () => {
 	const navigate = useNavigate()
 	const { setToken, setCurrentUserRole } = useActions()
 	const token = localStorage.getItem('token')
-
-	const { data: checkUserData, isSuccess: checkUserIsSuccess } =
-		useCheckUserQuery()
-	const [login, { isSuccess, data: loginData }] = useLoginMutation()
+	const [login, { isSuccess, data }] = useLoginMutation()
 
 	const onFinish = async (values: ILogin) => {
 		await login(values)
 	}
 
 	React.useEffect(() => {
-		if (token && checkUserIsSuccess) {
-			const role = checkUserData?.data.role
-			switch (role) {
-				case 'admin':
-					navigate('/dashboard/admin', { replace: true })
-					break
-				case 'copywriter':
-					navigate('/dashboard/copywriter', { replace: true })
-					break
-				case 'tester':
-					navigate('/dashboard/tester', { replace: true })
-					break
-				case 'user':
-					navigate('/', { replace: true })
-					break
-			}
-		}
-	}, [checkUserIsSuccess])
-
-	React.useEffect(() => {
 		if (token) {
 			setToken(token)
-			checkUserIsSuccess && navigate('/dashboard/' + checkUserData?.data.role)
+			navigate('/dashboard/admin')
 		}
 	}, [])
 
 	React.useEffect(() => {
-		if (isSuccess && loginData) {
-			setToken(loginData.token)
-			setCurrentUserRole(loginData.role)
-			navigate(`/dashboard/${loginData.role}`, { replace: true })
+		if (isSuccess && data) {
+			setToken(data.token)
+			setCurrentUserRole(data.role)
+			navigate(`/dashboard/${data.role}`, { replace: true })
 		}
-	}, [isSuccess, loginData])
+	}, [isSuccess, data])
 
 	return (
 		<div className={styles.root}>

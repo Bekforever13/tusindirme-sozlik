@@ -7,7 +7,7 @@ export const authApi = api.injectEndpoints({
 			query: () => ({
 				url: '/getme',
 			}),
-			providesTags: ['auth'],
+			providesTags: ['auth']
 		}),
 		login: builder.mutation<IResultType, ILogin>({
 			query: body => ({
