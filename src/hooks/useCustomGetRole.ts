@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-export const useCustomGetRole = () => {
+export const useCustomGetRole = (num: number) => {
 	const { pathname } = useLocation()
-	return pathname.slice(11)
+	return pathname.slice(num)
 }

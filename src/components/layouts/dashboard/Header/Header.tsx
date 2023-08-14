@@ -4,7 +4,7 @@ import styles from './Header.module.scss'
 import { useCustomGetRole } from 'src/hooks/useCustomGetRole'
 
 const Header: React.FC = () => {
-	const role = useCustomGetRole()
+	const role = useCustomGetRole(11)
 
 	return (
 		<div className={styles.header}>

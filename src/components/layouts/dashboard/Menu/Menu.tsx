@@ -12,7 +12,7 @@ import { useCustomGetRole } from 'src/hooks/useCustomGetRole'
 const Menu: React.FC = () => {
 	const { removeToken } = useActions()
 	const navigate = useNavigate()
-	const role = useCustomGetRole()
+	const role = useCustomGetRole(11)
 
 	const handleClickLogout = () => {
 		localStorage.clear()

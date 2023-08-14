@@ -5,10 +5,7 @@ import { Frame } from 'src/components/screens/home/frame/Frame'
 import { About } from 'src/components/screens/home/about/About'
 import { FloatButton } from 'antd'
 import { Card } from 'src/components/shared/Landing/Card/Card'
-import {
-	useGetCardWordsQuery,
-	useGetUserWordQuery,
-} from 'src/redux/index.endpoints'
+import { useGetCardWordsQuery } from 'src/redux/index.endpoints'
 import { Skeleton } from 'src/components/shared/Landing/Skeleton/Skeleton'
 import { useLocation } from 'react-router-dom'
 import { Word } from './word/Word'
@@ -17,7 +14,6 @@ const Home: React.FC = () => {
 	const { data, isSuccess, isLoading } = useGetCardWordsQuery()
 	const { pathname } = useLocation()
 	const id = pathname.slice(1)
-	const { data: WordData } = useGetUserWordQuery(id)
 
 	return (
 		<div className={styles.root}>

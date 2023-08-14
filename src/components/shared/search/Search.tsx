@@ -72,7 +72,11 @@ const Search: React.FC = () => {
 						<h2>Word is not found</h2>
 					) : (
 						allWords?.data.map((word: TWord) => {
-							return <Link to='/'>{word.title_latin}</Link>
+							return (
+								<Link key={word.id} onClick={() => setSearch('')} to={`/dashboard/admin/words/${word.id}`} replace={true}>
+									{word.title_latin}
+								</Link>
+							)
 						})
 					)}
 				</div>
