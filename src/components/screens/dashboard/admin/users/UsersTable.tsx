@@ -2,7 +2,7 @@ import { Popconfirm, Space, Table, message } from 'antd'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
 import { UiButton } from 'src/components/ui/button/UiButton'
-import { TUser } from 'src/redux/users/Users.types'
+import { TUser } from 'src/redux/Admin/users/Users.types'
 import { UiRedButton } from 'src/components/ui/button/UiRedButton'
 import { useActions } from 'src/hooks/useActions'
 import {

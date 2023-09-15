@@ -1,10 +1,9 @@
-import { allUsers } from './users/Users.api'
-import { allCategoriesApi } from './allCategories/allCategories.api'
-import { AllWordsApi } from './allWords/AllWords.api'
+import { allUsers } from './Admin/users/Users.api'
+import { allCategoriesApi } from './Admin/allCategories/allCategories.api'
+import { AllWordsApi } from './Admin/allWords/AllWords.api'
 import { authApi } from './auth/Auth.api'
-import { allTypesApi } from './types/Types.api'
-import { cardsApi } from './landing/cards/cards.api'
-import { userWordApi } from './landing/UserWord/UserWord.api'
+import { allTypesApi } from './Admin/types/Types.api'
+import { UserApi } from './User/User.api'
 
 export const { useCheckUserQuery, useLoginMutation } = authApi
 
@@ -37,6 +36,8 @@ export const {
 	useGetAllTypesQuery,
 } = allTypesApi
 
-export const { useGetCardWordsQuery } = cardsApi
-
-export const { useGetUserWordQuery } = userWordApi
+export const {
+	useGetAllUserWordsQuery,
+	useGetCardWordsQuery,
+	useGetUserWordQuery,
+} = UserApi

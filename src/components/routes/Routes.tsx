@@ -1,5 +1,5 @@
 import { Home } from 'src/components/screens/home/Home'
-import { WordsList } from 'src/components/shared/Landing/words list/WordsList'
+import { WordsList } from 'src/components/screens/home/words list/WordsList'
 
 export const routes = [
 	{ path: '/', element: <Home /> },

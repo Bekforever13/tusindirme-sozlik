@@ -8,7 +8,7 @@ import {
 import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
-import { TCategory } from 'src/redux/allCategories/allCategories.types'
+import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
 
 const TypesForm: React.FC = () => {
 	const [typeForm] = Form.useForm()

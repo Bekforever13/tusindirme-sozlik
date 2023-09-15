@@ -1,5 +1,5 @@
-import { api } from '../index.api'
-import {  IUsersDataResult, TRole, TUser } from './Users.types'
+import { api } from '../../index.api'
+import { IUsersDataResult, TRole, TUser } from './Users.types'
 
 export const allUsers = api.injectEndpoints({
 	endpoints: builder => ({

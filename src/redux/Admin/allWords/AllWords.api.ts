@@ -1,10 +1,10 @@
-import { api } from '../index.api'
+import { api } from '../../index.api'
 import { IAllWordsDataResult, TWord } from './Allwords.types'
 
 export const AllWordsApi = api.injectEndpoints({
 	endpoints: builder => ({
 		getAllWords: builder.query<IAllWordsDataResult, string>({
-			query: (search) => ({
+			query: search => ({
 				url: `/words?search=${search}`,
 			}),
 			providesTags: ['words'],

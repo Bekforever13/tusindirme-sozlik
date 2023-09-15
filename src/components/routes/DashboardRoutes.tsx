@@ -16,5 +16,7 @@ export const DashboardRoutes = [
 	{ path: 'dashboard/admin/users', element: <Users /> },
 	{ path: 'dashboard/admin/types', element: <Types /> },
 	{ path: 'dashboard/copywriter', element: <Copywriter /> },
+	{ path: 'dashboard/copywriter/table', element: <Copywriter /> },
 	{ path: 'dashboard/tester', element: <Tester /> },
+	{ path: 'dashboard/tester/table', element: <Tester /> },
 ]

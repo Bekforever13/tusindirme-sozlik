@@ -8,11 +8,14 @@ import { Link } from 'react-router-dom'
 import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
 import { useActions } from 'src/hooks/useActions'
 import { useSelectors } from 'src/hooks/useSelectors'
-import { TWord } from 'src/redux/allWords/Allwords.types'
+import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
+import { useTranslation } from 'react-i18next'
 
 const Search: React.FC = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null)
 	const [search, setSearch] = React.useState<string>()
+	const { t } = useTranslation()
+	const lang = localStorage.getItem('lang')
 	const debouncedSearch = useDebounce(search, 500)
 	const { data: allWords } = useGetAllWordsQuery(debouncedSearch, {
 		skip: !debouncedSearch,
@@ -58,7 +61,7 @@ const Search: React.FC = () => {
 					type='text'
 					id='input'
 					ref={inputRef}
-					placeholder={'Sózdi izlew ushın jazıń ...'}
+					placeholder={t('searchPlaceholder')}
 				/>
 				{search && (
 					<button className={styles.clearButton} onClick={clearSearchValue}>
@@ -69,12 +72,17 @@ const Search: React.FC = () => {
 			{searchValue && (
 				<div className={styles.searchResults}>
 					{!allWords?.data ? (
-						<h2>Word is not found</h2>
+						<h2>{t('wordNotFound')}</h2>
 					) : (
 						allWords?.data.map((word: TWord) => {
 							return (
-								<Link key={word.id} onClick={() => setSearch('')} to={`/dashboard/admin/words/${word.id}`} replace={true}>
-									{word.title_latin}
+								<Link
+									key={word.id}
+									onClick={() => setSearch('')}
+									to={`/dashboard/admin/words/${word.id}`}
+									replace={true}
+								>
+									{lang === 'QQ' ? word.title_kiril : word.title_latin}
 								</Link>
 							)
 						})

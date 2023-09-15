@@ -1,4 +1,4 @@
-import { api } from '../index.api'
+import { api } from '../../index.api'
 import { ITypeDataResult, TType } from './Types.types'
 
 export const allTypesApi = api.injectEndpoints({

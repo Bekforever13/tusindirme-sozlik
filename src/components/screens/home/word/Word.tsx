@@ -1,49 +1,43 @@
 import { BsShareFill } from 'react-icons/bs'
 import styles from './Word.module.scss'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useGetUserWordQuery } from 'src/redux/index.endpoints'
 import React from 'react'
+import { Antonim } from './antonim/Antonim'
+import { Sinonim } from './sinonim/Sinonim'
 
 const Word: React.FC = () => {
-	const { pathname } = useLocation()
-	const id = pathname.slice(1)
-	const { data } = useGetUserWordQuery(id)
+	const params = useParams()
+	const { data } = useGetUserWordQuery(params.id)
+	const lang = localStorage.getItem('lang')
 
 	return (
 		<div className={styles.root}>
 			<div className={styles.word}>
-				<h2>{data?.data.title_latin}</h2>
+				<h2>
+					{lang === 'QQ' ? data?.data.title_latin : data?.data.title_kiril}
+				</h2>
 				<span>
 					<BsShareFill />
 				</span>
 			</div>
 			<div className={styles.type}>Kelbetlik</div>
-			<div className={styles.desc}>{data?.data.description_latin}</div>
+			<div className={styles.desc}>
+				{lang === 'QQ'
+					? data?.data.description_latin
+					: data?.data.description_kiril}
+			</div>
 			<div className={styles.common}>
-				<div className={styles.commonType}>
-					<span>Sinonim</span>
+				<Antonim />
+				<Sinonim />
+				{/* <div className={styles.commonType}>
+					<span>{t('uqsasSozler')}</span>
 					<ul>
 						<li>Abadan</li>
 						<li>Abadanshılıq</li>
 						<li>Abay</li>
 					</ul>
-				</div>
-				<div className={styles.commonType}>
-					<span>Antonim </span>
-					<ul>
-						<li>Abay-sıyasat</li>
-						<li>Abaylı</li>
-						<li>Abaysız</li>
-					</ul>
-				</div>
-				<div className={styles.commonType}>
-					<span>Uqsas sózler</span>
-					<ul>
-						<li>Abadan</li>
-						<li>Abadanshılıq</li>
-						<li>Abay</li>
-					</ul>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)

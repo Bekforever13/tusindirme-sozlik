@@ -4,6 +4,7 @@ import styles from './Menu.module.scss'
 
 const MenuCopywriter: React.FC = () => {
 	const { pathname } = useLocation()
+	
 	return (
 		<div
 			className={

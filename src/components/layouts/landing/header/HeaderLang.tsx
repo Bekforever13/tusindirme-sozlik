@@ -1,31 +1,27 @@
-import { Dropdown, Space } from 'antd'
-import type { MenuProps } from 'antd'
-
+import { useEffect } from 'react'
 import styles from './Header.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const HeaderLang: React.FC = () => {
-	const items: MenuProps['items'] = [
-		{
-			label: 'QQ',
-			key: '0',
-		},
-		{
-			label: 'RU',
-			key: '1',
-		},
-	]
+	const { i18n } = useTranslation()
+	
+	useEffect(() => {
+		if (localStorage.getItem('lang') === null) {
+			localStorage.setItem('lang', 'QQ')
+		}
+	}, [])
+	
+	const lang = localStorage.getItem('lang')
+	const checkLang = i18n.language === 'QQ' ? 'KK' : 'QQ'
 
-	const handleClickLang = (e: any) => {
-		e.preventDefault()
+	const handleClickLang = () => {
+		localStorage.setItem('lang', checkLang)
+		i18n.changeLanguage(checkLang)
 	}
 
 	return (
-		<div className={styles.lang}>
-			<Dropdown menu={{ items }} trigger={['click']} placement='top'>
-				<a onClick={e => handleClickLang(e)}>
-					<Space>QQ</Space>
-				</a>
-			</Dropdown>
+		<div onClick={handleClickLang} className={styles.lang}>
+			{lang ? lang : 'QQ'}
 		</div>
 	)
 }

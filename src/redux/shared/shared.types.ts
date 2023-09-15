@@ -1,7 +1,7 @@
-import { TUser } from '../users/Users.types'
-import { TCategory } from '../allCategories/allCategories.types'
-import { TWord } from '../allWords/Allwords.types'
-import { TType } from '../types/Types.types'
+import { TUser } from '../Admin/users/Users.types'
+import { TCategory } from '../Admin/allCategories/allCategories.types'
+import { TWord } from '../Admin/allWords/Allwords.types'
+import { TType } from '../Admin/types/Types.types'
 
 export interface ISharedType {
 	searchValue: string

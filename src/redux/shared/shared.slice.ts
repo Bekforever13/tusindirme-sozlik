@@ -1,10 +1,10 @@
-import { TWord } from 'src/redux/allWords/Allwords.types'
+import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ISharedType } from './shared.types'
-import { TCategory } from 'src/redux/allCategories/allCategories.types'
-import { TType } from '../types/Types.types'
-import { TUser } from '../users/Users.types'
+import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
+import { TType } from '../Admin/types/Types.types'
+import { TUser } from '../Admin/users/Users.types'
 
 const initialState: ISharedType = {
 	searchValue: '',

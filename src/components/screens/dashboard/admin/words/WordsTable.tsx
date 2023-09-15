@@ -7,10 +7,10 @@ import {
 	useGetAllCategoriesQuery,
 	useGetAllWordsQuery,
 } from 'src/redux/index.endpoints'
-import { TWord } from 'src/redux/allWords/Allwords.types'
+import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
 import { useActions } from 'src/hooks/useActions'
 import { UiRedButton } from 'src/components/ui/button/UiRedButton'
-import { TCategory } from 'src/redux/allCategories/allCategories.types'
+import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
 import { StatusTag } from 'src/components/shared/Dashboard/tag/StatusTag'
 
 const WordsTable: React.FC = () => {

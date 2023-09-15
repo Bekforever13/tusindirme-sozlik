@@ -5,7 +5,7 @@ import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
-import { TRole, TUser } from 'src/redux/users/Users.types'
+import { TRole, TUser } from 'src/redux/Admin/users/Users.types'
 import './UserForm.scss'
 import {
 	useCreateNewUserMutation,

@@ -13,14 +13,14 @@ const Routing: React.FC = () => {
 			<Route path='/auth' element={<Login />} />
 
 			<Route path='/' element={<Layout />}>
-				{routes.map((route, i) => (
-					<Route key={i} path={route.path} element={route.element} />
+				{routes.map((route) => (
+					<Route key={route.path} path={route.path} element={route.element} />
 				))}
 			</Route>
 
 			<Route path='/' element={<Admin />}>
-				{DashboardRoutes.map((route, i) => (
-					<Route key={i} path={route.path} element={route.element} />
+				{DashboardRoutes.map(route => (
+					<Route key={route.path} path={route.path} element={route.element} />
 				))}
 			</Route>
 

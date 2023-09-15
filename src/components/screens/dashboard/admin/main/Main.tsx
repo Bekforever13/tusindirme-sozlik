@@ -7,10 +7,12 @@ import {
 	useGetAllWordsQuery,
 } from 'src/redux/index.endpoints'
 import { Statistic } from 'antd'
+import { useParams } from 'react-router-dom'
 
 const Main: React.FC = () => {
 	const { data: wordData } = useGetAllWordsQuery('')
 	const { data: categoryData } = useGetAllCategoriesQuery()
+	const params = useParams()
 
 	return (
 		<div className={styles.root}>

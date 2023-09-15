@@ -3,7 +3,7 @@ import { UiButton } from 'src/components/ui/button/UiButton'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
 import { useActions } from 'src/hooks/useActions'
-import { TType } from 'src/redux/types/Types.types'
+import { TType } from 'src/redux/Admin/types/Types.types'
 import {
 	useDeleteTypeMutation,
 	useGetAllTypesQuery,

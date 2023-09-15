@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import styles from './Card.module.scss'
 import { BsArrowRight } from 'react-icons/bs'
-import { TCardPropType } from 'src/redux/landing/cards/cards.types'
+import { useTranslation } from 'react-i18next'
+import { TUserCardPropType } from 'src/redux/User/User.types'
 
-const Card: React.FC<TCardPropType> = props => {
+const Card: React.FC<TUserCardPropType> = props => {
 	const { title, words } = props
+	const lang = localStorage.getItem('lang')
+	const { t } = useTranslation()
 
 	const scroll = () => window.scrollTo(0, 0)
 
@@ -12,16 +15,16 @@ const Card: React.FC<TCardPropType> = props => {
 		<div className={styles.root}>
 			<h3>{title}</h3>
 			<div className={styles.words}>
-				{words.map(item => {
+				{words?.map(item => {
 					return (
-						<Link onClick={scroll} to={`/${item.id}`}>
-							{item.title_latin}
+						<Link key={item.id} onClick={scroll} to={`/${item.id}`}>
+							{lang === 'QQ' ? item.title_latin : item.title_kiril}
 						</Link>
 					)
 				})}
 			</div>
 			<Link to='/' className={styles.linkToAll}>
-				<span>Hámmesin kóriw</span>
+				<span>{t('checkAllWords')}</span>
 				<BsArrowRight />
 			</Link>
 		</div>

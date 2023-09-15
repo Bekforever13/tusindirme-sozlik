@@ -1,18 +1,18 @@
 import { Search } from 'src/components/shared/search/Search'
 import logo from 'src/assets/images/header_logo.svg'
 import styles from './Header.module.scss'
-import { useCustomGetRole } from 'src/hooks/useCustomGetRole'
+import { useParams } from 'react-router-dom'
 
 const Header: React.FC = () => {
-	const role = useCustomGetRole(11)
+	const params = useParams()
 
 	return (
 		<div className={styles.header}>
 			<img width='50px' src={logo} />
-			<h2>{role.includes('admin') && 'ADMIN'}</h2>
-			<h2>{role.includes('tester') && 'TESTER'}</h2>
-			<h2>{role.includes('copywriter') && 'COPYWRITER'}</h2>
-			{role.includes('admin') && <Search />}
+			<h2>{params.role === 'admin' && 'ADMIN'}</h2>
+			<h2>{params.role === 'tester' && 'TESTER'}</h2>
+			<h2>{params.role === 'copywriter' && 'COPYWRITER'}</h2>
+			{params.role === 'admin' && <Search />}
 		</div>
 	)
 }

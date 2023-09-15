@@ -8,8 +8,8 @@ import {
 	useEditWordMutation,
 	useGetAllCategoriesQuery,
 } from 'src/redux/index.endpoints'
-import { TCategory } from 'src/redux/allCategories/allCategories.types'
-import { TWord } from 'src/redux/allWords/Allwords.types'
+import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
+import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
 import { useSelectors } from 'src/hooks/useSelectors'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import { useActions } from 'src/hooks/useActions'
@@ -71,13 +71,6 @@ const WordForm: React.FC = () => {
 		wordForm.resetFields()
 	}
 
-	// notification message
-	// React.useEffect(() => {
-	// 	if (createSuccess) message.success('Successfully created new word')
-	// 	if (editSuccess) message.success('Successfully edited word')
-	// 	if (editError || createError) message.error('Error occured')
-	// }, [createSuccess, editSuccess, editError, createError])
-
 	// if success or error clear form fields and close modal
 	React.useEffect(() => {
 		if (createSuccess || editSuccess || createError || editError) {
@@ -105,6 +98,7 @@ const WordForm: React.FC = () => {
 			onCancel={handleCancel}
 			footer={false}
 			centered
+			width={800}
 		>
 			<Form name='word' form={wordForm} layout='vertical' onFinish={onSubmit}>
 				<Form.Item
@@ -152,7 +146,7 @@ const WordForm: React.FC = () => {
 					/>
 				</Form.Item>
 				{wordToEdit && (
-					<Form.Item label='Status' name='status_id'>
+					<Form.Item label='Status' name='status'>
 						<UiSelect
 							disabled={checkUserData?.data.role === 'copywriter'}
 							placeholder='Status'

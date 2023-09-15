@@ -1,34 +1,27 @@
 import { BsArrowRight } from 'react-icons/bs'
 import styles from './Frame.module.scss'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Frame: React.FC = () => {
+	const { t } = useTranslation()
+	
 	return (
 		<div className={styles.root}>
-			<div className={styles.title}>Sózlerdi úyreniwdiń eń nátiyjeli usılı</div>
+			<div className={styles.title}>{t('iframeTitle')}</div>
 			<div className={styles.frameWrapper}>
 				<div className={styles.frame}>
 					<iframe
-						src='https://www.youtube.com/embed/uSwe-5dPrV8'
-						title='RTK Query или альтернативный Redux по работе с API'
+						src='https://www.youtube.com/embed/UT9ndxZPXxY'
+						title='Túsindirme sózlik mobil qosımshası haqqında'
 						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
 					/>
 				</div>
 				<div className={styles.card}>
-					<h3>Eń nátıyjelı usılı</h3>
-					<p>
-						Sózlerdi úyreniwdiń eń nátiyjeli usılı - tek ǵana biz benen!
-						<br />
-						<Link to='https://tusindirmesozlik.uz'>
-							Tusindirmesozlik.uz
-						</Link>{' '}
-						- Qaraqalpaq tilindegi sózlerdi durıs jazıw hám onıń mánisin
-						mısallar járdeminde sizge shaǵıp beriwge járdem beredi! Video arqalı
-						veb sayttıń islew funkciyası hám kreativligin tolıǵıraq túsinip
-						alasız.
-					</p>
+					<h3>{t('iframeCardTitle')}</h3>
+					<p>{t('iframeCardDescription')}</p>
 					<Link to='/' className={styles.link}>
-						Tolıq <BsArrowRight />
+						{t('iframeCardCheck')} <BsArrowRight />
 					</Link>
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Home.module.scss'
 import { Search } from 'src/components/shared/search/Search'
 import { Frame } from 'src/components/screens/home/frame/Frame'
@@ -7,40 +7,34 @@ import { FloatButton } from 'antd'
 import { Card } from 'src/components/shared/Landing/Card/Card'
 import { useGetCardWordsQuery } from 'src/redux/index.endpoints'
 import { Skeleton } from 'src/components/shared/Landing/Skeleton/Skeleton'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Word } from './word/Word'
+import { useTranslation } from 'react-i18next'
 
 const Home: React.FC = () => {
-	const { data, isSuccess, isLoading } = useGetCardWordsQuery()
-	const { pathname } = useLocation()
-	const id = pathname.slice(1)
+	const { data, isLoading } = useGetCardWordsQuery()
+	const { id } = useParams()
+	const { t } = useTranslation()
 
 	return (
 		<div className={styles.root}>
-			{+id !== 0 && <Word />}
-			{!id && (
+			{id ? (
+				<Word />
+			) : (
 				<div className={styles.search}>
-					<h1>Bir sózdi izleń, onı úyreniń</h1>
+					<h1>{t('searchTitle')}</h1>
 					<Search />
 				</div>
 			)}
 			<div className={styles.cards}>
 				{isLoading ? (
-					<Skeleton />
+					[...Array(3)].map((el, i) => <Skeleton key={i} />)
 				) : (
-					isSuccess && <Card title='Kóp izlenetuģın sózler' words={data.max} />
-				)}
-				{isLoading ? (
-					<Skeleton />
-				) : (
-					isSuccess && <Card title='Tosınarlı sózler' words={data.random} />
-				)}
-				{isLoading ? (
-					<Skeleton />
-				) : (
-					isSuccess && (
-						<Card title='Kóp qáte etiletuǵın sózler' words={data.in_correct} />
-					)
+					<>
+						<Card title={t('firstCardTitle')} words={data?.max} />
+						<Card title={t('secondCardTitle')} words={data?.random} />
+						<Card title={t('thirdCardTitle')} words={data?.in_correct} />
+					</>
 				)}
 			</div>
 			<Frame />
@@ -49,5 +43,4 @@ const Home: React.FC = () => {
 		</div>
 	)
 }
-
 export { Home }

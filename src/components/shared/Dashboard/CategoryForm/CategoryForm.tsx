@@ -10,7 +10,7 @@ import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import './CategoryForm.scss'
-import { TCategory } from 'src/redux/allCategories/allCategories.types'
+import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
 
 type selectStateType = {

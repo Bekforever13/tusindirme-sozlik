@@ -48,7 +48,8 @@
 				display: flex;
 				flex-direction: column;
 				row-gap: 5px;
-				li {
+				a {
+					width: fit-content;
 					color: #333;
 					@include adaptiv-font(16, 12, 16);
 					line-height: 150%;

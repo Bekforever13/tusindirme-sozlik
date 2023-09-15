@@ -1,20 +1,23 @@
 import React from 'react'
-import { useCustomGetRole } from 'src/hooks/useCustomGetRole'
-import { TWord } from 'src/redux/allWords/Allwords.types'
+import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
 import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
 import styles from './SingleWordInfo.module.scss'
 import { useActions } from 'src/hooks/useActions'
+import { useParams } from 'react-router-dom'
+
 
 const SingleWordInfo: React.FC = () => {
 	const [word, setWord] = React.useState<TWord>()
-	const id = useCustomGetRole(23)
+	const params = useParams()
 	const { data } = useGetAllWordsQuery('')
 	const { setSearchValue } = useActions()
 
-	React.useEffect(() => {
-		setWord(data?.data.find(item => +item.id === +id))
-		setSearchValue('')
-	}, [id])
+	console.log(params)
+
+	// React.useEffect(() => {
+	// 	setWord(data?.data.find(item => +item.id === +params.id)
+	// 	setSearchValue('')
+	// }, [params.id])
 
 	return (
 		<div className={styles.root}>

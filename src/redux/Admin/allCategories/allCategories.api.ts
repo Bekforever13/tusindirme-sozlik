@@ -1,8 +1,5 @@
-import { api } from '../index.api'
-import {
-	IAllCategoriesDataResult,
-	TCategory,
-} from './allCategories.types'
+import { api } from '../../index.api'
+import { IAllCategoriesDataResult, TCategory } from './allCategories.types'
 
 export const allCategoriesApi = api.injectEndpoints({
 	endpoints: builder => ({

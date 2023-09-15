@@ -7,10 +7,10 @@ import {
 	useGetAllCategoriesQuery,
 	useGetAllTypesQuery,
 } from 'src/redux/index.endpoints'
-import { TCategory } from 'src/redux/allCategories/allCategories.types'
+import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
 import { useActions } from 'src/hooks/useActions'
 import { UiRedButton } from 'src/components/ui/button/UiRedButton'
-import { TType } from 'src/redux/types/Types.types'
+import { TType } from 'src/redux/Admin/types/Types.types'
 
 const CategoryTable: React.FC = () => {
 	const { data: categoriesData, isLoading } = useGetAllCategoriesQuery()

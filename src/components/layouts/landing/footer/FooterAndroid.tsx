@@ -8,4 +8,4 @@ const FooterAndroid: React.FC = () => {
 		</Link>
 	)
 }
-export {FooterAndroid}
+export { FooterAndroid }
