@@ -6,7 +6,7 @@ import React from 'react'
 const HeaderLogo: React.FC = () => {
 	return (
 		<Link to='/' className={styles.logo}>
-			<img src={logo} alt='' />
+			<img width={30} height={30} src={logo} alt='logo' />
 			<span>Túsindirme sózlik</span>
 		</Link>
 	)

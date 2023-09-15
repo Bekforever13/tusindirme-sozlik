@@ -8,7 +8,7 @@ const Header: React.FC = () => {
 
 	return (
 		<div className={styles.header}>
-			<img width='50px' src={logo} />
+			<img width={50} height={50} src={logo} alt='logo' />
 			<h2>{params.role === 'admin' && 'ADMIN'}</h2>
 			<h2>{params.role === 'tester' && 'TESTER'}</h2>
 			<h2>{params.role === 'copywriter' && 'COPYWRITER'}</h2>

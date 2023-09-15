@@ -7,19 +7,28 @@ import styles from './Footer.module.scss'
 const FooterSocial: React.FC = () => {
 	return (
 		<div className={styles.social}>
-			<Link to='https://facebook.com' target='_blank'>
+			<Link aria-label='Facebook' to='https://facebook.com' target='_blank'>
 				<LiaFacebook />
 			</Link>
-			<Link to='https://instagram.com/karsoftuz' target='_blank'>
+			<Link
+				aria-label='Instagram'
+				to='https://instagram.com/karsoftuz'
+				target='_blank'
+			>
 				<AiOutlineInstagram />
 			</Link>
 			<Link
+				aria-label='Youtube'
 				to='https://www.youtube.com/@bookieqaraqalpaq/featured'
 				target='_blank'
 			>
 				<AiOutlineYoutube />
 			</Link>
-			<Link to='https://t.me/karsoft_bot' target='_blank'>
+			<Link
+				aria-label='Telegramm'
+				to='https://t.me/karsoft_bot'
+				target='_blank'
+			>
 				<RiTelegramLine />
 			</Link>
 		</div>

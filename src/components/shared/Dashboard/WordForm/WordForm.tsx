@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, message } from 'antd'
+import { Button, Form } from 'antd'
 import { UiModal } from 'src/components/ui/modal/UiModal'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
 import {

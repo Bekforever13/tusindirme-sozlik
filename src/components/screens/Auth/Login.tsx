@@ -34,7 +34,7 @@ const Login: React.FC = () => {
 
 	return (
 		<div className={styles.root}>
-			<img src={logo} />
+			<img width={100} height={120} src={logo} alt='logo' />
 			<Form
 				name='basic'
 				style={{ maxWidth: 800 }}

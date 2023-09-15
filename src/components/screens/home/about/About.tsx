@@ -22,7 +22,7 @@ const About: React.FC = () => {
 					<div className={styles.about_desc}>{t('aboutDescription')}</div>
 				</div>
 				<div className={styles.about_logo}>
-					<img src={logo} />
+					<img width={130} height={155} src={logo} alt='logo' />
 				</div>
 			</div>
 		</div>
