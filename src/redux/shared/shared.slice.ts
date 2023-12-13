@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ISharedType } from './shared.types'
 import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
-import { TType } from '../Admin/types/Types.types'
 import { TUser } from '../Admin/users/Users.types'
 
 const initialState: ISharedType = {
@@ -13,7 +12,6 @@ const initialState: ISharedType = {
 	categoryModalShow: false,
 	categoryToEdit: null,
 	typesModalShow: false,
-	typeToEdit: null,
 	usersModalShow: false,
 	userToEdit: null,
 }
@@ -39,9 +37,6 @@ const sharedSlice = createSlice({
 		},
 		toggleModalType(state, { payload }: PayloadAction<boolean>) {
 			state.typesModalShow = payload
-		},
-		setTypeToEdit(state, { payload }: PayloadAction<TType | null>) {
-			state.typeToEdit = payload
 		},
 		toggleModalUser(state, { payload }: PayloadAction<boolean>) {
 			state.usersModalShow = payload
