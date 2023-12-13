@@ -20,15 +20,12 @@ const Menu: React.FC = () => {
 	return (
 		<div className={styles.menu}>
 			{pathname.includes('admin') && <MenuAdmin />}
-			<div className={styles.logout}>
-				<FiLogOut />
-				<Popconfirm
-					title='Are you sure to logout'
-					onConfirm={handleClickLogout}
-				>
+			<Popconfirm title='Are you sure to logout' onConfirm={handleClickLogout}>
+				<div>
+					<FiLogOut />
 					Logout
-				</Popconfirm>
-			</div>
+				</div>
+			</Popconfirm>
 		</div>
 	)
 }
