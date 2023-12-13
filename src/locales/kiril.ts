@@ -20,5 +20,6 @@ export const KK = {
 		sinonim: 'Синоним',
 		uqsasSozler: 'Уқсас сөзлер',
 		wordNotFound: 'Сөз таўилган жоқ',
+		empty: 'Ҳәзирше сөз жоқ',
 	},
 }

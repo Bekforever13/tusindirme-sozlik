@@ -1,15 +1,20 @@
 import { api } from '../../index.api'
-import { IAllWordsDataResult, TWord } from './Allwords.types'
+import {
+	IAllWordsDataResult,
+	TGetWordParams,
+	TWordFormData,
+} from './Allwords.types'
 
 export const AllWordsApi = api.injectEndpoints({
 	endpoints: builder => ({
-		getAllWords: builder.query<IAllWordsDataResult, string>({
-			query: search => ({
-				url: `/words?search=${search}`,
+		getAllWords: builder.query<IAllWordsDataResult, TGetWordParams>({
+			query: body => ({
+				url: '/words',
+				params: body,
 			}),
 			providesTags: ['words'],
 		}),
-		createNewWord: builder.mutation<TWord, TWord>({
+		createNewWord: builder.mutation<unknown, TWordFormData>({
 			query: body => ({
 				url: '/words',
 				method: 'POST',
@@ -17,15 +22,15 @@ export const AllWordsApi = api.injectEndpoints({
 			}),
 			invalidatesTags: ['words'],
 		}),
-		editWord: builder.mutation<any, TWord>({
+		editWord: builder.mutation<any, TWordFormData>({
 			query: body => ({
 				url: `/words/${body.id}`,
-				method: 'PATCH',
+				method: 'PUT',
 				body,
 			}),
 			invalidatesTags: ['words'],
 		}),
-		deleteWord: builder.mutation<any, string>({
+		deleteWord: builder.mutation<any, number>({
 			query: id => ({
 				url: `/words/${id}`,
 				method: 'DELETE',

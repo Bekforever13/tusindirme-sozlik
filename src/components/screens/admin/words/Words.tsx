@@ -12,7 +12,7 @@ const Words: React.FC = () => {
 		<div className={styles.root}>
 			<DashboardHead
 				title='Sózler'
-				buttonText='Add word'
+				buttonText='Sóz qosiw'
 				handleClick={() => toggleModalWord(true)}
 			/>
 			<WordsTable />

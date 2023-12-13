@@ -1,9 +1,8 @@
+import { TKirilLatin } from "src/redux/User/User.types"
+
 export type TCategory = {
-	key?: string
 	id: string
-	type_id: string
-	title_latin: string
-	title_kiril: string
+	title: TKirilLatin
 }
 
 export interface IAllCategoriesDataResult {

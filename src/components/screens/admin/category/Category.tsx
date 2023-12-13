@@ -12,7 +12,7 @@ const Category: React.FC = () => {
 		<div className={styles.root}>
 			<DashboardHead
 				title='Kategoriya'
-				buttonText='Add category'
+				buttonText='Kategoriya qosiw'
 				handleClick={() => toggleModalCategory(true)}
 			/>
 			<CategoryTable />

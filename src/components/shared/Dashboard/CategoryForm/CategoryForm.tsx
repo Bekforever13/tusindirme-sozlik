@@ -4,26 +4,17 @@ import { UiModal } from 'src/components/ui/modal/UiModal'
 import {
 	useCreateNewCategoryMutation,
 	useEditCategoryMutation,
-	useGetAllTypesQuery,
 } from 'src/redux/index.endpoints'
 import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import './CategoryForm.scss'
 import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
-import { UiSelect } from 'src/components/ui/select/UiSelect'
-
-type selectStateType = {
-	label: string
-	value: string
-}
 
 const CategoryForm: React.FC = () => {
 	const [categoryForm] = Form.useForm()
 	const { categoryToEdit, categoryModalShow } = useSelectors()
 	const { toggleModalCategory, setCategoryToEdit } = useActions()
-	const { data: typeData } = useGetAllTypesQuery()
-	const [selectTypes, setSelectTypes] = React.useState<selectStateType[]>([])
 
 	const [
 		createNewCategory,
@@ -62,7 +53,10 @@ const CategoryForm: React.FC = () => {
 	// after click edit button this hook will fill the form fields
 	React.useEffect(() => {
 		if (categoryToEdit) {
-			categoryForm.setFieldsValue({ ...categoryToEdit })
+			categoryForm.setFieldsValue({
+				title_latin: categoryToEdit.title.latin,
+				title_kiril: categoryToEdit.title.kiril,
+			})
 		}
 	}, [categoryToEdit, categoryForm])
 
@@ -70,15 +64,6 @@ const CategoryForm: React.FC = () => {
 	React.useEffect(() => {
 		if (!categoryModalShow) setCategoryToEdit(null)
 	}, [categoryModalShow])
-
-	React.useEffect(() => {
-		typeData?.data.map(item => {
-			setSelectTypes((prev: any) => [
-				...prev,
-				{ label: item.title_latin, value: item.id },
-			])
-		})
-	}, [typeData])
 
 	return (
 		<UiModal
@@ -107,13 +92,6 @@ const CategoryForm: React.FC = () => {
 					rules={[{ required: true, message: 'Please input title kiril' }]}
 				>
 					<UiInput />
-				</Form.Item>
-				<Form.Item
-					label='Type'
-					name='type_id'
-					rules={[{ required: true, message: 'Please input title kiril' }]}
-				>
-					<UiSelect placeholder='Type' options={selectTypes} />
 				</Form.Item>
 				<Form.Item>
 					<Button htmlType='reset'>Reset fields</Button>

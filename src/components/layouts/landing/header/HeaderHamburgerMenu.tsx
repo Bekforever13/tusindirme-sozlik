@@ -31,7 +31,6 @@ const HeaderHamburgerMenu: React.FC<THamburgerMenuProps> = ({
 			>
 				{t('about')}
 			</a>
-			<Link to='/auth'>Admin</Link>
 			<div className={styles.hLang}>QQ</div>
 		</div>
 	)

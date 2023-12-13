@@ -1,15 +1,31 @@
+import { TKirilLatin } from 'src/redux/User/User.types'
+
 export type TWord = {
-	key?: string
-	id: string
-	title_latin: string
-	title_kiril: string
-	description_latin: string
-	description_kiril: string
-	status: 'rejected' | 'confirmed' | 'testing'
-	correct?: boolean
-	category_id?: string[]
+	id: number
+	category: TKirilLatin
+	description: TKirilLatin
+	title: TKirilLatin
+	is_correct: boolean
+	category_id: number
+	quantity: string
 }
 
 export interface IAllWordsDataResult {
 	data: TWord[]
+	total: number
+	per_page: number
+	current_page: number
+}
+
+export interface TWordFormData {
+	id?: number
+	title: TKirilLatin
+	description: TKirilLatin
+	category_id: number
+}
+
+export type TGetWordParams = {
+	search?: string
+	page?: number
+	limit?: number
 }

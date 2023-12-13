@@ -5,18 +5,15 @@ import { BsTrash } from 'react-icons/bs'
 import {
 	useDeleteCategoryMutation,
 	useGetAllCategoriesQuery,
-	useGetAllTypesQuery,
 } from 'src/redux/index.endpoints'
 import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
 import { useActions } from 'src/hooks/useActions'
 import { UiRedButton } from 'src/components/ui/button/UiRedButton'
-import { TType } from 'src/redux/Admin/types/Types.types'
 
 const CategoryTable: React.FC = () => {
 	const { data: categoriesData, isLoading } = useGetAllCategoriesQuery()
 	const { toggleModalCategory, setCategoryToEdit } = useActions()
 	const [deleteCategory, { isSuccess }] = useDeleteCategoryMutation()
-	const { data: typesData } = useGetAllTypesQuery()
 
 	const onClickRemoveCategory = (id: string) => {
 		deleteCategory(id)
@@ -32,29 +29,13 @@ const CategoryTable: React.FC = () => {
 			title: 'Latin',
 			dataIndex: 'title_latin',
 			key: 'title_latin',
+			render: (_: unknown, rec: TCategory) => rec.title.latin,
 		},
 		{
 			title: 'Kiril',
 			dataIndex: 'title_kiril',
 			key: 'title_kiril',
-		},
-		{
-			title: 'Type',
-			key: 'type_id',
-			dataIndex: 'type_id',
-			render: (_: void, record: TCategory) => {
-				let color: string = ''
-				let title: string = ''
-				typesData?.data.map((item: TType) => {
-					item.id === record.type_id && (title = item.title_latin)
-				})
-
-				return (
-					<Tag color={color} key={record.type_id}>
-						{title}
-					</Tag>
-				)
-			},
+			render: (_: unknown, rec: TCategory) => rec.title.kiril,
 		},
 		{
 			title: 'Actions',

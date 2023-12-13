@@ -1,3 +1,8 @@
+export type TKirilLatin = {
+	latin: string
+	kiril: string
+}
+
 type TWord = {
 	id: number
 	title_latin: string
@@ -36,10 +41,33 @@ export type TAllUserWords = {
 	user_id: number
 }
 
+// v2 types
+
+export type TAllUserWord = {
+	limit: number
+	page: number
+}
+
 export type TUserWordCard = {
 	id: number
-	title_latin: string
-	title_kiril: string
+	category: TKirilLatin
+	title: TKirilLatin
+	description: TKirilLatin
+	is_correct: boolean
+	quantity: number
+}
+
+export interface ICardsDataResponse {
+	data: TUserWordCard[]
+	total: number
+	per_page: number
+	current_page: number
+}
+
+export type TUserInitState = {
+	popularWordsData: TUserWordCard[]
+	isCorrectWordsData: TUserWordCard[]
+	randomWordsData: TUserWordCard[]
 }
 
 export type TUserCardPropType = {
@@ -47,28 +75,13 @@ export type TUserCardPropType = {
 	words?: TUserWordCard[]
 }
 
-export interface IUserWordCardsResult {
-	in_correct: TUserWordCard[]
-	max: TUserWordCard[]
-	random: TUserWordCard[]
-}
-
 export interface IUserSingleWordResult {
-	data: TUserWord
+	data: TUserWordCard
 }
 
 export interface IUserAllWordsDataResult {
-	data: TAllUserWords[]
-	pagination: {
-		count: number
-		current_page: number
-		per_page: number
-		total: number
-		total_pages: number
-	}
-}
-
-export type TAllUserWord = {
-	limit: number
-	page: number
+	data: TUserWordCard[]
+	total: number
+	per_page: number
+	current_page: number
 }

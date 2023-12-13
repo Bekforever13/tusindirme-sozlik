@@ -1,41 +1,45 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { BiCategory } from 'react-icons/bi'
 import { MdOutlineTranslate } from 'react-icons/md'
 import { AiOutlineHome } from 'react-icons/ai'
 import { FiUsers, FiType } from 'react-icons/fi'
 import styles from './Menu.module.scss'
+import logo from 'src/assets/images/header_logo.svg'
 
 const MenuAdmin: React.FC = () => {
 	const { pathname } = useLocation()
+	const navigate = useNavigate()
 	const adminMenuItems = [
-		{ pathname: '/dashboard/admin', icon: <AiOutlineHome />, label: 'Home' },
+		{ pathname: '/admin', icon: <AiOutlineHome />, label: 'Bas bet' },
 		{
-			pathname: '/dashboard/admin/words',
+			pathname: '/admin/words',
 			icon: <MdOutlineTranslate />,
-			label: 'Words',
+			label: 'Sozler',
 		},
 		{
-			pathname: '/dashboard/admin/category',
+			pathname: '/admin/category',
 			icon: <BiCategory />,
-			label: 'Category',
+			label: 'Kategoriyalar',
 		},
-		{ pathname: '/dashboard/admin/types', icon: <FiType />, label: 'Types' },
-		{ pathname: '/dashboard/admin/users', icon: <FiUsers />, label: 'Users' },
+		{ pathname: '/admin/users', icon: <FiUsers />, label: 'Userler' },
 	]
 
 	return (
 		<>
-			{adminMenuItems.map(item => {
-				return (
-					<div
-						key={item.pathname}
-						className={pathname === item.pathname ? styles.active : styles.notActive}
-					>
-						{item.icon}
-						<Link to={item.pathname}>{item.label}</Link>
-					</div>
-				)
-			})}
+			<div onClick={() => navigate('/')} className={styles.img}>
+				<img width={50} height={50} src={logo} alt='logo' />
+			</div>
+			{adminMenuItems.map(item => (
+				<div
+					key={item.pathname}
+					className={
+						pathname === item.pathname ? styles.active : styles.notActive
+					}
+				>
+					{item.icon}
+					<Link to={item.pathname}>{item.label}</Link>
+				</div>
+			))}
 		</>
 	)
 }

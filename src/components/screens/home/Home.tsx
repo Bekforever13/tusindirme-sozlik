@@ -5,16 +5,19 @@ import { Frame } from 'src/components/screens/home/frame/Frame'
 import { About } from 'src/components/screens/home/about/About'
 import { FloatButton } from 'antd'
 import { Card } from 'src/components/shared/Landing/Card/Card'
-import { useGetCardWordsQuery } from 'src/redux/index.endpoints'
 import { Skeleton } from 'src/components/shared/Landing/Skeleton/Skeleton'
 import { useParams } from 'react-router-dom'
 import { Word } from './word/Word'
 import { useTranslation } from 'react-i18next'
+import { useSelectors } from 'src/hooks/useSelectors'
+import { useGetUserCardsData } from 'src/hooks/useGetUserCardsData'
 
 const Home: React.FC = () => {
-	const { data, isLoading } = useGetCardWordsQuery()
 	const { id } = useParams()
 	const { t } = useTranslation()
+	const { isLoading } = useGetUserCardsData()
+	const { randomWordsData, popularWordsData, isCorrectWordsData } =
+		useSelectors()
 
 	return (
 		<div className={styles.root}>
@@ -28,12 +31,12 @@ const Home: React.FC = () => {
 			)}
 			<div className={styles.cards}>
 				{isLoading ? (
-					[...Array(3)].map((el, i) => <Skeleton key={i} />)
+					[...Array(3)].map((_, i) => <Skeleton key={i} />)
 				) : (
 					<>
-						<Card title={t('firstCardTitle')} words={data?.max} />
-						<Card title={t('secondCardTitle')} words={data?.random} />
-						<Card title={t('thirdCardTitle')} words={data?.in_correct} />
+						<Card title={t('firstCardTitle')} words={randomWordsData} />
+						<Card title={t('secondCardTitle')} words={popularWordsData} />
+						<Card title={t('thirdCardTitle')} words={isCorrectWordsData} />
 					</>
 				)}
 			</div>

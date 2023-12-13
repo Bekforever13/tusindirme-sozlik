@@ -5,7 +5,7 @@ export const allUsers = api.injectEndpoints({
 	endpoints: builder => ({
 		getAllUsers: builder.query<IUsersDataResult, void>({
 			query: () => ({
-				url: '/users/all-users',
+				url: '/admins',
 			}),
 			providesTags: ['admins'],
 		}),

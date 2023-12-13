@@ -5,8 +5,6 @@ import { useActions } from 'src/hooks/useActions'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './Menu.module.scss'
 import { MenuAdmin } from './MenuAdmin'
-import { MenuTester } from './MenuTester'
-import { MenuCopywriter } from './MenuCopywriter'
 
 const Menu: React.FC = () => {
 	const { removeToken } = useActions()
@@ -22,9 +20,7 @@ const Menu: React.FC = () => {
 	return (
 		<div className={styles.menu}>
 			{pathname.includes('admin') && <MenuAdmin />}
-			{pathname.includes('copywriter') && <MenuCopywriter />}
-			{pathname.includes('tester') && <MenuTester />}
-			<div>
+			<div className={styles.logout}>
 				<FiLogOut />
 				<Popconfirm
 					title='Are you sure to logout'

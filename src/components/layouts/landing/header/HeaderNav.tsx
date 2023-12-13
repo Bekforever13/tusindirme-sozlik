@@ -18,7 +18,6 @@ const HeaderNav: React.FC = () => {
 			>
 				{t('about')}
 			</a>
-			<Link to='/auth'>Admin</Link>
 		</div>
 	)
 }

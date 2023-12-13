@@ -22,13 +22,6 @@ const Search: React.FC = () => {
 	})
 	const { setSearchValue } = useActions()
 	const { searchValue } = useSelectors()
-	const options = [
-		{ value: 'Aa', label: 'Aa' },
-		{ value: 'Bb', label: 'Bb' },
-		{ value: 'Cc', label: 'Cc' },
-		{ value: 'Dd', label: 'Dd' },
-		{ value: 'Ee', label: 'Ee' },
-	]
 
 	const clearSearchValue = () => {
 		setSearchValue('')
@@ -46,12 +39,6 @@ const Search: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.wrapper} onClick={() => inputRef.current?.focus()}>
-				<Select
-					defaultValue={options[0].value}
-					options={options}
-					style={{ width: 70 }}
-					onClick={e => e.stopPropagation()}
-				/>
 				<span className={styles.search}>
 					<BiSearch />
 				</span>

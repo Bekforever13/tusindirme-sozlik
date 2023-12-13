@@ -1,5 +1,4 @@
 import React from 'react'
-import { BsShareFill } from 'react-icons/bs'
 import styles from './About.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 import { useTranslation } from 'react-i18next'
@@ -14,9 +13,6 @@ const About: React.FC = () => {
 				<div className={styles.text}>
 					<div className={styles.aboutTitle}>
 						<div>Túsindirme sózlik</div>
-						<span>
-							<BsShareFill />
-						</span>
 					</div>
 					<div className={styles.aboutType}>{t('aboutType')}</div>
 					<div className={styles.about_desc}>{t('aboutDescription')}</div>

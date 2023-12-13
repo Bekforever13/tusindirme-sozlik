@@ -3,6 +3,7 @@ import styles from './Footer.module.scss'
 import { FooterSocial } from './FooterSocial'
 import { FooterAndroid } from './FooterAndroid'
 import { FooterLogo } from './FooterLogo'
+import { Link } from 'react-router-dom'
 
 const Footer: React.FC = () => {
 	return (
@@ -13,8 +14,9 @@ const Footer: React.FC = () => {
 				<FooterSocial />
 			</div>
 			<div className={styles.text}>
-				Avtorlıq huqıqı © 2022 Bookie audiokitaplar, "KARSOFT-IT-SOLUTIONS" JSHJ
-				• Barlıq huqıqlar qorǵalǵan.
+				Avtorlıq huqıqı © 2022 Bookie audiokitaplar,{' '}
+				<Link to='/auth'>"KARSOFT-IT-SOLUTIONS"</Link> JSHJ • Barlıq huqıqlar
+				qorǵalǵan.
 			</div>
 		</div>
 	)

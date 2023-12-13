@@ -7,29 +7,29 @@ import { Antonim } from './antonim/Antonim'
 import { Sinonim } from './sinonim/Sinonim'
 
 const Word: React.FC = () => {
-	const params = useParams()
-	const { data } = useGetUserWordQuery(params.id)
+	const { id } = useParams()
+	const { data } = useGetUserWordQuery(id!)
 	const lang = localStorage.getItem('lang')
 
 	return (
 		<div className={styles.root}>
 			<div className={styles.word}>
 				<h2>
-					{lang === 'QQ' ? data?.data.title_latin : data?.data.title_kiril}
+					{lang === 'QQ' ? data?.data.title.latin : data?.data.title.kiril}
 				</h2>
 				<span>
-					<BsShareFill />
+					{/* <BsShareFill /> */}
 				</span>
 			</div>
 			<div className={styles.type}>Kelbetlik</div>
 			<div className={styles.desc}>
 				{lang === 'QQ'
-					? data?.data.description_latin
-					: data?.data.description_kiril}
+					? data?.data.description.latin
+					: data?.data.description.kiril}
 			</div>
 			<div className={styles.common}>
-				<Antonim />
-				<Sinonim />
+				{/* <Antonim />
+				<Sinonim /> */}
 				{/* <div className={styles.commonType}>
 					<span>{t('uqsasSozler')}</span>
 					<ul>

@@ -22,5 +22,6 @@ export const QQ = {
 		sinonim: 'Sinonim',
 		uqsasSozler: 'Uqsas sózler',
 		wordNotFound: 'Sóz tawilgan joq',
+		empty: 'Házirshe sóz joq',
 	},
 }

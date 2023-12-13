@@ -1,6 +1,5 @@
 export * from './main/Main'
 export * from './category/Category'
-export * from './types/Types'
 export * from './words/Words'
 export * from './SingleWordInfo/SingleWordInfo'
 export * from './users/Users'
