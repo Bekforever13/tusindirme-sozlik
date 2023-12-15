@@ -7,7 +7,7 @@ import {
 
 export const AllWordsApi = api.injectEndpoints({
 	endpoints: builder => ({
-		getAllWords: builder.query<IAllWordsDataResult, TGetWordParams>({
+		getAdminAllWords: builder.query<IAllWordsDataResult, TGetWordParams>({
 			query: body => ({
 				url: '/words',
 				params: body,

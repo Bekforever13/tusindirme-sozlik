@@ -15,7 +15,9 @@ const Word: React.FC = () => {
 					{lang === 'QQ' ? data?.data.title.latin : data?.data.title.kiril}
 				</h2>
 			</div>
-			<div className={styles.type}>Kelbetlik</div>
+			<div className={styles.type}>
+				{lang === 'QQ' ? data?.data.category.latin : data?.data.category.kiril}
+			</div>
 			<div className={styles.desc}>
 				{lang === 'QQ'
 					? data?.data.description.latin

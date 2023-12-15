@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './Home.module.scss'
 import { Search } from 'src/components/shared/search/Search'
 import { Frame } from 'src/components/screens/home/frame/Frame'

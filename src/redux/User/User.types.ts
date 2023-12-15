@@ -44,8 +44,9 @@ export type TAllUserWords = {
 // v2 types
 
 export type TAllUserWord = {
-	limit: number
-	page: number
+	limit?: number
+	page?: number
+	search?: string
 }
 
 export type TUserWordCard = {

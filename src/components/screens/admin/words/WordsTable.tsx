@@ -4,7 +4,7 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
 import {
 	useDeleteWordMutation,
-	useGetAllWordsQuery,
+	useGetAdminAllWordsQuery,
 } from 'src/redux/index.endpoints'
 import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
 import { useActions } from 'src/hooks/useActions'
@@ -18,7 +18,7 @@ const WordsTable: React.FC = () => {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageSize, setPageSize] = useState(10)
 	const { setWordToEdit, toggleModalWord } = useActions()
-	const { data: wordsData, isLoading } = useGetAllWordsQuery({
+	const { data: wordsData, isLoading } = useGetAdminAllWordsQuery({
 		search: '',
 		page: currentPage,
 		limit: pageSize,
@@ -39,19 +39,19 @@ const WordsTable: React.FC = () => {
 
 	const columns: ColumnsType<TWord> = [
 		{
-			title: 'Sóz',
+			title: 'Слово лат.',
 			dataIndex: 'title',
 			key: 'title',
 			render: (_, rec) => rec.title.latin,
 		},
 		{
-			title: 'Сөз',
+			title: 'Слово кир.',
 			dataIndex: 'title',
 			key: 'title',
 			render: (_, rec) => rec.title.kiril,
 		},
 		{
-			title: 'Description latin',
+			title: 'Описание лат.',
 			dataIndex: 'description.latin',
 			key: 'description.latin',
 			render: (_, rec) => (
@@ -59,7 +59,7 @@ const WordsTable: React.FC = () => {
 			),
 		},
 		{
-			title: 'Description kiril',
+			title: 'Описание кир.',
 			dataIndex: 'description.kiril',
 			key: 'description.kiril',
 			render: (_, rec) => (
@@ -67,13 +67,13 @@ const WordsTable: React.FC = () => {
 			),
 		},
 		{
-			title: 'Category',
+			title: 'Категория',
 			dataIndex: 'category_id',
 			key: 'category_id',
 			render: (_, rec) => rec.category.kiril,
 		},
 		{
-			title: 'Actions',
+			title: 'Действия',
 			key: 'action',
 			render: (_, record) => (
 				<Space size='middle'>
@@ -98,6 +98,7 @@ const WordsTable: React.FC = () => {
 	return (
 		<Table
 			size='small'
+			scroll={{ x: true }}
 			rowKey={item => item.id}
 			pagination={{
 				total: wordsData?.total,

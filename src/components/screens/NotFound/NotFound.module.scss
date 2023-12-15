@@ -1,5 +1,3 @@
-@import '/src/assets/styles/base/mixin';
-
 .root {
 	color: #fff;
 	height: 100vh;
@@ -10,17 +8,17 @@
 	row-gap: 20px;
 	background-image: url('src/assets/images/not_found_bg.jpg');
 	h1 {
-		@include adaptiv-font(100, 70, 100);
+		font-size: clamp(4.375rem, 4.0278rem + 1.8519vw, 6.25rem);
 		font-weight: 400;
 	}
 	span {
-		@include adaptiv-font(40, 30, 40);
+		font-size: clamp(1.875rem, 1.7593rem + 0.6173vw, 2.5rem);
 	}
 	button {
 		background-color: var(--baseBlue);
 		padding: 10px 20px;
 		color: #fff;
 		border-radius: 10px;
-		@include adaptiv-font(24, 18, 24);
+		font-size: clamp(1.25rem, 1.2037rem + 0.2469vw, 1.5rem);
 	}
 }

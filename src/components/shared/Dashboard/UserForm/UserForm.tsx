@@ -10,21 +10,24 @@ import './UserForm.scss'
 import {
 	useCreateNewUserMutation,
 	useEditUserMutation,
-	useGetAllRolesQuery,
 } from 'src/redux/index.endpoints'
+import { MaskedInput } from 'antd-mask-input'
 
 type selectStateType = {
 	label: string
 	value: string
 }
 
+const rolesData: TRole[] = [
+	{ id: 1, name: 'super_admin' },
+	{ id: 2, name: 'admin' },
+]
+
 const UserForm: React.FC = () => {
 	const [userForm] = Form.useForm()
 	const { userToEdit, usersModalShow } = useSelectors()
 	const { toggleModalUser, setUserToEdit } = useActions()
-	const { data: rolesData } = useGetAllRolesQuery()
 	const [currentRoleID, setCurrentRoleID] = useState<string>()
-	const [defSelectValue, setDefSelectValue] = React.useState<string>()
 	const [selectTypes, setSelectTypes] = React.useState<selectStateType[]>([])
 
 	const [
@@ -43,9 +46,9 @@ const UserForm: React.FC = () => {
 	const onSubmit = async (values: TUser) => {
 		console.log(values)
 		if (userToEdit) {
-			await editUser({ ...values, id: userToEdit.id })
+			await editUser({ ...values, user_id: userToEdit.id })
 		} else {
-			await createNewUser(values)
+			await createNewUser({ ...values, phone: values.phone.replace(/\D/g, '') })
 		}
 	}
 
@@ -66,7 +69,9 @@ const UserForm: React.FC = () => {
 	React.useEffect(() => {
 		if (userToEdit) {
 			rolesData?.map((item: TRole) => {
-				return item.name === userToEdit.name && setCurrentRoleID(item.id)
+				return (
+					item.name === userToEdit.name && setCurrentRoleID(item.id.toString())
+				)
 			})
 			userForm.setFieldsValue({ ...userToEdit, roles_id: currentRoleID })
 		}
@@ -90,7 +95,7 @@ const UserForm: React.FC = () => {
 
 	return (
 		<UiModal
-			title={'User'}
+			title={'Админ'}
 			open={usersModalShow}
 			onCancel={handleCancel}
 			footer={false}
@@ -98,49 +103,51 @@ const UserForm: React.FC = () => {
 			<Form name='admin' form={userForm} layout='vertical' onFinish={onSubmit}>
 				<Form.Item
 					name='name'
-					label='Name'
-					rules={[{ required: true, message: 'Please input name' }]}
+					label='Имя'
+					rules={[{ required: true, message: 'Пожалуйста заполните поле' }]}
 				>
 					<UiInput />
 				</Form.Item>
 				<Form.Item
 					name='phone'
-					label='Phone'
-					rules={[{ required: true, message: 'Please input phone' }]}
+					label='Телефон'
+					rules={[{ required: true, message: 'Пожалуйста заполните поле' }]}
 				>
-					<UiInput />
+					<MaskedInput mask={'+{998}00 000 00 00'} />
 				</Form.Item>
 				{!userToEdit && (
 					<Form.Item
 						name='password'
-						label='Password'
-						rules={[{ required: true, message: 'Please input password' }]}
+						label='Пароль'
+						rules={[{ required: true, message: 'Пожалуйста заполните поле' }]}
 					>
 						<UiInput />
 					</Form.Item>
 				)}
 				<Form.Item
 					name='role_id'
-					label='Role'
-					rules={[{ required: true, message: 'Please select role' }]}
+					label='Роль'
+					rules={[{ required: true, message: 'Пожалуйста выберите роль' }]}
 				>
 					<UiSelect
-						placeholder='Type'
-						value={userToEdit?.role}
+						placeholder='Выберите роль'
+						value={rolesData.find(
+							role => role.id === Number(userToEdit?.role_id)
+						)}
 						options={selectTypes}
 					/>
 				</Form.Item>
 				<Form.Item>
-					<Button htmlType='reset'>Reset fields</Button>
+					<Button htmlType='reset'>Очистить все поля</Button>
 					<Button htmlType='button' onClick={handleCancel}>
-						Cancel
+						Отмена
 					</Button>
 					<Button
 						loading={userToEdit ? editLoading : createLoading}
 						type='primary'
 						htmlType='submit'
 					>
-						Submit
+						Отправить
 					</Button>
 				</Form.Item>
 			</Form>

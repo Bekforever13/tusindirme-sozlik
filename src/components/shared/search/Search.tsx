@@ -1,25 +1,28 @@
 import React from 'react'
 import { BiSearch } from 'react-icons/bi'
 import styles from './Search.module.scss'
-import { Select } from 'antd'
 import { useDebounce } from 'src/hooks/useDebounce'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { useGetAllWordsQuery } from 'src/redux/index.endpoints'
+import { useGetAllUserWordsQuery } from 'src/redux/index.endpoints'
 import { useActions } from 'src/hooks/useActions'
 import { useSelectors } from 'src/hooks/useSelectors'
-import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
 import { useTranslation } from 'react-i18next'
+import { TUserWordCard } from 'src/redux/User/User.types'
+import { Spin } from 'antd'
 
 const Search: React.FC = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null)
 	const [search, setSearch] = React.useState<string>()
 	const { t } = useTranslation()
 	const lang = localStorage.getItem('lang')
-	const debouncedSearch = useDebounce(search, 500)
-	const { data: allWords } = useGetAllWordsQuery(debouncedSearch, {
-		skip: !debouncedSearch,
-	})
+	const debouncedSearch: string = useDebounce(search, 500)
+	const { data: allWords, isLoading } = useGetAllUserWordsQuery(
+		{ search: debouncedSearch },
+		{
+			skip: !debouncedSearch,
+		}
+	)
 	const { setSearchValue } = useActions()
 	const { searchValue } = useSelectors()
 
@@ -58,21 +61,20 @@ const Search: React.FC = () => {
 			</div>
 			{searchValue && (
 				<div className={styles.searchResults}>
-					{!allWords?.data ? (
-						<h2>{t('wordNotFound')}</h2>
+					{isLoading ? (
+						<Spin spinning />
+						// <h2>{t('wordNotFound')}</h2>
 					) : (
-						allWords?.data.map((word: TWord) => {
-							return (
-								<Link
-									key={word.id}
-									onClick={() => setSearch('')}
-									to={`/dashboard/admin/words/${word.id}`}
-									replace={true}
-								>
-									{lang === 'QQ' ? word.title.kiril : word.title.latin}
-								</Link>
-							)
-						})
+						allWords?.data.map((word: TUserWordCard) => (
+							<Link
+								key={word.id}
+								onClick={() => setSearch('')}
+								to={`/words/${word.id}`}
+								replace={true}
+							>
+								{lang === 'QQ' ? word.title.kiril : word.title.latin}
+							</Link>
+						))
 					)}
 				</div>
 			)}

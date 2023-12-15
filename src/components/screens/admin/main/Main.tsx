@@ -4,30 +4,32 @@ import { MdOutlineTranslate } from 'react-icons/md'
 import { BiCategory } from 'react-icons/bi'
 import {
 	useGetAllCategoriesQuery,
-	useGetAllWordsQuery,
+	useGetAdminAllWordsQuery,
 } from 'src/redux/index.endpoints'
 import { Statistic } from 'antd'
-import { useParams } from 'react-router-dom'
+import CountUp from 'react-countup'
 
 const Main: React.FC = () => {
-	const { data: wordData } = useGetAllWordsQuery({})
+	const { data: wordData } = useGetAdminAllWordsQuery({})
 	const { data: categoryData } = useGetAllCategoriesQuery()
-	const params = useParams()
+	const formatter = (value: any) => <CountUp end={value} separator=',' />
 
 	return (
 		<div className={styles.root}>
 			<div className={styles.statistic}>
 				<Statistic
-					title='Jámi sózler sani'
+					title='Общее количество слов'
 					value={wordData?.total}
 					prefix={<MdOutlineTranslate />}
+					formatter={formatter}
 				/>
 			</div>
 			<div className={styles.statistic}>
 				<Statistic
-					title='Jámi kategoriya sani'
+					title='Общее количество категорий'
 					value={categoryData?.data.length}
 					prefix={<BiCategory />}
+					formatter={formatter}
 				/>
 			</div>
 		</div>

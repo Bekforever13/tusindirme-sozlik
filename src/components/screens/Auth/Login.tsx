@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import styles from './Login.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 import { ILogin } from 'src/redux/auth/Auth.types'
@@ -12,7 +12,7 @@ const Login: React.FC = () => {
 	const navigate = useNavigate()
 	const { setToken } = useActions()
 	const token = localStorage.getItem('token')
-	const [login, { isSuccess, data }] = useLoginMutation()
+	const [login, { isSuccess, data, isError }] = useLoginMutation()
 
 	const onFinish = async (values: ILogin) => {
 		await login({ ...values, phone: values.phone.replace(/\D/g, '') })
@@ -29,8 +29,14 @@ const Login: React.FC = () => {
 		if (isSuccess && data) {
 			setToken(data.token)
 			navigate(`/admin`, { replace: true })
+			message.success('Добро пожаловать')
 		}
 	}, [isSuccess, data])
+	React.useEffect(() => {
+		if (isError) {
+			message.error('Телефон или пароль введён неправильно')
+		}
+	},[isError])
 
 	return (
 		<div className={styles.root}>
@@ -45,14 +51,18 @@ const Login: React.FC = () => {
 				<Form.Item
 					label='Телефон'
 					name='phone'
-					rules={[{ required: true, message: 'Please input your username!' }]}
+					rules={[
+						{ required: true, message: 'Пожалуйста, заполните поле телефон!' },
+					]}
 				>
 					<MaskedInput mask={'+{998}00 000 00 00'} />
 				</Form.Item>
 				<Form.Item
 					label='Пароль'
 					name='password'
-					rules={[{ required: true, message: 'Please input your password!' }]}
+					rules={[
+						{ required: true, message: 'Пожалуйста, заполните поле пароль' },
+					]}
 				>
 					<Input.Password />
 				</Form.Item>

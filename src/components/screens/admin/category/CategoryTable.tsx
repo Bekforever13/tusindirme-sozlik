@@ -1,4 +1,4 @@
-import { Popconfirm, Space, Table, Tag, message } from 'antd'
+import { Popconfirm, Space, Table, message } from 'antd'
 import { UiButton } from 'src/components/ui/button/UiButton'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
@@ -26,19 +26,19 @@ const CategoryTable: React.FC = () => {
 
 	const columns = [
 		{
-			title: 'Latin',
+			title: 'Категория лат.',
 			dataIndex: 'title_latin',
 			key: 'title_latin',
 			render: (_: unknown, rec: TCategory) => rec.title.latin,
 		},
 		{
-			title: 'Kiril',
+			title: 'Категория кир.',
 			dataIndex: 'title_kiril',
 			key: 'title_kiril',
 			render: (_: unknown, rec: TCategory) => rec.title.kiril,
 		},
 		{
-			title: 'Actions',
+			title: 'Действия',
 			key: 'action',
 			render: (_: void, record: TCategory) => (
 				<Space size='middle'>
@@ -47,11 +47,11 @@ const CategoryTable: React.FC = () => {
 						onClick={() => handleEditButtonClick(record)}
 					/>
 					<Popconfirm
-						title='Delete the category'
-						description='Are you sure to delete this category?'
+						title='Удалить категорию?'
+						description='Вы действительно хотите удалить категорию?'
 						onConfirm={() => onClickRemoveCategory(record.id)}
-						okText='Yes'
-						cancelText='No'
+						okText='Да'
+						cancelText='Отмена'
 					>
 						<UiRedButton icon={<BsTrash />} />
 					</Popconfirm>
@@ -61,8 +61,9 @@ const CategoryTable: React.FC = () => {
 	]
 	return (
 		<Table
+			size='small'
+			scroll={{ x: true }}
 			rowKey={item => item.id}
-			pagination={{ position: ['bottomCenter'] }}
 			loading={isLoading}
 			dataSource={categoriesData?.data}
 			columns={columns}

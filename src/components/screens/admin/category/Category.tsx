@@ -11,8 +11,8 @@ const Category: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<DashboardHead
-				title='Kategoriya'
-				buttonText='Kategoriya qosiw'
+				title='Все категории'
+				buttonText='Добавить категорию'
 				handleClick={() => toggleModalCategory(true)}
 			/>
 			<CategoryTable />

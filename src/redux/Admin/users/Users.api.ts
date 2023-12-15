@@ -1,5 +1,5 @@
 import { api } from '../../index.api'
-import { IUsersDataResult, TRole, TUser } from './Users.types'
+import { IUsersDataResult, TUser } from './Users.types'
 
 export const allUsers = api.injectEndpoints({
 	endpoints: builder => ({
@@ -9,15 +9,9 @@ export const allUsers = api.injectEndpoints({
 			}),
 			providesTags: ['admins'],
 		}),
-		getAllRoles: builder.query<TRole[], void>({
-			query: () => ({
-				url: '/roles',
-			}),
-			providesTags: ['admins'],
-		}),
 		createNewUser: builder.mutation<TUser, TUser>({
 			query: body => ({
-				url: '/users/create-user',
+				url: '/admins',
 				method: 'POST',
 				body,
 			}),
@@ -25,15 +19,15 @@ export const allUsers = api.injectEndpoints({
 		}),
 		editUser: builder.mutation<any, TUser>({
 			query: body => ({
-				url: `/users/update/${body.id}`,
-				method: 'PATCH',
+				url: '/edit-admin',
+				method: 'PUT',
 				body,
 			}),
 			invalidatesTags: ['admins'],
 		}),
 		deleteUser: builder.mutation<any, string>({
 			query: id => ({
-				url: `/users/delete/${id}`,
+				url: `/admins/${id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['admins'],

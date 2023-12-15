@@ -67,7 +67,7 @@ const CategoryForm: React.FC = () => {
 
 	return (
 		<UiModal
-			title={'Category'}
+			title={'Категория'}
 			open={categoryModalShow}
 			onCancel={handleCancel}
 			footer={false}
@@ -81,29 +81,39 @@ const CategoryForm: React.FC = () => {
 			>
 				<Form.Item
 					name='title_latin'
-					label='Latin'
-					rules={[{ required: true, message: 'Please input title latin' }]}
+					label='Категория на латинице'
+					rules={[
+						{
+							required: true,
+							message: 'Пожалуйста заполните поле',
+						},
+					]}
 				>
 					<UiInput />
 				</Form.Item>
 				<Form.Item
 					name='title_kiril'
-					label='Kiril'
-					rules={[{ required: true, message: 'Please input title kiril' }]}
+					label='Категория на кириллице'
+					rules={[
+						{
+							required: true,
+							message: 'Пожалуйста заполните поле',
+						},
+					]}
 				>
 					<UiInput />
 				</Form.Item>
 				<Form.Item>
-					<Button htmlType='reset'>Reset fields</Button>
+					<Button htmlType='reset'>Очистить все поля</Button>
 					<Button htmlType='button' onClick={handleCancel}>
-						Cancel
+						Отмена
 					</Button>
 					<Button
 						loading={categoryToEdit ? editLoading : createLoading}
 						type='primary'
 						htmlType='submit'
 					>
-						Submit
+						Подтвердить
 					</Button>
 				</Form.Item>
 			</Form>

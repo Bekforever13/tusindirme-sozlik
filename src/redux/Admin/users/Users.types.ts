@@ -1,17 +1,17 @@
 export type TUser = {
-	id: string
+	id?: string
 	name: string
 	phone: string
-	role: string[]
+	role?: string[]
 	role_id?: string
+	user_id?: string
 }
 
 export interface IUsersDataResult {
 	data: TUser[]
 }
 
-
 export type TRole = {
-	id: string
+	id: number
 	name: string
 }

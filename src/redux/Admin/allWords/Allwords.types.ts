@@ -6,7 +6,7 @@ export type TWord = {
 	description: TKirilLatin
 	title: TKirilLatin
 	is_correct: boolean
-	category_id: number
+	category_id?: number
 	quantity: string
 }
 

@@ -12,8 +12,8 @@ const Users: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<DashboardHead
-				title='Users'
-				buttonText='Add user'
+				title='Админы'
+				buttonText='Добавить нового админа'
 				handleClick={() => toggleModalUser(true)}
 			/>
 			<UsersTable />

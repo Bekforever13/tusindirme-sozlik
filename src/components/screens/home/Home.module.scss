@@ -1,5 +1,3 @@
-@import 'src/assets/styles/base/mixin';
-
 .root {
 	padding: 120px 200px;
 	display: flex;
@@ -29,7 +27,7 @@
 
 		h1 {
 			color: var(--textColor);
-			@include adaptiv-font(32, 22, 40);
+			font-size: clamp(1.375rem, 1.1667rem + 1.1111vw, 2.5rem);
 			font-weight: 600;
 		}
 		div input {

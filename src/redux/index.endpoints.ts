@@ -7,7 +7,7 @@ import { UserApi } from './User/User.api'
 export const { useCheckUserQuery, useLoginMutation } = authApi
 
 export const {
-	useGetAllWordsQuery,
+	useGetAdminAllWordsQuery,
 	useCreateNewWordMutation,
 	useEditWordMutation,
 	useDeleteWordMutation,
@@ -25,7 +25,6 @@ export const {
 	useGetAllUsersQuery,
 	useEditUserMutation,
 	useDeleteUserMutation,
-	useGetAllRolesQuery,
 } = allUsers
 
 export const {

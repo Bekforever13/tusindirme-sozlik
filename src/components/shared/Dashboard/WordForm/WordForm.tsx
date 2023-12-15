@@ -3,7 +3,6 @@ import { Button, Form } from 'antd'
 import { UiModal } from 'src/components/ui/modal/UiModal'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
 import {
-	useCheckUserQuery,
 	useCreateNewWordMutation,
 	useEditWordMutation,
 	useGetAllCategoriesQuery,
@@ -112,7 +111,7 @@ const WordForm: React.FC = () => {
 
 	return (
 		<UiModal
-			title={'Word'}
+			title={'Слово'}
 			open={wordModalShow}
 			onCancel={handleCancel}
 			footer={false}
@@ -121,55 +120,80 @@ const WordForm: React.FC = () => {
 		>
 			<Form name='words' form={wordForm} layout='vertical' onFinish={onSubmit}>
 				<Form.Item
-					label='Title latin'
+					label='Слово на латинице'
 					name='title_latin'
-					rules={[{ required: true, message: 'Please input title latin!' }]}
+					rules={[
+						{
+							required: true,
+							message: 'Пожалуйста заполните поле',
+						},
+					]}
 				>
 					<UiInput />
 				</Form.Item>
 				<Form.Item
-					label='Title kiril'
+					label='Слово на кириллице'
 					name='title_kiril'
-					rules={[{ required: true, message: 'Please input title kiril!' }]}
+					rules={[
+						{
+							required: true,
+							message: 'Пожалуйста заполните поле',
+						},
+					]}
 				>
 					<UiInput />
 				</Form.Item>
 				<Form.Item
-					label='Description latin'
+					label='Описание слова на латинице'
 					name='description_latin'
 					rules={[
-						{ required: true, message: 'Please input Description latin!' },
+						{
+							required: true,
+							message: 'Пожалуйста заполните поле',
+						},
 					]}
 				>
 					<TextArea autoSize />
 				</Form.Item>
 				<Form.Item
-					label='Description kiril'
+					label='Описание слова на кириллице'
 					name='description_kiril'
 					rules={[
-						{ required: true, message: 'Please input Description kiril!' },
+						{
+							required: true,
+							message: 'Пожалуйста заполните поле',
+						},
 					]}
 				>
 					<TextArea autoSize />
 				</Form.Item>
 				<Form.Item
-					label='Category'
+					label='Категория'
 					name='category_id'
-					rules={[{ required: true, message: 'Please select categories' }]}
+					rules={[
+						{
+							required: true,
+							message: 'Пожалуйста выберите категорию',
+						},
+					]}
 				>
-					<UiSelect allowClear placeholder={'Category'} options={options} />
+					<UiSelect
+						allowClear
+						placeholder={'Выберите категорию'}
+						options={options}
+					/>
 				</Form.Item>
 				<Form.Item>
-					<Button htmlType='reset'>Reset fields</Button>
+					<Button htmlType='reset'>Очистить все поля</Button>
 					<Button htmlType='button' onClick={handleCancel}>
-						Cancel
+						Отмена
 					</Button>
 					<Button
 						loading={wordToEdit ? editLoading : createLoading}
 						type='primary'
 						htmlType='submit'
 					>
-						Submit
+						Отправить
 					</Button>
 				</Form.Item>
 			</Form>

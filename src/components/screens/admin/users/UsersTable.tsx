@@ -27,16 +27,11 @@ const UsersTable: React.FC = () => {
 	}
 
 	const columns = [
-		{ title: 'id', dataIndex: 'id', key: 'id' },
-		{ title: 'Name', dataIndex: 'name', key: 'name' },
-		{ title: 'Phone', dataIndex: 'phone', key: 'phone' },
+		{ title: 'Имя', dataIndex: 'name', key: 'name' },
+		{ title: 'Телефон', dataIndex: 'phone', key: 'phone' },
+		{ title: 'Роль', dataIndex: 'role', key: 'role' },
 		{
-			title: 'Role',
-			dataIndex: 'role',
-			key: 'role',
-		},
-		{
-			title: 'Actions',
+			title: 'Действия',
 			key: 'aciton',
 			render: (_: void, r: TUser) => {
 				return (
@@ -46,11 +41,11 @@ const UsersTable: React.FC = () => {
 							icon={<AiOutlineEdit />}
 						/>
 						<Popconfirm
-							title={'Delete user'}
-							description={'Are you sure to delete this user?'}
-							onConfirm={() => onClickRemoveAdmin(r.id)}
-							okText='Yes'
-							cancelText='No'
+							title={'Удалить админа?'}
+							description={'Вы действительно хотите удалить админа?'}
+							onConfirm={() => onClickRemoveAdmin(r.id!)}
+							okText='Да'
+							cancelText='Отмена'
 						>
 							<UiRedButton icon={<BsTrash />} />
 						</Popconfirm>
@@ -62,9 +57,10 @@ const UsersTable: React.FC = () => {
 
 	return (
 		<Table
-			rowKey={item => item.id}
+			size='small'
+			scroll={{ x: true }}
+			rowKey={item => item.id!}
 			loading={isLoading}
-			pagination={{ position: ['bottomCenter'] }}
 			dataSource={adminsData?.data}
 			columns={columns}
 		/>

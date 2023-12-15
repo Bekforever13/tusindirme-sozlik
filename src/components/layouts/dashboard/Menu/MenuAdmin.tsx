@@ -10,18 +10,18 @@ const MenuAdmin: React.FC = () => {
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
 	const adminMenuItems = [
-		{ pathname: '/admin', icon: <AiOutlineHome />, label: 'Bas bet' },
+		{ pathname: '/admin', icon: <AiOutlineHome />, label: 'Главная' },
 		{
 			pathname: '/admin/words',
 			icon: <MdOutlineTranslate />,
-			label: 'Sozler',
+			label: 'Слова',
 		},
 		{
 			pathname: '/admin/category',
 			icon: <BiCategory />,
-			label: 'Kategoriyalar',
+			label: 'Категории',
 		},
-		{ pathname: '/admin/users', icon: <FiUsers />, label: 'Userler' },
+		{ pathname: '/admin/users', icon: <FiUsers />, label: 'Админы' },
 	]
 
 	return (

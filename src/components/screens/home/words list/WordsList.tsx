@@ -10,7 +10,7 @@ const WordsList: React.FC = () => {
 	const { t } = useTranslation()
 	const [page, setPage] = useState<number>(1)
 	const [pageSize, setPageSize] = useState<number>(30)
-	const { data, isLoading, isFetching } = useGetAllUserWordsQuery({
+	const { data, isLoading } = useGetAllUserWordsQuery({
 		limit: pageSize,
 		page: page,
 	})

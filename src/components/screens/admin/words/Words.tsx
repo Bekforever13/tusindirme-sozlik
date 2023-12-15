@@ -11,8 +11,8 @@ const Words: React.FC = () => {
 	return (
 		<div className={styles.root}>
 			<DashboardHead
-				title='Sózler'
-				buttonText='Sóz qosiw'
+				title='Все слова'
+				buttonText='Добавить слово'
 				handleClick={() => toggleModalWord(true)}
 			/>
 			<WordsTable />
