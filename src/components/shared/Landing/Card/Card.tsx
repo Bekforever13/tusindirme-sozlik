@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import styles from './Card.module.scss'
-import { BsArrowRight } from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
 import { TUserCardPropType } from 'src/redux/User/User.types'
 
@@ -24,10 +23,6 @@ const Card: React.FC<TUserCardPropType> = ({ title, words }) => {
 					})
 					: t('empty')}
 			</div>
-			<Link to='/' className={styles.linkToAll}>
-				<span>{t('checkAllWords')}</span>
-				<BsArrowRight />
-			</Link>
 		</div>
 	)
 }

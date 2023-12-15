@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './About.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 import { useTranslation } from 'react-i18next'
-import { BsShareFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const About: React.FC = () => {
 	const { t } = useTranslation()
@@ -14,14 +14,13 @@ const About: React.FC = () => {
 				<div className={styles.text}>
 					<div className={styles.aboutTitle}>
 						<div>Túsindirme sózlik</div>
-						<span>
-							<BsShareFill />
-						</span>
 					</div>
-					<div className={styles.aboutType}>{t('aboutType')}</div>
 					<div className={styles.about_desc}>
 						<span>{t('aboutDescription1')}</span>
-						<span>{t('aboutDescription2')}</span>
+						<span>
+							<Link to='https://tusindirmesozlik.uz/'>Tusindirmesozlik.uz</Link>
+							{t('aboutDescription2')}
+						</span>
 					</div>
 				</div>
 				<div className={styles.about_logo}>
