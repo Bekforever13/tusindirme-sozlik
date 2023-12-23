@@ -1,8 +1,11 @@
 import { api } from '../../index.api'
 import {
 	IAllWordsDataResult,
+	TAntonim,
 	TGetWordParams,
+	TSinonim,
 	TWordFormData,
+	TWordWithAntSin,
 } from './Allwords.types'
 
 export const AllWordsApi = api.injectEndpoints({
@@ -13,6 +16,33 @@ export const AllWordsApi = api.injectEndpoints({
 				params: body,
 			}),
 			providesTags: ['words'],
+		}),
+		getAdminWordInfo: builder.query<TWordWithAntSin, number>({
+			query: id => {
+				if (id === 0) {
+					throw new Error('ID required')
+				}
+				return {
+					url: `/words/${id}`,
+				}
+			},
+			providesTags: ['words'],
+		}),
+		createSinonims: builder.mutation<unknown, TSinonim>({
+			query: body => ({
+				url: '/synonym',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['words'],
+		}),
+		createAntonims: builder.mutation<unknown, TAntonim>({
+			query: body => ({
+				url: '/antonym',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['words'],
 		}),
 		createNewWord: builder.mutation<unknown, TWordFormData>({
 			query: body => ({

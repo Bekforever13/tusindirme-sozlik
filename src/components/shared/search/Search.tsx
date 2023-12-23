@@ -62,19 +62,22 @@ const Search: React.FC = () => {
 			{searchValue && (
 				<div className={styles.searchResults}>
 					{isLoading ? (
-						<Spin spinning />
-						// <h2>{t('wordNotFound')}</h2>
-					) : (
+						<div>
+							<Spin spinning />
+						</div>
+					) : allWords?.data.length ? (
 						allWords?.data.map((word: TUserWordCard) => (
 							<Link
 								key={word.id}
 								onClick={() => setSearch('')}
-								to={`/words/${word.id}`}
+								to={`/${word.id}`}
 								replace={true}
 							>
 								{lang === 'QQ' ? word.title.kiril : word.title.latin}
 							</Link>
 						))
+					) : (
+						<h2>Sóz tabilǵan joq</h2>
 					)}
 				</div>
 			)}

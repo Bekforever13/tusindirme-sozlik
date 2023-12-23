@@ -1,11 +1,17 @@
 import { api } from '../../index.api'
-import { IUsersDataResult, TUser } from './Users.types'
+import { IUsersDataResult, THistoriesDataResponse, TUser } from './Users.types'
 
 export const allUsers = api.injectEndpoints({
 	endpoints: builder => ({
 		getAllUsers: builder.query<IUsersDataResult, void>({
 			query: () => ({
 				url: '/admins',
+			}),
+			providesTags: ['admins'],
+		}),
+		getAdminHistory: builder.query<THistoriesDataResponse, void>({
+			query: () => ({
+				url: '/admin-histories',
 			}),
 			providesTags: ['admins'],
 		}),
@@ -25,7 +31,7 @@ export const allUsers = api.injectEndpoints({
 			}),
 			invalidatesTags: ['admins'],
 		}),
-		deleteUser: builder.mutation<any, string>({
+		deleteUser: builder.mutation<any, number>({
 			query: id => ({
 				url: `/admins/${id}`,
 				method: 'DELETE',

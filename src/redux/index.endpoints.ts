@@ -10,7 +10,10 @@ export const {
 	useGetAdminAllWordsQuery,
 	useCreateNewWordMutation,
 	useEditWordMutation,
+	useGetAdminWordInfoQuery,
 	useDeleteWordMutation,
+	useCreateAntonimsMutation,
+	useCreateSinonimsMutation,
 } = AllWordsApi
 
 export const {
@@ -22,6 +25,7 @@ export const {
 
 export const {
 	useCreateNewUserMutation,
+	useGetAdminHistoryQuery,
 	useGetAllUsersQuery,
 	useEditUserMutation,
 	useDeleteUserMutation,

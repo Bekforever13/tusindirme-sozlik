@@ -3,10 +3,17 @@
 	flex-direction: column;
 	row-gap: 20px;
 	padding: 30px;
+
 	.description {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		max-width: 300px;
 	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
 }

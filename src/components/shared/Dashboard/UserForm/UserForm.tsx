@@ -44,7 +44,6 @@ const UserForm: React.FC = () => {
 	] = useEditUserMutation()
 
 	const onSubmit = async (values: TUser) => {
-		console.log(values)
 		if (userToEdit) {
 			await editUser({ ...values, user_id: userToEdit.id })
 		} else {

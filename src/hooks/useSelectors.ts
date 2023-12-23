@@ -4,6 +4,6 @@ import { RootState } from 'src/redux'
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export const useSelectors = () => {
-	const { shared, auth, user } = useAppSelector(s => s)
-	return { ...shared, ...auth, ...user }
+	const { shared, auth, user, allWords } = useAppSelector(s => s)
+	return { ...shared, ...auth, ...user, ...allWords }
 }
