@@ -1,70 +1,59 @@
 import { Modal } from 'antd'
-import { FC, Dispatch, SetStateAction, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Words.module.scss'
 import { SearchNSelect } from './SearchNSelect'
 import { useSelectors } from 'src/hooks/useSelectors'
 import {
 	useCreateAntonimsMutation,
 	useCreateSinonimsMutation,
-	useGetAdminWordInfoQuery,
 } from 'src/redux/index.endpoints'
 import { useActions } from 'src/hooks/useActions'
 
-type props = {
-	isModal: boolean
-	setIsModal: Dispatch<SetStateAction<boolean>>
-}
-
-const WordsAntonimSinonim: FC<props> = ({ isModal, setIsModal }) => {
-	const { selectedAntonims, selectedSinonims, currentWord } = useSelectors()
-	const { setCurrentWord } = useActions()
-	const { data } = useGetAdminWordInfoQuery(currentWord.id, {
-		refetchOnMountOrArgChange: true,
-	})
+const WordsAntonimSinonim: FC = () => {
+	const { selectedAntonims, selectedSinonims, currentWord, AntSinModal } =
+		useSelectors()
+	const { setCurrentWord, setAntSinModal } = useActions()
 	const [createAntonims] = useCreateAntonimsMutation()
 	const [createSinonim] = useCreateSinonimsMutation()
 
-	const handleCancel = () => setIsModal(false)
+	const handleCancel = () => setAntSinModal(false)
 
 	const handleOk = () => {
-		const filteredAntonims = selectedAntonims.filter(
-			item => !data?.data.antonym.some(el => el.id === item.value)
-		)
-		const filteredSinonim = selectedSinonims.filter(
-			item => !data?.data.synonym.some(el => el.id === item.value)
-		)
-		if (filteredAntonims.length) {
+		if (selectedAntonims.length) {
 			createAntonims({
 				word_id: currentWord.id,
-				antonym_id: filteredAntonims.map(el => el.value),
+				antonym_id: selectedAntonims.map(el => el.value),
 			})
 		}
-		if (filteredSinonim.length) {
+		if (selectedSinonims.length) {
 			createSinonim({
 				word_id: currentWord.id,
-				synonym_id: filteredSinonim.map(el => el.value),
+				synonym_id: selectedSinonims.map(el => el.value),
 			})
 		}
-		setIsModal(false)
+		setAntSinModal(false)
 	}
 
 	useEffect(() => {
-		if (!isModal) {
+		if (!AntSinModal) {
 			setCurrentWord({
-				category: { latin: '', kiril: '' },
-				description: { latin: '', kiril: '' },
 				id: 0,
+				category_id: 0,
+				category: { latin: '', kiril: '' },
+				title: { latin: '', kiril: '' },
+				description: { latin: '', kiril: '' },
+				antonym: [],
+				synonym: [],
 				is_correct: false,
 				quantity: '',
-				title: { latin: '', kiril: '' },
 			})
 		}
-	}, [isModal])
+	}, [AntSinModal])
 
 	return (
 		<Modal
 			title='Антонимы и Синонимы'
-			open={isModal}
+			open={AntSinModal}
 			onCancel={handleCancel}
 			onOk={handleOk}
 			cancelText='Закрыть'

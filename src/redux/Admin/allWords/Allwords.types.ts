@@ -15,10 +15,23 @@ export type LabelValue = {
 	value: number
 }
 
+export type TWordAS = {
+	antonym: TWord[]
+	category: TKirilLatin
+	category_id?: number
+	description: TKirilLatin
+	id: number
+	is_correct: boolean
+	quantity: string
+	synonym: TWord[]
+	title: TKirilLatin
+}
+
 export type AllWordsInitState = {
-	currentWord: TWord
+	currentWord: TWordAS
 	selectedAntonims: LabelValue[]
 	selectedSinonims: LabelValue[]
+	AntSinModal: boolean
 }
 
 export type TAntonim = {
@@ -31,17 +44,7 @@ export type TSinonim = {
 }
 
 export type TWordWithAntSin = {
-	data: {
-		antonym: TWord[]
-		category: TKirilLatin
-		category_id?: number
-		description: TKirilLatin
-		id: number
-		is_correct: boolean
-		quantity: string
-		synonym: TWord[]
-		title: TKirilLatin
-	}
+	data: TWordAS
 }
 
 export interface IAllWordsDataResult {

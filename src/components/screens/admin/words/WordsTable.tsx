@@ -7,7 +7,7 @@ import {
 	useDeleteWordMutation,
 	useGetAdminAllWordsQuery,
 } from 'src/redux/index.endpoints'
-import { TWord } from 'src/redux/Admin/allWords/Allwords.types'
+import { TWordAS } from 'src/redux/Admin/allWords/Allwords.types'
 import { useActions } from 'src/hooks/useActions'
 import { UiRedButton } from 'src/components/ui/button/UiRedButton'
 import type { ColumnsType } from 'antd/es/table'
@@ -16,11 +16,11 @@ import { useEffect, useState } from 'react'
 import { WordsAntonimSinonim } from './WordsAntonimSinonim'
 
 const WordsTable: React.FC = () => {
-	const [isModal, setIsModal] = useState(false)
 	const [deleteWord, { isSuccess: deleteSuccess }] = useDeleteWordMutation()
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageSize, setPageSize] = useState(10)
-	const { setWordToEdit, toggleModalWord, setCurrentWord } = useActions()
+	const { setWordToEdit, toggleModalWord, setCurrentWord, setAntSinModal } =
+		useActions()
 	const { data: wordsData, isLoading } = useGetAdminAllWordsQuery({
 		search: '',
 		page: currentPage,
@@ -31,7 +31,7 @@ const WordsTable: React.FC = () => {
 		deleteWord(id)
 	}
 
-	const handleEditButtonClick = (record: TWord) => {
+	const handleEditButtonClick = (record: TWordAS) => {
 		setWordToEdit(record)
 		toggleModalWord(true)
 	}
@@ -40,7 +40,7 @@ const WordsTable: React.FC = () => {
 		if (deleteSuccess) message.success('Слово удалено')
 	}, [deleteSuccess])
 
-	const columns: ColumnsType<TWord> = [
+	const columns: ColumnsType<any> = [
 		{
 			title: 'Слово лат.',
 			dataIndex: 'title',
@@ -97,7 +97,7 @@ const WordsTable: React.FC = () => {
 						icon={<RiTranslate size='20' />}
 						onClick={() => {
 							setCurrentWord(record)
-							setIsModal(true)
+							setAntSinModal(true)
 						}}
 					/>
 				</Space>
@@ -125,7 +125,7 @@ const WordsTable: React.FC = () => {
 				dataSource={wordsData?.data}
 				columns={columns}
 			/>
-			<WordsAntonimSinonim isModal={isModal} setIsModal={setIsModal} />
+			<WordsAntonimSinonim />
 		</>
 	)
 }

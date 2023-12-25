@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { BiCategory } from 'react-icons/bi'
 import { MdOutlineTranslate } from 'react-icons/md'
 import { AiOutlineHome } from 'react-icons/ai'
-import { FiUsers } from 'react-icons/fi'
 import styles from './Menu.module.scss'
 import logo from 'src/assets/images/header_logo.svg'
 
@@ -21,7 +20,6 @@ const MenuAdmin: React.FC = () => {
 			icon: <BiCategory />,
 			label: 'Категории',
 		},
-		{ pathname: '/admin/users', icon: <FiUsers />, label: 'Админы' },
 	]
 
 	return (

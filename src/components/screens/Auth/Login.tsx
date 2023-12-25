@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, message } from 'antd'
+import { Button, Form, message } from 'antd'
 import styles from './Login.module.scss'
 import logo from 'src/assets/images/logo_about.svg'
 import { ILogin } from 'src/redux/auth/Auth.types'
@@ -7,6 +7,7 @@ import { useLoginMutation } from 'src/redux/index.endpoints'
 import { useNavigate } from 'react-router-dom'
 import { useActions } from 'src/hooks/useActions'
 import { MaskedInput } from 'antd-mask-input'
+import { UiInputPassword } from 'src/components/ui/input/UiInputPassword'
 
 const Login: React.FC = () => {
 	const navigate = useNavigate()
@@ -36,7 +37,7 @@ const Login: React.FC = () => {
 		if (isError) {
 			message.error('Телефон или пароль введён неправильно')
 		}
-	},[isError])
+	}, [isError])
 
 	return (
 		<div className={styles.root}>
@@ -64,7 +65,7 @@ const Login: React.FC = () => {
 						{ required: true, message: 'Пожалуйста, заполните поле пароль' },
 					]}
 				>
-					<Input.Password />
+					<UiInputPassword />
 				</Form.Item>
 				<Button style={{ width: '100%' }} type='primary' htmlType='submit'>
 					Войти

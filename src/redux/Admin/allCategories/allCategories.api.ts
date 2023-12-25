@@ -1,5 +1,9 @@
 import { api } from '../../index.api'
-import { IAllCategoriesDataResult, TCategory } from './allCategories.types'
+import {
+	IAllCategoriesDataResult,
+	TCategory,
+	TCategoryFomData,
+} from './allCategories.types'
 
 export const allCategoriesApi = api.injectEndpoints({
 	endpoints: builder => ({
@@ -9,11 +13,11 @@ export const allCategoriesApi = api.injectEndpoints({
 			}),
 			providesTags: ['categories'],
 		}),
-		createNewCategory: builder.mutation<TCategory, TCategory>({
+		createNewCategory: builder.mutation<TCategory, TCategoryFomData>({
 			query: body => ({
 				url: '/categories',
 				method: 'POST',
-				body,
+				body: { title: { latin: body.title_latin, kiril: body.title_kiril } },
 			}),
 			invalidatesTags: ['categories'],
 		}),

@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'antd'
+import { Button, Form, message } from 'antd'
 import { UiModal } from 'src/components/ui/modal/UiModal'
 import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
 import { TRole, TUser } from 'src/redux/Admin/users/Users.types'
-import './UserForm.scss'
 import {
 	useCreateNewUserMutation,
 	useEditUserMutation,
 } from 'src/redux/index.endpoints'
 import { MaskedInput } from 'antd-mask-input'
+import styles from './UserForm.module.scss'
+import { UiInputPassword } from 'src/components/ui/input/UiInputPassword'
 
 type selectStateType = {
 	label: string
@@ -36,6 +37,7 @@ const UserForm: React.FC = () => {
 			isLoading: createLoading,
 			isSuccess: createSuccess,
 			isError: createError,
+			error: createMsg,
 		},
 	] = useCreateNewUserMutation()
 	const [
@@ -50,6 +52,12 @@ const UserForm: React.FC = () => {
 			await createNewUser({ ...values, phone: values.phone.replace(/\D/g, '') })
 		}
 	}
+
+	React.useEffect(() => {
+		if (createMsg) {
+			message.error('Данный номер уже зарегистрирован')
+		}
+	}, [createMsg])
 
 	const handleCancel = () => {
 		toggleModalUser(false)
@@ -118,9 +126,10 @@ const UserForm: React.FC = () => {
 					<Form.Item
 						name='password'
 						label='Пароль'
+						className={styles.password}
 						rules={[{ required: true, message: 'Пожалуйста заполните поле' }]}
 					>
-						<UiInput />
+						<UiInputPassword />
 					</Form.Item>
 				)}
 				<Form.Item

@@ -5,6 +5,11 @@ export type TCategory = {
 	title: TKirilLatin
 }
 
+export type TCategoryFomData = {
+	title_latin: string
+	title_kiril: string
+}
+
 export interface IAllCategoriesDataResult {
 	data: TCategory[]
 }

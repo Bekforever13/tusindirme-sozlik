@@ -2,7 +2,6 @@ import React, { useMemo, useRef, useState, useEffect } from 'react'
 import debounce from 'lodash/debounce'
 import { Select, Spin } from 'antd'
 import type { SelectProps } from 'antd/es/select'
-import { useGetAdminWordInfoQuery } from 'src/redux/index.endpoints'
 import { useSelectors } from 'src/hooks/useSelectors'
 import { LabelValue } from 'src/redux/Admin/allWords/Allwords.types'
 import { useActions } from 'src/hooks/useActions'
@@ -37,7 +36,6 @@ function DebounceSelect<
 
 			fetchOptions(value).then(newOptions => {
 				if (fetchId !== fetchRef.current) {
-					// for fetch callback order
 					return
 				}
 
@@ -79,30 +77,33 @@ async function fetchUserList(search: string): Promise<LabelValue[]> {
 const SearchNSelect: React.FC<{ currentWords: string }> = ({
 	currentWords,
 }) => {
-	const { currentWord } = useSelectors()
+	const { currentWord, AntSinModal } = useSelectors()
 	const { setSelectedAntonims, setSelectedSinonims } = useActions()
 	const [value, setValue] = useState<LabelValue[]>([])
-	const { data } = useGetAdminWordInfoQuery(currentWord.id, {
-		refetchOnMountOrArgChange: true,
-	})
 
 	useEffect(() => {
-		if (currentWord.id === 0) {
+		if (!AntSinModal) {
 			setValue([])
+			setSelectedAntonims([])
+			setSelectedSinonims([])
 		}
-	}, [currentWord.id])
+	}, [AntSinModal])
 
 	useEffect(() => {
 		if (currentWords === 'antonim') {
-			data?.data.antonym.map(el =>
-				setValue(prev => [...prev, { label: el.title.kiril, value: el.id }])
-			)
+			if (currentWord?.antonym.length) {
+				currentWord?.antonym.map(el => {
+					setValue(prev => [...prev, { label: el.title.kiril, value: el.id }])
+				})
+			}
 		} else {
-			data?.data.synonym.map(el =>
-				setValue(prev => [...prev, { label: el.title.kiril, value: el.id }])
-			)
+			if (currentWord?.synonym.length) {
+				currentWord.synonym.map(el => {
+					setValue(prev => [...prev, { label: el.title.kiril, value: el.id }])
+				})
+			}
 		}
-	}, [currentWords, data])
+	}, [currentWord])
 
 	return (
 		<DebounceSelect
@@ -113,8 +114,8 @@ const SearchNSelect: React.FC<{ currentWords: string }> = ({
 			onChange={newValue => {
 				setValue(newValue as LabelValue[])
 				currentWords === 'antonim'
-					? setSelectedAntonims(value)
-					: setSelectedSinonims(value)
+					? setSelectedAntonims(newValue as any)
+					: setSelectedSinonims(newValue as any)
 			}}
 			style={{ width: '100%' }}
 		/>

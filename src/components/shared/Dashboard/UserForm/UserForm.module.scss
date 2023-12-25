@@ -4,3 +4,13 @@
 	justify-content: flex-end;
 	gap: 10px;
 }
+
+.password {
+	position: relative;
+	.eye {
+		cursor: pointer;
+		position: absolute;
+		top: 25%;
+		right: 10px;
+	}
+}

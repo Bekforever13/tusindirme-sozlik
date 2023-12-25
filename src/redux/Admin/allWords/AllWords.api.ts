@@ -20,7 +20,7 @@ export const AllWordsApi = api.injectEndpoints({
 		getAdminWordInfo: builder.query<TWordWithAntSin, number>({
 			query: id => {
 				if (id === 0) {
-					throw new Error('ID required')
+					throw new Error('id required')
 				}
 				return {
 					url: `/words/${id}`,

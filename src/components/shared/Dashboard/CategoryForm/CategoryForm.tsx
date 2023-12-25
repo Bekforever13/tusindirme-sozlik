@@ -9,7 +9,7 @@ import { useSelectors } from 'src/hooks/useSelectors'
 import { useActions } from 'src/hooks/useActions'
 import { UiInput } from 'src/components/ui/input/UiInput'
 import './CategoryForm.scss'
-import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
+import { TCategoryFomData } from 'src/redux/Admin/allCategories/allCategories.types'
 
 const CategoryForm: React.FC = () => {
 	const [categoryForm] = Form.useForm()
@@ -29,9 +29,13 @@ const CategoryForm: React.FC = () => {
 		{ isLoading: editLoading, isSuccess: editSuccess, isError: editError },
 	] = useEditCategoryMutation()
 
-	const onSubmit = async (values: TCategory) => {
-		if (categoryToEdit) {
-			await editCategory({ ...values, id: categoryToEdit.id })
+	const onSubmit = async (values: TCategoryFomData) => {
+		console.log(values)
+		if (categoryToEdit?.title.kiril) {
+			await editCategory({
+				id: categoryToEdit.id,
+				title: { latin: values.title_latin, kiril: values.title_kiril },
+			})
 		} else {
 			await createNewCategory(values)
 		}
