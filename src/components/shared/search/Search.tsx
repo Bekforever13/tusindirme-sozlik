@@ -73,7 +73,7 @@ const Search: React.FC = () => {
 								to={`/${word.id}`}
 								replace={true}
 							>
-								{lang === 'QQ' ? word.title.kiril : word.title.latin}
+								{lang === 'QQ' ? word.title.latin : word.title.kiril}
 							</Link>
 						))
 					) : (

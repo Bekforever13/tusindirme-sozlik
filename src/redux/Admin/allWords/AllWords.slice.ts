@@ -16,6 +16,7 @@ const initialState: AllWordsInitState = {
 	selectedAntonims: [],
 	selectedSinonims: [],
 	AntSinModal: false,
+	wordSearch: '',
 }
 
 const AllWordsSlice = createSlice({
@@ -33,6 +34,9 @@ const AllWordsSlice = createSlice({
 		},
 		setAntSinModal(state, { payload }: PayloadAction<boolean>) {
 			state.AntSinModal = payload
+		},
+		setWordSearch(state, { payload }: PayloadAction<string>) {
+			state.wordSearch = payload
 		},
 	},
 })

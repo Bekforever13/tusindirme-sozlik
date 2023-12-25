@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
 				<FooterSocial />
 			</div>
 			<div className={styles.text}>
-				Avtorlıq huqıqı © 2022 Bookie audiokitaplar,{' '}
+				Avtorlıq huqıqı © 2022-2024 "BOOKY NUKUS",{' '}
 				<Link to='/auth'>"KARSOFT-IT-SOLUTIONS"</Link> JSHJ • Barlıq huqıqlar
 				qorǵalǵan.
 			</div>

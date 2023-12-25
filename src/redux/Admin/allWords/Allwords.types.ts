@@ -32,6 +32,7 @@ export type AllWordsInitState = {
 	selectedAntonims: LabelValue[]
 	selectedSinonims: LabelValue[]
 	AntSinModal: boolean
+	wordSearch: string
 }
 
 export type TAntonim = {

@@ -14,15 +14,19 @@ import type { ColumnsType } from 'antd/es/table'
 import styles from './Words.module.scss'
 import { useEffect, useState } from 'react'
 import { WordsAntonimSinonim } from './WordsAntonimSinonim'
+import { useSelectors } from 'src/hooks/useSelectors'
+import { useDebounce } from 'src/hooks/useDebounce'
 
 const WordsTable: React.FC = () => {
 	const [deleteWord, { isSuccess: deleteSuccess }] = useDeleteWordMutation()
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageSize, setPageSize] = useState(10)
+	const { wordSearch } = useSelectors()
+	const debouncedSearch = useDebounce(wordSearch, 500)
 	const { setWordToEdit, toggleModalWord, setCurrentWord, setAntSinModal } =
 		useActions()
 	const { data: wordsData, isLoading } = useGetAdminAllWordsQuery({
-		search: '',
+		search: debouncedSearch,
 		page: currentPage,
 		limit: pageSize,
 	})

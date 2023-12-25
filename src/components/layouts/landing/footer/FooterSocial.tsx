@@ -12,7 +12,7 @@ const FooterSocial: React.FC = () => {
 			</Link>
 			<Link
 				aria-label='Instagram'
-				to='https://instagram.com/karsoftuz'
+				to='https://www.instagram.com/tusindirme_sozlik'
 				target='_blank'
 			>
 				<AiOutlineInstagram />
@@ -26,7 +26,7 @@ const FooterSocial: React.FC = () => {
 			</Link>
 			<Link
 				aria-label='Telegramm'
-				to='https://t.me/karsoft_bot'
+				to='https://t.me/tusindirmesoz'
 				target='_blank'
 			>
 				<RiTelegramLine />
