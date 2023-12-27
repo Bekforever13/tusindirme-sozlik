@@ -127,7 +127,7 @@ const UserForm: React.FC = () => {
 						name='password'
 						label='Пароль'
 						className={styles.password}
-						rules={[{ required: true, message: 'Пожалуйста заполните поле' }]}
+						rules={[{ required: true, min: 8, message: 'Минимум 8 символов' }]}
 					>
 						<UiInputPassword />
 					</Form.Item>

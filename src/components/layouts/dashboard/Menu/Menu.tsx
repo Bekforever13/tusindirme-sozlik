@@ -32,7 +32,7 @@ const Menu: React.FC = () => {
 					<FiUsers /> Админы
 				</div>
 			)}
-			<Popconfirm title='Are you sure to logout' onConfirm={handleClickLogout}>
+			<Popconfirm title='Вы действительно хотите выйти?' onConfirm={handleClickLogout}>
 				<div>
 					<FiLogOut />
 					Выйти

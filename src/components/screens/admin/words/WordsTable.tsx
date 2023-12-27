@@ -21,7 +21,7 @@ const WordsTable: React.FC = () => {
 	const [deleteWord, { isSuccess: deleteSuccess }] = useDeleteWordMutation()
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageSize, setPageSize] = useState(10)
-	const { wordSearch } = useSelectors()
+	const { wordSearch, currentUserRole } = useSelectors()
 	const debouncedSearch = useDebounce(wordSearch, 500)
 	const { setWordToEdit, toggleModalWord, setCurrentWord, setAntSinModal } =
 		useActions()
@@ -94,15 +94,17 @@ const WordsTable: React.FC = () => {
 						icon={<AiOutlineEdit size='20' />}
 						onClick={() => handleEditButtonClick(record)}
 					/>
-					<Popconfirm
-						title='Удаление'
-						description='Вы действительно хотите удалить?'
-						onConfirm={() => onClickRemoveWord(record.id)}
-						okText='Да'
-						cancelText='Отмена'
-					>
-						<UiRedButton icon={<BsTrash size='20' />} />
-					</Popconfirm>
+					{currentUserRole === 'super_admin' && (
+						<Popconfirm
+							title='Удаление'
+							description='Вы действительно хотите удалить?'
+							onConfirm={() => onClickRemoveWord(record.id)}
+							okText='Да'
+							cancelText='Отмена'
+						>
+							<UiRedButton icon={<BsTrash size='20' />} />
+						</Popconfirm>
+					)}
 					<UiButton
 						icon={<RiTranslate size='20' />}
 						onClick={() => {

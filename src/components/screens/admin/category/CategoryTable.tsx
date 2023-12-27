@@ -9,9 +9,11 @@ import {
 import { TCategory } from 'src/redux/Admin/allCategories/allCategories.types'
 import { useActions } from 'src/hooks/useActions'
 import { UiRedButton } from 'src/components/ui/button/UiRedButton'
+import { useSelectors } from 'src/hooks/useSelectors'
 
 const CategoryTable: React.FC = () => {
 	const { data: categoriesData, isLoading } = useGetAllCategoriesQuery()
+	const { currentUserRole } = useSelectors()
 	const { toggleModalCategory, setCategoryToEdit } = useActions()
 	const [deleteCategory, { isSuccess }] = useDeleteCategoryMutation()
 
@@ -46,15 +48,17 @@ const CategoryTable: React.FC = () => {
 						icon={<AiOutlineEdit />}
 						onClick={() => handleEditButtonClick(record)}
 					/>
-					<Popconfirm
-						title='Удалить категорию?'
-						description='Вы действительно хотите удалить категорию?'
-						onConfirm={() => onClickRemoveCategory(record.id)}
-						okText='Да'
-						cancelText='Отмена'
-					>
-						<UiRedButton icon={<BsTrash />} />
-					</Popconfirm>
+					{currentUserRole === 'super_admin' && (
+						<Popconfirm
+							title='Удалить категорию?'
+							description='Вы действительно хотите удалить категорию?'
+							onConfirm={() => onClickRemoveCategory(record.id)}
+							okText='Да'
+							cancelText='Отмена'
+						>
+							<UiRedButton icon={<BsTrash />} />
+						</Popconfirm>
+					)}
 				</Space>
 			),
 		},
