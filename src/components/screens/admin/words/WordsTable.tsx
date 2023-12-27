@@ -83,7 +83,7 @@ const WordsTable: React.FC = () => {
 			title: 'Категория',
 			dataIndex: 'category_id',
 			key: 'category_id',
-			render: (_, rec) => rec.category.kiril,
+			render: (_, rec) => rec?.category?.kiril,
 		},
 		{
 			title: 'Действия',
