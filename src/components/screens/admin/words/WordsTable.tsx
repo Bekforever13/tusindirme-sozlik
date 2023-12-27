@@ -41,6 +41,12 @@ const WordsTable: React.FC = () => {
 	}
 
 	useEffect(() => {
+		if (debouncedSearch.length) {
+			setCurrentPage(1)
+		}
+	}, [debouncedSearch])
+
+	useEffect(() => {
 		if (deleteSuccess) message.success('Слово удалено')
 	}, [deleteSuccess])
 
