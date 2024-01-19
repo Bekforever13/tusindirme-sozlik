@@ -25,6 +25,7 @@ export type TWordAS = {
 	quantity: string
 	synonym: TWord[]
 	title: TKirilLatin
+	audio?: string
 }
 
 export type AllWordsInitState = {
@@ -33,6 +34,8 @@ export type AllWordsInitState = {
 	selectedSinonims: LabelValue[]
 	AntSinModal: boolean
 	wordSearch: string
+	AudioModal: boolean
+	AudioProgress: number
 }
 
 export type TAntonim = {

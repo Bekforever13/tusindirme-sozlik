@@ -9,14 +9,20 @@ const Admin: React.FC = () => {
 	const token = localStorage.getItem('token')
 	const navigate = useNavigate()
 	const { setCurrentUserRole } = useActions()
-	const { data } = useCheckUserQuery()
+	const { data, isError } = useCheckUserQuery()
 
 	React.useEffect(() => {
-		if (!token) navigate('/auth', { replace: true })
+		if (!token) {
+			navigate('/auth', { replace: true })
+		}
 		if (data) {
 			setCurrentUserRole(data?.data.role)
 		}
-	}, [token, data])
+		if (isError) {
+			localStorage.removeItem('token')
+			navigate('/auth', { replace: true })
+		}
+	}, [token, data, isError])
 
 	return (
 		<div className={styles.root}>

@@ -52,10 +52,15 @@ export type TAllUserWord = {
 export type TUserWordCard = {
 	id: number
 	category: TKirilLatin
+	audio: string
 	title: TKirilLatin
 	description: TKirilLatin
 	is_correct: boolean
 	quantity: number
+	antonym?: TUserWordCard[]
+	synonym?: TUserWordCard[]
+	status?: null
+	category_id?: number
 }
 
 export interface ICardsDataResponse {
@@ -69,6 +74,9 @@ export type TUserInitState = {
 	popularWordsData: TUserWordCard[]
 	isCorrectWordsData: TUserWordCard[]
 	randomWordsData: TUserWordCard[]
+	popularWordsLoading: boolean
+	isCorrectWordsLoading: boolean
+	randomWordsLoading: boolean
 }
 
 export type TUserCardPropType = {

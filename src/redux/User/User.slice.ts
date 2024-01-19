@@ -5,6 +5,9 @@ const initialState: TUserInitState = {
 	popularWordsData: [],
 	isCorrectWordsData: [],
 	randomWordsData: [],
+	popularWordsLoading: false,
+	isCorrectWordsLoading: false,
+	randomWordsLoading: false,
 }
 
 const userSlice = createSlice({
@@ -19,6 +22,15 @@ const userSlice = createSlice({
 		},
 		setRandomWordsData(state, { payload }: PayloadAction<TUserWordCard[]>) {
 			state.randomWordsData = payload
+		},
+		setPopularWordsLoading(state, { payload }: PayloadAction<boolean>) {
+			state.popularWordsLoading = payload
+		},
+		setIsCorrectWordsLoading(state, { payload }: PayloadAction<boolean>) {
+			state.isCorrectWordsLoading = payload
+		},
+		setRandomWordsLoading(state, { payload }: PayloadAction<boolean>) {
+			state.randomWordsLoading = payload
 		},
 	},
 })

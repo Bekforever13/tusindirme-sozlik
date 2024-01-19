@@ -44,6 +44,14 @@ export const AllWordsApi = api.injectEndpoints({
 			}),
 			invalidatesTags: ['words'],
 		}),
+		createAudio: builder.mutation<unknown, any>({
+			query: body => ({
+				url: `/audios/${body.id}`,
+				method: 'POST',
+				body: body.formData,
+			}),
+			invalidatesTags: ['words'],
+		}),
 		createNewWord: builder.mutation<unknown, TWordFormData>({
 			query: body => ({
 				url: '/words',
@@ -63,6 +71,13 @@ export const AllWordsApi = api.injectEndpoints({
 		deleteWord: builder.mutation<any, number>({
 			query: id => ({
 				url: `/words/${id}`,
+				method: 'DELETE',
+			}),
+			invalidatesTags: ['words'],
+		}),
+		deleteAudio: builder.mutation<any, number>({
+			query: id => ({
+				url: `/audios/${id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['words'],

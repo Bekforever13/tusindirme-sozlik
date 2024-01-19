@@ -14,6 +14,8 @@ export const {
 	useDeleteWordMutation,
 	useCreateAntonimsMutation,
 	useCreateSinonimsMutation,
+	useCreateAudioMutation,
+	useDeleteAudioMutation,
 } = AllWordsApi
 
 export const {

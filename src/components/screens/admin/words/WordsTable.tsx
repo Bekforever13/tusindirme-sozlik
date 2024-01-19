@@ -16,6 +16,8 @@ import { useEffect, useState } from 'react'
 import { WordsAntonimSinonim } from './WordsAntonimSinonim'
 import { useSelectors } from 'src/hooks/useSelectors'
 import { useDebounce } from 'src/hooks/useDebounce'
+import { MdAudiotrack } from 'react-icons/md'
+import { WordsAudioModal } from './WordsAudioModal'
 
 const WordsTable: React.FC = () => {
 	const [deleteWord, { isSuccess: deleteSuccess }] = useDeleteWordMutation()
@@ -23,17 +25,20 @@ const WordsTable: React.FC = () => {
 	const [pageSize, setPageSize] = useState(10)
 	const { wordSearch, currentUserRole } = useSelectors()
 	const debouncedSearch = useDebounce(wordSearch, 500)
-	const { setWordToEdit, toggleModalWord, setCurrentWord, setAntSinModal } =
-		useActions()
+	const {
+		setWordToEdit,
+		setAudioModal,
+		toggleModalWord,
+		setCurrentWord,
+		setAntSinModal,
+	} = useActions()
 	const { data: wordsData, isLoading } = useGetAdminAllWordsQuery({
 		search: debouncedSearch,
 		page: currentPage,
 		limit: pageSize,
 	})
 
-	const onClickRemoveWord = (id: number) => {
-		deleteWord(id)
-	}
+	const onClickRemoveWord = (id: number) => deleteWord(id)
 
 	const handleEditButtonClick = (record: TWordAS) => {
 		setWordToEdit(record)
@@ -112,6 +117,24 @@ const WordsTable: React.FC = () => {
 							setAntSinModal(true)
 						}}
 					/>
+					<UiButton
+						icon={<MdAudiotrack size='20' />}
+						onClick={() => {
+							setCurrentWord({
+								id: 0,
+								category_id: 0,
+								category: { latin: '', kiril: '' },
+								title: { latin: '', kiril: '' },
+								description: { latin: '', kiril: '' },
+								antonym: [],
+								synonym: [],
+								is_correct: false,
+								quantity: '',
+							})
+							setCurrentWord(record)
+							setAudioModal(true)
+						}}
+					/>
 				</Space>
 			),
 		},
@@ -138,6 +161,7 @@ const WordsTable: React.FC = () => {
 				columns={columns}
 			/>
 			<WordsAntonimSinonim />
+			<WordsAudioModal />
 		</>
 	)
 }

@@ -4,6 +4,7 @@ import { AllWordsInitState, LabelValue, TWordAS } from './Allwords.types'
 const initialState: AllWordsInitState = {
 	currentWord: {
 		id: 0,
+		audio: '',
 		category_id: 0,
 		category: { latin: '', kiril: '' },
 		title: { latin: '', kiril: '' },
@@ -17,6 +18,8 @@ const initialState: AllWordsInitState = {
 	selectedSinonims: [],
 	AntSinModal: false,
 	wordSearch: '',
+	AudioModal: false,
+	AudioProgress: 0,
 }
 
 const AllWordsSlice = createSlice({
@@ -37,6 +40,12 @@ const AllWordsSlice = createSlice({
 		},
 		setWordSearch(state, { payload }: PayloadAction<string>) {
 			state.wordSearch = payload
+		},
+		setAudioModal(state, { payload }: PayloadAction<boolean>) {
+			state.AudioModal = payload
+		},
+		setAudioProgress(state, { payload }: PayloadAction<number>) {
+			state.AudioProgress = payload
 		},
 	},
 })

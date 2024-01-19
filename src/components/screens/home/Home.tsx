@@ -15,29 +15,38 @@ import { useGetUserCardsData } from 'src/hooks/useGetUserCardsData'
 const Home: React.FC = () => {
 	const { id } = useParams()
 	const { t } = useTranslation()
-	const { isLoading } = useGetUserCardsData()
-	const { randomWordsData, popularWordsData, isCorrectWordsData } =
-		useSelectors()
+	useGetUserCardsData()
+	const {
+		randomWordsData,
+		popularWordsData,
+		isCorrectWordsData,
+		popularWordsLoading,
+		isCorrectWordsLoading,
+		randomWordsLoading,
+	} = useSelectors()
 
 	return (
 		<div className={styles.root}>
-			{id ? (
-				<Word />
-			) : (
-				<div className={styles.search}>
-					<h1>{t('searchTitle')}</h1>
-					<Search />
-				</div>
-			)}
+			<div className={styles.search}>
+				<h1>{t('searchTitle')}</h1>
+				<Search />
+			</div>
+			{id && <Word />}
 			<div className={styles.cards}>
-				{isLoading ? (
-					[...Array(3)].map((_, i) => <Skeleton key={i} />)
+				{popularWordsLoading ? (
+					<Skeleton />
 				) : (
-					<>
-						<Card title={t('firstCardTitle')} words={randomWordsData} />
-						<Card title={t('secondCardTitle')} words={popularWordsData} />
-						<Card title={t('thirdCardTitle')} words={isCorrectWordsData} />
-					</>
+					<Card title={t('firstCardTitle')} words={randomWordsData} />
+				)}
+				{isCorrectWordsLoading ? (
+					<Skeleton />
+				) : (
+					<Card title={t('secondCardTitle')} words={popularWordsData} />
+				)}
+				{randomWordsLoading ? (
+					<Skeleton />
+				) : (
+					<Card title={t('thirdCardTitle')} words={isCorrectWordsData} />
 				)}
 			</div>
 			<Frame />

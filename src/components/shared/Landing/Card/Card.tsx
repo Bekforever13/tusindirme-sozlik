@@ -20,7 +20,7 @@ const Card: React.FC<TUserCardPropType> = ({ title, words }) => {
 									{lang === 'QQ' ? item.title.latin : item.title.kiril}
 								</Link>
 							)
-					})
+					  })
 					: t('empty')}
 			</div>
 		</div>
